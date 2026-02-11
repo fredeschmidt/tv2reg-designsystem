@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="tv2Oj">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TV2 Regions | Design Manual</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/theme.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrapper row">
+        <a class="brand" href="index.html">TV2 Regions</a>
+        <nav>
+          <a href="index.html">Frontpage</a>
+          <a href="article.html">Article</a>
+          <a href="design-manual.html" aria-current="page">Design manual</a>
+        </nav>
+        <label class="theme-picker" for="themeSelect">
+          Theme
+          <select id="themeSelect" aria-label="Select region theme"></select>
+        </label>
+      </div>
+    </header>
+
+    <main class="wrapper stack">
+      <section class="card">
+        <p class="eyebrow">Design manual</p>
+        <h1>Colors, typography and scale</h1>
+        <p>
+          Use the theme switcher to inspect token values for each region.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Color tokens</h2>
+        <div class="swatches">
+          <div>
+            <span class="swatch swatch-primary"></span>
+            <p><strong>--color-primary</strong></p>
+          </div>
+          <div>
+            <span class="swatch swatch-accent"></span>
+            <p><strong>--color-accent</strong></p>
+          </div>
+          <div>
+            <span class="swatch swatch-bg"></span>
+            <p><strong>--color-bg</strong></p>
+          </div>
+          <div>
+            <span class="swatch swatch-surface"></span>
+            <p><strong>--color-surface</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Typography</h2>
+        <p class="type-label">Display font</p>
+        <h3 class="sample-display">Regional headlines look consistent and strong</h3>
+        <p class="type-label">Body font</p>
+        <p class="sample-body">
+          Body text uses a readable system with tokenized sizes and spacing. You can
+          tune readability per region without changing HTML.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
