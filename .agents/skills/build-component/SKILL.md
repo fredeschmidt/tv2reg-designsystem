@@ -1,9 +1,9 @@
 ---
-name: build-task
+name: build-component
 description: Build components directly from the user prompt (for example "Build the component from this Figma link: <FIGMA_DEV_MODE_LINK>" or "Build the component from this screenshot").
 ---
 
-# Build Task
+# Build Component
 
 Execute implementation work where the user prompt is the task definition, using provided design context (Figma Dev Mode link or screenshot) as the primary source of truth for the implementation. This skill is for cases where the user has a clear implementation request tied to specific design input, and the agent's job is to translate that into code with minimal back-and-forth.
 

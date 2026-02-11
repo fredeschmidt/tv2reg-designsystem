@@ -1,4 +1,4 @@
-# Build Task Skill
+# Build Component Skill
 
 ## Skill Routing
 

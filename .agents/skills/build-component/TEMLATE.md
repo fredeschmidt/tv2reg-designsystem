@@ -1,4 +1,4 @@
-# Build Task Confirmation Template
+# Build Component Confirmation Template
 
 Use this message before implementation begins:
 
