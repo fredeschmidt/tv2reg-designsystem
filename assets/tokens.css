@@ -1,0 +1,56 @@
+:root {
+  --color-primary: #005bbb;
+  --color-accent: #fbb034;
+  --color-bg: #f3f7fb;
+  --color-surface: #ffffff;
+  --color-text: #13212f;
+  --color-muted: #4b5c70;
+
+  --font-display: "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+
+  --radius: 14px;
+  --shadow: 0 8px 30px rgba(13, 35, 58, 0.12);
+}
+
+html[data-theme="tv2Oj"] {
+  --color-primary: #005bbb;
+  --color-accent: #fcbf2d;
+  --color-bg: #f4f8ff;
+}
+
+html[data-theme="tv2Nord"] {
+  --color-primary: #1463ff;
+  --color-accent: #2ed1ff;
+  --color-bg: #f3f9ff;
+}
+
+html[data-theme="tv2Syd"] {
+  --color-primary: #b32024;
+  --color-accent: #ff9f5a;
+  --color-bg: #fff5f5;
+}
+
+html[data-theme="tv2Fyn"] {
+  --color-primary: #0f8b4c;
+  --color-accent: #56d17b;
+  --color-bg: #f2fbf5;
+}
+
+html[data-theme="tv2East"] {
+  --color-primary: #7c3aed;
+  --color-accent: #c4b5fd;
+  --color-bg: #f7f4ff;
+}
+
+html[data-theme="kosmopol"] {
+  --color-primary: #1b1b1b;
+  --color-accent: #ff4259;
+  --color-bg: #f6f6f6;
+}
+
