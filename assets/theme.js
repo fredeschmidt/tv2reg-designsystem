@@ -22,5 +22,4 @@ function initThemeSwitcher() {
     applyTheme(event.target.value);
   });
 }
-
-initThemeSwitcher();
+export { initThemeSwitcher };
