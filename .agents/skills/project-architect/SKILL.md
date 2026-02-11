@@ -20,11 +20,14 @@ Keep this repository aligned with the POC architecture while preserving the curr
 - Keep pages static (`index.html`, `article.html`, `design-manual.html`).
 - Keep `assets/tokens.css` as token source and `assets/styles.css` as token consumer.
 - Keep `assets/theme.js` as the only runtime theme switch logic.
+- Keep `assets/script.js` as the shared entry point for non-theme component scripts.
 - For every new component, create a dedicated folder under `assets/components/<component-name>/`.
 - Place component-specific files in that folder:
   - `<component-name>.css`
   - `<component-name>.js`
-- Keep component CSS/JS scoped to that component and reference them from pages as needed.
+- Keep component CSS/JS scoped to that component.
+- Load component CSS by importing it from `assets/styles.css` (never with page-level `<link>` tags).
+- Load component JS through `assets/script.js` (never with page-level `<script>` tags for component files).
 
 Never fork per-region HTML templates. Implement regional differences through tokens.
 
@@ -34,6 +37,8 @@ Never fork per-region HTML templates. Implement regional differences through tok
 - For component builds driven by a provided Figma link or screenshot, reuse existing tokens from `assets/tokens.css` and do not create new tokens by default.
 - Only add new tokens when the user explicitly asks for token architecture changes.
 - Do not add new component logic or styling directly into shared `assets/styles.css` beyond cross-component/global layout concerns.
+- In `assets/styles.css`, only add component `@import` statements and shared/global rules (do not inline component styles there).
+- In `assets/script.js`, register/import component scripts; keep page HTML script tags limited to shared entry scripts.
 - Keep theme identifiers synchronized across:
   - CSS selectors in `assets/tokens.css`
   - `THEMES` in `assets/theme.js`
@@ -48,15 +53,17 @@ Never fork per-region HTML templates. Implement regional differences through tok
 3. If the task is a Figma/screenshot component build and no exact token exists, use the closest semantic token and document the visual delta instead of creating a new token.
 4. Only if explicitly requested by the user, add or adjust token(s) in `assets/tokens.css`.
 5. If creating a new component, create `assets/components/<component-name>/` with `<component-name>.css` and `<component-name>.js`.
-6. Apply token(s) in the component CSS file (or in `assets/styles.css` only for shared/global styles).
-7. If adding theme/region:
+6. Import the new component stylesheet from `assets/styles.css` and keep component style rules inside the component CSS file.
+7. Register the new component script from `assets/script.js` (create `assets/script.js` if missing) and load only `assets/script.js` from page HTML.
+8. If adding theme/region:
    - Add region token override block in `assets/tokens.css`.
    - Add key in `assets/theme.js`.
-8. Validate:
+9. Validate:
    - Theme selector renders and switches on all pages.
    - Theme persists via `localStorage` key `tv2-region-theme`.
    - No hardcoded region colors in component rules.
-   - New component CSS/JS are loaded only where required and do not leak styles/behavior globally.
+   - New component CSS is imported via `assets/styles.css` and component JS is loaded via `assets/script.js`.
+   - No page-level component `<link>` or `<script>` tags were added.
    - Mobile and desktop render correctly.
 
 ## Migration Guidance From POC

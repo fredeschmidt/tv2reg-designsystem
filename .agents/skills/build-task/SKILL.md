@@ -34,8 +34,9 @@ If no design artifact is provided, ask for one before implementation.
 1. Parse scope directly from the user request.
 2. Extract key details from the design input:
    - For Figma: use Figma Dev Mode to extract styling (sizes, typography, spacing, tokens, colors, etc.) and ensure the component design matches the linked Figma exactly.
-   - For screenshots: extract as much detail as possible as well as layout, component structure, and visual styling cues.
+   - For screenshots: maky your build look 1:1 as much as posible from the screenshot.Extract as much detail as possible as well as layout, component structure, and visual styling cues.
    - For screenshots: confirm the source theme (`tv2Oj`, `tv2Nord`, `tvSyd`, `tv2Fyn`, `tv2East`, or `kosmopol`) before implementation. Use that theme as the canonical styling reference, then rely on tokens for the remaining themes.
+   - For screenshot-only "1:1" requests: do not assume missing values. Request missing measurements/assets first.
 3. Ask user where the component should be integrated:
    - If article: add component to `article.html` inside <article>, wrapped in <div class="article-component">.
    - If frontpage: add component to `index.html` inside <main>, wrapped in <div class="frontpage-component">.
@@ -45,8 +46,13 @@ If no design artifact is provided, ask for one before implementation.
 7. If user confirmed, then create a branch locally with descriptive name (e.g. `build/<component-name>`).
 8. Implement the component following the [core principles](../project-architect/SKILL.md) and using the design input as the primary source of truth.
 9. Validate behavior on desktop/mobile and verify no global style leakage from component CSS/JS.
-10. Report back with:
+10. If the request is "1:1 from screenshot", run an explicit visual-match pass:
+   - Compare spacing, typography, and sizing against the screenshot at the specified viewport.
+   - Refine in iterations until approved (or until blocked by missing assets/measurements).
+   - Report known deltas if exact parity is impossible (for example missing font or source image).
+11. Report back with:
    - What was built
    - Files changed
    - Assumptions made (especially when screenshot-only)
+   - Any visual deltas remaining for "1:1" tasks and why
    - Remaining gaps or follow-ups

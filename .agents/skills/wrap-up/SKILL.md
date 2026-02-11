@@ -16,7 +16,7 @@ This runs when the user asks to wrap up a branch, e.g. "Wrap up this branch". Th
 
 ## Workflow
 1. Check working tree:
-- If untracked files exist: STOP and ask user whether to add/commit or discard.
+- If untracked files exist: stage them.
 - If there are changes: stage them.
 
 2. Commit:
