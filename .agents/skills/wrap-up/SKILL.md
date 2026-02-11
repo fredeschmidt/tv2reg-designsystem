@@ -12,7 +12,6 @@ This runs when the user asks to wrap up a branch, e.g. "Wrap up this branch". Th
 ## HARD RULES (must follow)
 - Never delete branches automatically.
 - Never deploy automatically.
-- When the wrap-up workflow completes, set the related Linear issue status to `completed` (discover via Linear MCP).
 
 ## Workflow
 1. Check working tree:
