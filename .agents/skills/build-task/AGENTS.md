@@ -1,11 +1,11 @@
-# Execute Issue Skill
+# Build Task Skill
 
 ## Skill Routing
 
 | User Says                                         | Use This Skill?      |
 | ------------------------------------------------- | -------------------- |
 | "Build the component from this Figma link"        | ✅ Yes               |
-| "Build the component from this screenshot (tv2oj)"| ✅ Yes               |
+| "Build the component from this screenshot (tv2Oj)"| ✅ Yes               |
 
 
 ## Related Skills

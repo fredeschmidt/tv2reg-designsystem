@@ -23,7 +23,7 @@ Collect these before coding:
    - Preferred: Figma Dev Mode link with `node-id`
    - Fallback: Screenshot (local file path, issue attachment, or embedded image)
 3. If using a screenshot, the user must specify which theme it belongs to:
-   - `tv2Oj`, `tv2Nord`, `tvSyd`, `tv2Fyn`, `tv2East`, or `kosmopol`
+   - `tv2oj`/`tv2Oj`, `tv2Nord`, `tvSyd`, `tv2Fyn`, `tv2East`, or `kosmopol`
    - The specified theme defines the source styling for the implementation
    - Other themes should be provided through existing design tokens (no per-theme hardcoded screenshot values)
 
