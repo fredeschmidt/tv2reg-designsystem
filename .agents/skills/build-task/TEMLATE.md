@@ -3,6 +3,8 @@
 Use this message before implementation begins:
 
 ```md
+✅ Is this what you want?
+
 🛠️ I will build: `<component-or-feature-name>`
 
 🧾 Detailed task description:
@@ -18,8 +20,6 @@ Use this message before implementation begins:
   - <assumption-2>
 - 🚫 Out of scope:
   - <item-1>
-
-✅ Is this what you want?
 
 👉 Reply with `yes` to proceed or tell me what to change.
 ```
