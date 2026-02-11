@@ -1,0 +1,4 @@
+interface:
+  display_name: TV2REG Project Architect
+  short_description: Maintain a token-driven multi-region news design system.
+  default_prompt: Keep architecture aligned with shared token semantics, golden-path validation, and explicit regional extension boundaries.

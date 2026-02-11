@@ -1,101 +1,62 @@
-# project-architect
+---
+name: project-architect
+description: Maintain and evolve tv2reg-designsystem as a shared multi-region, token-driven news design system. Use when adding pages, components, tokens, or themes; when aligning implementation with golden-path architecture; or when deciding what belongs in shared core vs regional extensions.
+---
 
-## Purpose
-This skill explains the architecture of `tv2reg-designsystem` so contributors can add features without breaking the shared multi-region model.
+# Project Architect
 
-## Project Goal
-Build one shared HTML solution for TV2 regional sites, where visual identity changes by theme tokens only.
+Keep this repository aligned with the POC architecture while preserving the current static setup.
 
-Current pages:
-- `index.html` (frontpage)
-- `article.html` (article template)
-- `design-manual.html` (token and typography reference)
+## Do This First
 
-## Core Architecture
+1. Confirm scope: shared core change, regional extension, or experiment.
+2. Read `references/token-architecture.md` for token-layer boundaries.
+3. Read `references/golden-path-workflow.md` for validation gates.
+4. If region-specific, read `references/regional-extension-guide.md`.
 
-### 1) Shared page structure
-All pages are static HTML and share these concepts:
-- Same top header and navigation
-- Same theme selector (`#themeSelect`)
-- Same global CSS/JS assets
+## Current Repository Contract
 
-Do not fork per-region HTML files. Regions must stay token-driven.
+- Keep one shared implementation for all regions.
+- Keep pages static (`index.html`, `article.html`, `design-manual.html`).
+- Keep `assets/tokens.css` as token source and `assets/styles.css` as token consumer.
+- Keep `assets/theme.js` as the only runtime theme switch logic.
 
-### 2) Token-driven theming
-Token source is `assets/tokens.css` and loaded via `@import` in `assets/styles.css`.
+Never fork per-region HTML templates. Implement regional differences through tokens.
 
-`assets/tokens.css` contains:
-- Base tokens in `:root` (color, typography, spacing, radius, shadow)
-- Region overrides on `html[data-theme="..."]`
+## Hard Rules
 
-Supported themes:
-- `tv2Oj`
-- `tv2Nord`
-- `tv2Syd`
-- `tv2Fyn`
-- `tv2East`
-- `kosmopol`
-
-Rule: component/layout styles must use CSS variables (tokens), not hardcoded region colors.
-
-### 3) Styling layers
-- `assets/tokens.css`: design tokens only
-- `assets/styles.css`: layout + component styling only, importing tokens at top
-
-If new design decisions are reusable, add token first, then consume it in styles.
-
-### 4) Theme runtime behavior
-`assets/theme.js` controls theme switching.
-
-Flow:
-1. Define valid themes in `THEMES`
-2. Read saved theme from `localStorage` (`tv2-region-theme`)
-3. Apply theme on `<html data-theme="...">`
-4. Populate `<select id="themeSelect">`
-5. Persist changes to `localStorage`
-
-Rule: keep theme names in JS aligned with token selectors in CSS.
-
-## Working Conventions
-
-### HTML
-- Keep semantic structure simple and shared.
-- Header/navigation/theme picker should be identical across pages.
+- Use tokens only in component/layout CSS (`var(--...)`).
+- Add new reusable visual decisions as tokens first, then consume in styles.
+- Keep theme identifiers synchronized across:
+  - CSS selectors in `assets/tokens.css`
+  - `THEMES` in `assets/theme.js`
+  - option values in the theme picker
 - Avoid page-specific inline styles/scripts.
+- Keep semantic markup stable across pages.
 
-### CSS
-- Prefer tokenized values: `var(--...)`
-- Keep responsive behavior centralized in `assets/styles.css`
-- Add new tokens in `assets/tokens.css` when introducing new visual properties
+## Safe Change Workflow
 
-### JS
-- Keep `theme.js` minimal and framework-free.
-- No page-specific behavior in theme script.
+1. Define the semantic need (not the raw style).
+2. Add or adjust token(s) in `assets/tokens.css`.
+3. Apply token(s) in `assets/styles.css`.
+4. If adding theme/region:
+   - Add region token override block in `assets/tokens.css`.
+   - Add key in `assets/theme.js`.
+5. Validate:
+   - Theme selector renders and switches on all pages.
+   - Theme persists via `localStorage` key `tv2-region-theme`.
+   - No hardcoded region colors in component rules.
+   - Mobile and desktop render correctly.
 
-## How To Extend Safely
+## Migration Guidance From POC
 
-### Add a new region theme
-1. Add new `html[data-theme="newTheme"]` block in `assets/tokens.css`
-2. Add `"newTheme"` to `THEMES` in `assets/theme.js`
-3. Verify switcher updates and persists correctly
+Adopt these ideas incrementally, without breaking current pages:
 
-### Add a new shared page
-1. Reuse existing header/nav/theme picker markup
-2. Include only `assets/styles.css` and `assets/theme.js`
-3. Use tokenized classes/components
+- Introduce layered naming that can map to:
+  - primitives (`md.ref.*`)
+  - system semantics (`md.sys.*`)
+  - editorial semantics (`news.sys.*`)
+- Keep component semantics stable and move visual expression into tokens.
+- Treat a canonical page (existing `article.html`) as a golden-path validation surface.
 
-### Add new component style
-1. Check if current tokens are enough
-2. If not, add token(s) to `:root` and per-theme overrides where needed
-3. Implement component rules in `assets/styles.css`
-
-## Known Constraints
-- Static HTML/CSS/JS only (no framework/build step yet)
-- Theme consistency relies on exact theme key names across CSS and JS
-- Browser support for `color-mix()` may vary in older environments
-
-## Quick Validation Checklist
-- Theme selector appears and works on all pages
-- Theme persists after reload/navigation
-- No region-specific hardcoded colors in component rules
-- All pages still render on mobile and desktop
+Do not import full POC complexity in one step. Prioritize backward-compatible token layering and validation discipline.
