@@ -29,18 +29,11 @@ Collect these before coding:
 
 If no design artifact is provided, ask for one before implementation.
 
-## Token Policy (Figma/Screenshot Builds)
-
-- Reuse existing tokens from `assets/tokens.css`; do not create new tokens for these tasks by default.
-- Map design values to the closest existing semantic token first (`news.sys.*`, `md.sys.*`, then existing legacy aliases already present).
-- If no exact match exists, use the closest existing token and document the visual delta in the final report.
-- Only create or adjust tokens when the user explicitly asks for token work.
-
 ## Workflow
 
 1. Parse scope directly from the user request.
 2. Extract key details from the design input:
-   - For Figma: use Figma Dev Mode to extract styling (sizes, typography, spacing, tokens, colors, ect.) and ensure the component design matches the linked Figma exactly.
+   - For Figma: use Figma Dev Mode to extract styling (sizes, typography, spacing, tokens, colors, etc.) and ensure the component design matches the linked Figma exactly.
    - For screenshots: extract as much detail as possible as well as layout, component structure, and visual styling cues.
    - For screenshots: confirm the source theme (`tv2Oj`, `tv2Nord`, `tvSyd`, `tv2Fyn`, `tv2East`, or `kosmopol`) before implementation. Use that theme as the canonical styling reference, then rely on tokens for the remaining themes.
 3. Ask user where the component should be integrated:
@@ -50,7 +43,7 @@ If no design artifact is provided, ask for one before implementation.
 5. Send a confirmation message using [template](./TEMPLATE.md) before starting work.
 6. Wait for user to confirm (`yes`).
 7. If user confirmed, then create a branch locally with descriptive name (e.g. `build/<component-name>`).
-8. Implement the component following the [core principles](../project-architect/SKILL.md), the Token Policy above, and using the design input as the primary source of truth.
+8. Implement the component following the [core principles](../project-architect/SKILL.md) and using the design input as the primary source of truth.
 9. Validate behavior on desktop/mobile and verify no global style leakage from component CSS/JS.
 10. Report back with:
    - What was built
