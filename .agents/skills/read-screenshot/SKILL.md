@@ -65,7 +65,10 @@ If a required input is missing, ask before implementation.
 5. Run a visual-match pass:
    - Compare implementation against screenshot at the same viewport.
    - Iterate until mismatch is negligible.
-6. Report remaining deltas:
+6. Perform self-review against the screenshot again:
+   - Re-check the original screenshot after the latest edits and confirm the build still looks the same.
+   - If differences remain, loop back to CSS/HTML refinements before final reporting.
+7. Report remaining deltas:
    - Only if exact parity is blocked by missing assets/fonts/source dimensions.
 
 ## 1:1 Acceptance Criteria
