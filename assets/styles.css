@@ -1,6 +1,4 @@
 @import url("tokens.css");
-@import url("components/quote/quote.css");
-@import url("components/textbox/textbox.css");
 
 * {
   box-sizing: border-box;
