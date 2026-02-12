@@ -24,10 +24,10 @@ Keep this repository aligned with the POC architecture while preserving the curr
 - For every new component, create a dedicated folder under `assets/components/<component-name>/`.
 - Place component-specific files in that folder:
   - `<component-name>.css`
-  - `<component-name>.js`
+  - `<component-name>.js` (only when component behavior requires JavaScript)
 - Keep component CSS/JS scoped to that component.
 - Load component CSS by importing it from `assets/styles.css` (never with page-level `<link>` tags).
-- Load component JS through `assets/script.js` (never with page-level `<script>` tags for component files).
+- Load component JS through `assets/script.js` when a component JS file exists (never with page-level `<script>` tags for component files).
 
 Never fork per-region HTML templates. Implement regional differences through tokens.
 
@@ -52,9 +52,9 @@ Never fork per-region HTML templates. Implement regional differences through tok
 2. Select existing token(s) from `assets/tokens.css` that best match the need.
 3. If the task is a Figma/screenshot component build and no exact token exists, use the closest semantic token and document the visual delta instead of creating a new token.
 4. Only if explicitly requested by the user, add or adjust token(s) in `assets/tokens.css`.
-5. If creating a new component, create `assets/components/<component-name>/` with `<component-name>.css` and `<component-name>.js`.
+5. If creating a new component, create `assets/components/<component-name>/` with `<component-name>.css`, and add `<component-name>.js` only when behavior requires JavaScript.
 6. Import the new component stylesheet from `assets/styles.css` and keep component style rules inside the component CSS file.
-7. Register the new component script from `assets/script.js` (create `assets/script.js` if missing) and load only `assets/script.js` from page HTML.
+7. If a component JS file is added, register the component script from `assets/script.js` (create `assets/script.js` if missing) and load only `assets/script.js` from page HTML.
 8. If adding theme/region:
    - Add region token override block in `assets/tokens.css`.
    - Add key in `assets/theme.js`.
@@ -62,7 +62,7 @@ Never fork per-region HTML templates. Implement regional differences through tok
    - Theme selector renders and switches on all pages.
    - Theme persists via `localStorage` key `tv2-region-theme`.
    - No hardcoded region colors in component rules.
-   - New component CSS is imported via `assets/styles.css` and component JS is loaded via `assets/script.js`.
+   - New component CSS is imported via `assets/styles.css`, and component JS is loaded via `assets/script.js` only when component JS exists.
    - No page-level component `<link>` or `<script>` tags were added.
    - Mobile and desktop render correctly.
 
