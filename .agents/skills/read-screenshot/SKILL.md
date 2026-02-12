@@ -48,6 +48,10 @@ If a required input is missing, ask before implementation.
    - No leaking global resets or overrides.
 5. Use existing tokens/theme variables first:
    - Avoid hardcoded one-off values unless screenshot fidelity requires it and token coverage is missing.
+6. For screenshot-based builds, token mapping is required by default:
+   - Use tokenized colors for backgrounds, text, borders, and accents.
+   - Use tokenized typography for font family, font size, font weight, and line-height.
+   - Only use hardcoded color/typography values when token coverage is missing and document each exception.
 
 ## Workflow
 
@@ -59,8 +63,8 @@ If a required input is missing, ask before implementation.
    - Ensure clean, minimal, semantic structure.
 4. Implement CSS in passes:
    - Pass 1: layout and geometry
-   - Pass 2: typography and spacing
-   - Pass 3: color/effects (backgrounds, borders, shadows, gradients)
+   - Pass 2: typography and spacing (map to typography tokens first)
+   - Pass 3: color/effects (backgrounds, borders, shadows, gradients; map colors to tokens first)
    - Pass 4: responsive adjustments
 5. Run a visual-match pass:
    - Compare implementation against both screenshots at matching viewports (mobile + desktop).
@@ -81,9 +85,11 @@ The result is accepted only when:
    - Font family fallback path, size, weight, line-height, and letter spacing visually match.
 3. Color/effect parity:
    - Backgrounds, text colors, borders, shadows, and opacity/overlay effects match.
-4. Structural quality:
+4. Token compliance:
+   - Color and typography styling uses existing tokens by default; any hardcoded exception is documented.
+5. Structural quality:
    - HTML is semantic and CSS is scoped to the component.
-5. Transparent assumptions:
+6. Transparent assumptions:
    - Any non-verifiable values are documented explicitly.
 
 ## Output Requirements

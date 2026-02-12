@@ -39,6 +39,7 @@ If screenshot-driven and one viewport screenshot is missing, ask for the missing
    - For Figma: use Figma Dev Mode to extract styling (sizes, typography, spacing, tokens, colors, etc.) and ensure the component design matches the linked Figma exactly.
    - For screenshots: trigger and follow the [Read Screenshot skill](../read-screenshot/SKILL.md) to extract visual details from both screenshots first (mobile + desktop), using the specified theme as the styling reference. Do not assume missing values; ask for clarification when necessary.
    - For screenshots: confirm the source theme (`tv2Oj`, `tv2Nord`, `tvSyd`, `tv2Fyn`, `tv2East`, or `kosmopol`) before implementation. Use that theme as the canonical styling reference, then rely on tokens for the remaining themes.
+   - For screenshots: map colors to existing color tokens and map typography to existing font tokens (family, size, weight, line-height) instead of hardcoded values.
 3. Ask user where the component should be integrated:
    - If article: add component to `article.html` inside <article>, wrapped in <div class="article-component">.
    - If frontpage: add component to `index.html` inside <main>, wrapped in <div class="frontpage-component">.
@@ -49,6 +50,7 @@ If screenshot-driven and one viewport screenshot is missing, ask for the missing
 8. Trigger and apply the [Project Architect skill](../project-architect/SKILL.md) before implementation for repository architecture constraints, then return to this workflow.
 9. Implement the component using the design input as the primary source of truth and within the Project Architect constraints.
 10. Validate behavior on desktop/mobile and verify no global style leakage from component CSS/JS.
+   - Confirm screenshot-driven styling uses token colors and token typography (font family, size, weight, line-height), not raw one-off values unless explicitly approved.
 
 11. Report back with:
    - What was built
