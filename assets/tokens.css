@@ -63,8 +63,8 @@
   /* --------------------------------------------------------------------------
      Typography Primitives (Shared)
      -------------------------------------------------------------------------- */
-  --md-ref-font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --md-ref-font-family-serif: Georgia, "Times New Roman", serif;
+  --md-ref-font-family-sans: "Proxima Nova", Montserrat, "Avenir Next", "Segoe UI", Roboto, sans-serif;
+  --md-ref-font-family-serif: "Proxima Nova", Montserrat, "Avenir Next", "Segoe UI", Roboto, sans-serif;
 
   /* Base font sizes */
   --md-ref-font-size-xs: 0.75rem;    /* 12px */
@@ -720,7 +720,7 @@
   --news-sys-typography-article-body: var(--md-ref-font-weight-normal) var(--expression-body-size)/var(--expression-body-line-height) var(--md-ref-font-family-sans);
   --news-sys-typography-article-meta: var(--md-ref-font-weight-normal) var(--md-ref-font-size-sm)/var(--md-ref-line-height-normal) var(--md-ref-font-family-sans);
   --news-sys-typography-section-label: var(--md-ref-font-weight-semibold) var(--md-ref-font-size-sm)/var(--md-ref-line-height-tight) var(--md-ref-font-family-sans);
-  --news-sys-typography-quote: var(--md-ref-font-weight-normal) var(--md-ref-font-size-lg)/var(--md-ref-line-height-relaxed) var(--md-ref-font-family-serif);
+  --news-sys-typography-quote: var(--md-ref-font-weight-normal) var(--news-sys-font-size-blockquote-mobile)/var(--news-sys-line-height-blockquote-mobile) var(--md-ref-font-family-serif);
   --news-sys-typography-banner: var(--md-ref-font-weight-bold) var(--md-ref-font-size-sm)/var(--md-ref-line-height-tight) var(--md-ref-font-family-sans);
   --news-sys-typography-button: var(--md-ref-font-weight-semibold) var(--md-ref-font-size-base)/var(--md-ref-line-height-tight) var(--md-ref-font-family-sans);
 
@@ -734,8 +734,8 @@
   --news-sys-line-height-p-mobile: 1.25;
   --news-sys-font-weight-p-mobile: 400;
 
-  --news-sys-font-size-blockquote-mobile: 1.5rem;
-  --news-sys-line-height-blockquote-mobile: 1.125;
+  --news-sys-font-size-blockquote-mobile: 1.5625rem;
+  --news-sys-line-height-blockquote-mobile: normal;
 
   /* --------------------------------------------------------------------------
      Letter Spacing (for labels, buttons, and UI elements)
@@ -1001,6 +1001,12 @@
   --news-sys-color-tip-form-input-focus: var(--md-sys-color-primary);
   --news-sys-space-tip-form-padding: var(--expression-space-component-comfortable);
   --news-sys-space-tip-form-gap: var(--expression-space-component-default);
+}
+
+@media (min-width: 52.5rem) {
+  :root {
+    --news-sys-font-size-blockquote-mobile: 2.0625rem;
+  }
 }
 
 
@@ -1408,8 +1414,8 @@
   --color-muted: var(--md-sys-color-on-surface-variant);
 
   /* Preserve existing typography intent in current pages. */
-  --font-display: "Avenir Next", "Segoe UI", sans-serif;
-  --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-display: "Proxima Nova", Montserrat, "Avenir Next", "Segoe UI", Roboto, sans-serif;
+  --font-body: "Proxima Nova", Montserrat, "Avenir Next", "Segoe UI", Roboto, sans-serif;
 
   --space-1: var(--md-ref-space-2);
   --space-2: var(--md-ref-space-4);

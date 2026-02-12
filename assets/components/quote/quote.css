@@ -1,0 +1,73 @@
+.article-component {
+  margin-block: var(--news-sys-space-article-block);
+}
+
+.quote {
+  position: relative;
+  width: min(80rem, calc(100vw - (2 * var(--news-sys-space-inline-default))));
+  margin-inline: auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: clamp(2.25rem, 3.6vw, 3.25rem) var(--news-sys-space-inline-default) 0;
+  text-align: center;
+}
+
+.quote__mark {
+  position: absolute;
+  top: clamp(1.25rem, 2.2vw, 2.5rem);
+  left: clamp(1rem, 4vw, 2.25rem);
+  margin: 0;
+  color: var(--news-sys-color-quote-border);
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 6.2rem);
+  font-weight: 700;
+  line-height: 0.72;
+  letter-spacing: -0.08em;
+}
+
+.quote__avatar {
+  display: grid;
+  place-items: center;
+  width: clamp(8.75rem, 14vw, 12rem);
+  aspect-ratio: 1;
+  margin: 0 auto clamp(1.8rem, 2vw, 2.3rem);
+  border-radius: 50%;
+  box-shadow: var(--news-sys-elevation-card);
+  background:
+    radial-gradient(circle at 50% 30%, #a6adb1 12%, #6d7679 34%, #2e373d 64%, #1c2428 100%);
+  color: var(--md-ref-color-neutral-0);
+  font-size: clamp(1.75rem, 2.4vw, 2.1rem);
+  font-weight: 600;
+}
+
+.quote__text {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--news-sys-color-article-body);
+  font: var(--news-sys-typography-quote);
+}
+
+.quote__caption {
+  margin-top: clamp(1.1rem, 1.8vw, 1.65rem);
+  color: var(--news-sys-color-article-meta);
+  font-family: var(--font-body);
+  font-size: 1.1875rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+@media (max-width: 37.49rem) {
+  .quote {
+    width: calc(100vw - (2 * var(--news-sys-space-inline-tight)));
+    padding-top: 2.25rem;
+  }
+
+  .quote__mark {
+    top: 1.45rem;
+    left: 0.15rem;
+    font-size: 3.1rem;
+  }
+
+}

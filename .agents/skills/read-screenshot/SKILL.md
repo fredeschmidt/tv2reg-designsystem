@@ -44,35 +44,49 @@ If any required input is missing, ask before implementation.
 
 1. Capture all visible details from both screenshots:
    - layout, spacing, alignment, sizing, typography, colors, borders, radii, shadows, overlays, icons, and responsive behavior.
-2. No guesswork without disclosure:
+2. Scan screenshots for visible text content before implementation:
+   - extract all readable copy (headlines, body, labels, quotes, captions, metadata, CTA text),
+   - preserve original wording and punctuation when legible,
+   - if text is partially unreadable, mark uncertain fragments explicitly as assumptions.
+3. Convert extracted text into semantic HTML based on editorial meaning:
+   - use tags that match intent (`h*`, `p`, `blockquote`, `figcaption`, `time`, `a`, `button`, etc.),
+   - avoid generic wrappers (`div`, `span`) when a semantic element fits,
+   - document ambiguous cases and why a semantic choice was made.
+4. No guesswork without disclosure:
    - if a value is uncertain, state the assumption and mark as potential delta.
-3. Preserve semantic HTML.
-4. Keep CSS fully scoped to the component.
-5. Use existing tokens first.
-6. Token mapping is required for screenshot builds:
+5. Preserve semantic HTML.
+6. Keep CSS fully scoped to the component.
+7. Use existing tokens first.
+8. Token mapping is required for screenshot builds:
    - colors: tokenized by default,
-   - typography: tokenized family, size, weight, line-height by default,
+   - typography: tokenized family, size, weight, line-height by default via semantic typography tokens,
+   - apply typography/color tokens that match the chosen semantic role (for example quote text -> quote tokens, metadata -> meta tokens),
+   - typography must prefer semantic token usage (for example `font: var(--news-sys-typography-quote)`) over legacy `--font-*` aliases in component CSS,
+   - when a semantic typography token is applied, do not override `font-size`, `font-weight`, or `line-height` unless absolutely required and documented as a delta,
    - hardcoded fallback only when token coverage is missing, and document each exception.
 
 ## Workflow (Execute In Order)
 
 1. Inspect both screenshots and list observable primitives:
    - frame/grid, blocks, spacing rhythm, type scale, color palette, effects, edge treatments.
-2. Derive DOM plan:
+2. Run a text extraction pass:
+   - list all detected text strings by region/role,
+   - classify each string by semantic intent (headline, paragraph, quote, caption, metadata, control label, etc.).
+3. Derive DOM plan:
    - map visible regions to semantic containers before CSS.
-3. Implement HTML first.
-4. Implement CSS in passes:
+4. Implement HTML first using the semantic mapping from step 2.
+5. Implement CSS in passes:
    - Pass 1: layout + geometry,
-   - Pass 2: typography + spacing (token-mapped first),
+   - Pass 2: typography + spacing (semantic token-mapped first),
    - Pass 3: color + effects (token-mapped first),
    - Pass 4: responsive adjustments.
-5. Run visual match pass:
+6. Run visual match pass:
    - compare mobile and desktop against screenshots,
    - iterate until mismatch is minimal.
-6. Run self-review pass again:
+7. Run self-review pass again:
    - re-check both screenshots after latest edits,
    - if mismatch remains, loop back to HTML/CSS refinements.
-7. Report deltas:
+8. Report deltas:
    - only remaining, non-removable deltas with exact reason.
 
 ## 1:1 Acceptance Criteria
