@@ -56,36 +56,42 @@ In the build flow: `build-component` -> `read-screenshot` (if needed) -> `projec
 ## Hard Rules
 
 1. Use tokens in component/layout CSS (`var(--...)`).
-2. For Figma/screenshot component builds, reuse existing tokens by default.
-3. Do not add new tokens unless user explicitly asks for token architecture changes.
-4. Keep `assets/styles.css` limited to imports + shared/global rules (no component rule blocks there).
-5. Keep `assets/script.js` as shared registry/entry for component scripts.
-6. Keep theme IDs synchronized across:
+2. Typography in component CSS must use semantic typography tokens first (for example `font: var(--news-sys-typography-quote)`), including font family, size, weight, and line-height.
+3. Do not use legacy typography aliases (`--font-*`) inside component styles; reserve them for compatibility in shared/global legacy layers only.
+4. For Figma/screenshot component builds, reuse existing tokens by default.
+5. Do not add new tokens unless user explicitly asks for token architecture changes.
+6. Keep `assets/styles.css` limited to imports + shared/global rules (no component rule blocks there).
+7. Keep `assets/script.js` as shared registry/entry for component scripts.
+8. Keep theme IDs synchronized across:
    - selectors in `assets/tokens.css`,
    - `THEMES` in `assets/theme.js`,
    - theme picker option values.
-7. Avoid page-specific inline styles/scripts.
-8. Keep semantic markup stable across pages.
+9. Avoid page-specific inline styles/scripts.
+10. Keep semantic markup stable across pages.
 
 ## Safe Change Workflow (Execute In Order)
 
 1. Define semantic need (not raw styling).
 2. Choose existing token(s) in `assets/tokens.css`.
-3. If no exact token for screenshot/Figma task:
+3. For typography, choose semantic `--news-sys-typography-*`/`--md-sys-typescale-*` tokens before setting discrete font properties.
+4. Do not override `font-size`, `font-weight`, or `line-height` in component rules when a semantic typography token is applied; if unavoidable, document the exception explicitly.
+5. If no exact token for screenshot/Figma task:
    - use closest semantic token,
    - document visual delta,
    - do not create new token by default.
-4. Only if user explicitly requests, add/adjust tokens in `assets/tokens.css`.
-5. If creating component, add `assets/components/<component-name>/` and component files.
-6. Import component CSS from `assets/styles.css`.
-7. If component JS exists, register/import from `assets/script.js`.
-8. If adding theme/region, update both:
+6. Only if user explicitly requests, add/adjust tokens in `assets/tokens.css`.
+7. If creating component, add `assets/components/<component-name>/` and component files.
+8. Import component CSS from `assets/styles.css`.
+9. If component JS exists, register/import from `assets/script.js`.
+10. If adding theme/region, update both:
    - token override block in `assets/tokens.css`,
    - key in `assets/theme.js`.
-9. Validate:
+11. Validate:
    - theme selector works on all pages,
    - `localStorage` key `tv2-region-theme` persists,
    - no hardcoded region colors in component rules,
+   - no legacy `--font-*` usage inside component CSS,
+   - no direct `font-size`/`font-weight`/`line-height` overrides where semantic typography tokens already define them,
    - component CSS/JS loading follows contract,
    - mobile and desktop render correctly.
 
