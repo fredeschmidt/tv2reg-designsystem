@@ -1,85 +1,99 @@
 ---
 name: project-architect
-description: Maintain and evolve tv2reg-designsystem as a shared multi-region, token-driven news design system. Use when adding pages, components, tokens, or themes; when aligning implementation with golden-path architecture; or when deciding what belongs in shared core vs regional extensions.
+description: Apply architecture and token guardrails so implementation stays aligned with the shared multi-region design-system contract.
 ---
 
 # Project Architect
 
-Keep this repository aligned with the POC architecture while preserving the current static setup.
+Use this skill to enforce repository architecture constraints.
+In component builds, this runs after design extraction and before implementation.
+
+## Mandatory Execution Rules
+
+- Read this file before acting.
+- Execute all workflow steps in exact order.
+- Execute all sub-bullets under each step.
+- Do not skip, combine, or reorder steps.
+- If blocked or context is missing, resolve before moving on.
+- When done, return to `build-component`.
 
 ## Trigger
 
-Use this skill when implementation needs repository architecture constraints and token/system guardrails.
-In the build flow, trigger this after screenshot/design extraction in `build-component`, then return to `build-component` to finish implementation.
+Use when implementation needs architectural guardrails for:
+- components,
+- tokens,
+- themes/regions,
+- page integration constraints.
 
-## Do This First
+In the build flow: `build-component` -> `read-screenshot` (if needed) -> `project-architect` -> implementation.
 
-1. Confirm scope: shared core change, regional extension, or experiment.
-2. Read `references/token-architecture.md` for token-layer boundaries.
-3. Read `references/golden-path-workflow.md` for validation gates.
-4. If region-specific, read `references/regional-extension-guide.md`.
+## Do This First (Required)
 
-## Current Repository Contract
+1. Confirm scope type:
+   - shared core change,
+   - regional extension,
+   - experiment.
+2. Read `references/token-architecture.md`.
+3. Read `references/golden-path-workflow.md`.
+4. If region-specific work, read `references/regional-extension-guide.md`.
 
-- Keep one shared implementation for all regions.
-- Keep pages static (`index.html`, `article.html`, `design-manual.html`).
-- Keep `assets/tokens.css` as token source and `assets/styles.css` as token consumer.
-- Keep `assets/theme.js` as the only runtime theme switch logic.
-- Keep `assets/script.js` as the shared entry point for non-theme component scripts.
-- For every new component, create a dedicated folder under `assets/components/<component-name>/`.
-- Place component-specific files in that folder:
-  - `<component-name>.css`
-  - `<component-name>.js` (only when component behavior requires JavaScript)
-- Keep component CSS/JS scoped to that component.
-- Load component CSS by importing it from `assets/styles.css` (never with page-level `<link>` tags).
-- Load component JS through `assets/script.js` when a component JS file exists (never with page-level `<script>` tags for component files).
+## Repository Contract (Must Keep)
 
-Never fork per-region HTML templates. Implement regional differences through tokens.
+1. One shared implementation for all regions.
+2. Static pages remain: `index.html`, `article.html`, `design-manual.html`.
+3. Token source is `assets/tokens.css`; token consumer is `assets/styles.css`.
+4. Runtime theme switching only in `assets/theme.js`.
+5. Shared JS entry point is `assets/script.js`.
+6. Each new component gets its own folder:
+   - `assets/components/<component-name>/`
+   - `<component-name>.css`
+   - `<component-name>.js` only if behavior requires JS.
+7. Component CSS/JS must be scoped.
+8. Component CSS loads via `assets/styles.css` imports only (no page-level component `<link>` tags).
+9. Component JS loads via `assets/script.js` only (no page-level component `<script>` tags).
+10. No per-region HTML forks; region differences come from tokens.
 
 ## Hard Rules
 
-- Use tokens only in component/layout CSS (`var(--...)`).
-- For component builds driven by a provided Figma link or screenshot, reuse existing tokens from `assets/tokens.css` and do not create new tokens by default.
-- Only add new tokens when the user explicitly asks for token architecture changes.
-- Do not add new component logic or styling directly into shared `assets/styles.css` beyond cross-component/global layout concerns.
-- In `assets/styles.css`, only add component `@import` statements and shared/global rules (do not inline component styles there).
-- In `assets/script.js`, register/import component scripts; keep page HTML script tags limited to shared entry scripts.
-- Keep theme identifiers synchronized across:
-  - CSS selectors in `assets/tokens.css`
-  - `THEMES` in `assets/theme.js`
-  - option values in the theme picker
-- Avoid page-specific inline styles/scripts.
-- Keep semantic markup stable across pages.
+1. Use tokens in component/layout CSS (`var(--...)`).
+2. For Figma/screenshot component builds, reuse existing tokens by default.
+3. Do not add new tokens unless user explicitly asks for token architecture changes.
+4. Keep `assets/styles.css` limited to imports + shared/global rules (no component rule blocks there).
+5. Keep `assets/script.js` as shared registry/entry for component scripts.
+6. Keep theme IDs synchronized across:
+   - selectors in `assets/tokens.css`,
+   - `THEMES` in `assets/theme.js`,
+   - theme picker option values.
+7. Avoid page-specific inline styles/scripts.
+8. Keep semantic markup stable across pages.
 
-## Safe Change Workflow
+## Safe Change Workflow (Execute In Order)
 
-1. Define the semantic need (not the raw style).
-2. Select existing token(s) from `assets/tokens.css` that best match the need.
-3. If the task is a Figma/screenshot component build and no exact token exists, use the closest semantic token and document the visual delta instead of creating a new token.
-4. Only if explicitly requested by the user, add or adjust token(s) in `assets/tokens.css`.
-5. If creating a new component, create `assets/components/<component-name>/` with `<component-name>.css`, and add `<component-name>.js` only when behavior requires JavaScript.
-6. Import the new component stylesheet from `assets/styles.css` and keep component style rules inside the component CSS file.
-7. If a component JS file is added, register the component script from `assets/script.js` (create `assets/script.js` if missing) and load only `assets/script.js` from page HTML.
-8. If adding theme/region:
-   - Add region token override block in `assets/tokens.css`.
-   - Add key in `assets/theme.js`.
+1. Define semantic need (not raw styling).
+2. Choose existing token(s) in `assets/tokens.css`.
+3. If no exact token for screenshot/Figma task:
+   - use closest semantic token,
+   - document visual delta,
+   - do not create new token by default.
+4. Only if user explicitly requests, add/adjust tokens in `assets/tokens.css`.
+5. If creating component, add `assets/components/<component-name>/` and component files.
+6. Import component CSS from `assets/styles.css`.
+7. If component JS exists, register/import from `assets/script.js`.
+8. If adding theme/region, update both:
+   - token override block in `assets/tokens.css`,
+   - key in `assets/theme.js`.
 9. Validate:
-   - Theme selector renders and switches on all pages.
-   - Theme persists via `localStorage` key `tv2-region-theme`.
-   - No hardcoded region colors in component rules.
-   - New component CSS is imported via `assets/styles.css`, and component JS is loaded via `assets/script.js` only when component JS exists.
-   - No page-level component `<link>` or `<script>` tags were added.
-   - Mobile and desktop render correctly.
+   - theme selector works on all pages,
+   - `localStorage` key `tv2-region-theme` persists,
+   - no hardcoded region colors in component rules,
+   - component CSS/JS loading follows contract,
+   - mobile and desktop render correctly.
 
-## Migration Guidance From POC
+## Output Requirements
 
-Adopt these ideas incrementally, without breaking current pages:
+When done, report:
 
-- Introduce layered naming that can map to:
-  - primitives (`md.ref.*`)
-  - system semantics (`md.sys.*`)
-  - editorial semantics (`news.sys.*`)
-- Keep component semantics stable and move visual expression into tokens.
-- Treat a canonical page (existing `article.html`) as a golden-path validation surface.
-
-Do not import full POC complexity in one step. Prioritize backward-compatible token layering and validation discipline.
+1. Constraints applied.
+2. Architecture decisions made.
+3. Files that must be touched (or avoided).
+4. Any rule conflicts/blockers and how they were resolved.
