@@ -1,95 +1,96 @@
 ---
 name: read-screenshot
-description: Extracts complete visual detail from a screenshot and recreates it as HTML/CSS with pixel-accurate 1:1 parity.
+description: Extract complete visual details from screenshots and reconstruct the component with semantic HTML and scoped CSS.
 ---
 
 # Read Screenshot
 
-Use this skill when a screenshot is the design source of truth and the goal is to reconstruct the UI in semantic HTML and scoped CSS with a strict 1:1 visual result.
+Use this skill when screenshots are the design source of truth.
+Goal: reconstruct the component with strict mobile + desktop visual parity.
+
+## Mandatory Execution Rules
+
+- Read this file before acting.
+- Execute all workflow steps in exact order.
+- Execute all sub-bullets under each step.
+- Do not skip, combine, or reorder steps.
+- If blocked or input is missing, ask and wait.
+- When done, return to `build-component`.
 
 ## Trigger
 
-Use this skill when `build-component` receives a screenshot-driven component request, then return to `build-component` after extraction.
+Run this skill when `build-component` handles a screenshot-driven component request.
 
-If the request references both a Figma Dev Mode link and a screenshot, prefer Figma values for exact specs and use the screenshot only for visual validation.
+If both Figma and screenshots are provided, Figma values are canonical; screenshots are for visual validation.
 
 ## Required Inputs
 
-Collect these before coding:
+Collect before implementation:
 
-1. Screenshot sources:
-   - Two screenshots are required for component builds: one mobile view and one desktop view
-2. Placement target in project:
+1. Two screenshots:
+   - one mobile,
+   - one desktop.
+2. Placement target:
    - `article.html` inside `<article>` wrapped in `<div class="article-component">`, or
-   - `index.html` inside `<main>` wrapped in `<div class="frontpage-component">`
-3. Theme context when relevant:
-   - `tv2oj`, `tv2Nord`, `tvSyd`, `tv2Fyn`, `tv2East`, or `kosmopol`
-4. Viewport assumptions if not obvious:
-   - Approximate frame width for both mobile and desktop screenshots
+   - `index.html` inside `<main>` wrapped in `<div class="frontpage-component">`.
+3. Source theme when relevant:
+   - `tv2Oj`, `tv2Nord`, `tv2Syd`, `tv2Fyn`, `tv2East`, or `kosmopol`.
+4. Viewport assumptions if frame size is unclear:
+   - approximate width for mobile and desktop captures.
 
-If a required input is missing, ask before implementation.
+If any required input is missing, ask before implementation.
 
 ## Extraction Rules (Non-Negotiable)
 
-1. Capture every visible detail from both screenshots:
-   - Layout structure, spacing, alignment, sizing, typography hierarchy, line-height, weights, colors, borders, radii, shadows, overlays, icon treatment, and responsive behavior implied by composition.
-2. Do not hand-wave unknowns:
-   - When a value cannot be inferred reliably, state the assumption explicitly and mark it as a potential delta.
-3. Preserve semantics:
-   - Use semantic HTML elements where possible (`article`, `section`, headings, lists, buttons, links, figure/caption).
-4. Keep CSS scoped:
-   - No leaking global resets or overrides.
-5. Use existing tokens/theme variables first:
-   - Avoid hardcoded one-off values unless screenshot fidelity requires it and token coverage is missing.
-6. For screenshot-based builds, token mapping is required by default:
-   - Use tokenized colors for backgrounds, text, borders, and accents.
-   - Use tokenized typography for font family, font size, font weight, and line-height.
-   - Only use hardcoded color/typography values when token coverage is missing and document each exception.
+1. Capture all visible details from both screenshots:
+   - layout, spacing, alignment, sizing, typography, colors, borders, radii, shadows, overlays, icons, and responsive behavior.
+2. No guesswork without disclosure:
+   - if a value is uncertain, state the assumption and mark as potential delta.
+3. Preserve semantic HTML.
+4. Keep CSS fully scoped to the component.
+5. Use existing tokens first.
+6. Token mapping is required for screenshot builds:
+   - colors: tokenized by default,
+   - typography: tokenized family, size, weight, line-height by default,
+   - hardcoded fallback only when token coverage is missing, and document each exception.
 
-## Workflow
+## Workflow (Execute In Order)
 
 1. Inspect both screenshots and list observable primitives:
-   - Grid/frame size, component blocks, spacing rhythm, type scale, color palette, edge treatments, and visual effects.
-2. Derive a DOM plan:
-   - Map each visible region to semantic containers before writing CSS.
-3. Implement HTML first:
-   - Ensure clean, minimal, semantic structure.
+   - frame/grid, blocks, spacing rhythm, type scale, color palette, effects, edge treatments.
+2. Derive DOM plan:
+   - map visible regions to semantic containers before CSS.
+3. Implement HTML first.
 4. Implement CSS in passes:
-   - Pass 1: layout and geometry
-   - Pass 2: typography and spacing (map to typography tokens first)
-   - Pass 3: color/effects (backgrounds, borders, shadows, gradients; map colors to tokens first)
-   - Pass 4: responsive adjustments
-5. Run a visual-match pass:
-   - Compare implementation against both screenshots at matching viewports (mobile + desktop).
-   - Iterate until mismatch is negligible.
-6. Perform self-review against the screenshot again:
-   - Re-check both original screenshots after the latest edits and confirm the build still looks the same on mobile and desktop.
-   - If differences remain, loop back to CSS/HTML refinements before final reporting.
-7. Report remaining deltas:
-   - Only if exact parity is blocked by missing assets/fonts/source dimensions.
+   - Pass 1: layout + geometry,
+   - Pass 2: typography + spacing (token-mapped first),
+   - Pass 3: color + effects (token-mapped first),
+   - Pass 4: responsive adjustments.
+5. Run visual match pass:
+   - compare mobile and desktop against screenshots,
+   - iterate until mismatch is minimal.
+6. Run self-review pass again:
+   - re-check both screenshots after latest edits,
+   - if mismatch remains, loop back to HTML/CSS refinements.
+7. Report deltas:
+   - only remaining, non-removable deltas with exact reason.
 
 ## 1:1 Acceptance Criteria
 
-The result is accepted only when:
+Accepted only when all are true:
 
-1. Visual parity:
-   - The layout and component geometry are pixel-accurate at target mobile and desktop viewports.
-2. Typographic parity:
-   - Font family fallback path, size, weight, line-height, and letter spacing visually match.
-3. Color/effect parity:
-   - Backgrounds, text colors, borders, shadows, and opacity/overlay effects match.
-4. Token compliance:
-   - Color and typography styling uses existing tokens by default; any hardcoded exception is documented.
-5. Structural quality:
-   - HTML is semantic and CSS is scoped to the component.
-6. Transparent assumptions:
-   - Any non-verifiable values are documented explicitly.
+1. Visual parity: geometry/layout match mobile and desktop.
+2. Typographic parity: family, size, weight, line-height, spacing match.
+3. Color/effect parity: backgrounds, text, borders, shadows, opacity/effects match.
+4. Token compliance: colors + typography tokenized by default; any hardcoded exceptions documented.
+5. Structural quality: semantic HTML + scoped CSS.
+6. Transparent assumptions: all uncertain values documented.
 
 ## Output Requirements
 
 When reporting completion, include:
 
-1. What was recreated from the screenshot
-2. Files changed
-3. Assumptions made
-4. Any remaining deltas and exact reason they cannot be eliminated
+1. What was recreated from screenshots.
+2. Files changed.
+3. Assumptions made.
+4. Remaining deltas and exact reason they cannot be removed.
