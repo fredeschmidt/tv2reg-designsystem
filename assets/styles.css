@@ -98,6 +98,18 @@ article h1,
   margin-top: 0;
 }
 
+h1 {
+  font-size: var(--news-sys-font-size-h1-mobile);
+  line-height: var(--news-sys-line-height-h1-mobile);
+  font-weight: var(--news-sys-font-weight-h1-mobile);
+}
+
+p {
+  font-size: var(--news-sys-font-size-p-mobile);
+  line-height: var(--news-sys-line-height-p-mobile);
+  font-weight: var(--news-sys-font-weight-p-mobile);
+}
+
 .eyebrow {
   color: var(--color-muted);
   text-transform: uppercase;
@@ -141,10 +153,19 @@ article h1,
 }
 
 blockquote {
+  font-size: var(--news-sys-font-size-blockquote-mobile);
+  line-height: var(--news-sys-line-height-blockquote-mobile);
   border-left: 4px solid var(--color-accent);
   margin: var(--space-2) 0;
   padding: var(--space-1) var(--space-2);
   background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface));
+}
+
+/* Desktop threshold: 52.5rem from token docs (md-ref-breakpoint-medium). */
+@media (min-width: 52.5rem) {
+  h1 {
+    font-size: var(--news-sys-font-size-h1-desktop);
+  }
 }
 
 .swatches {

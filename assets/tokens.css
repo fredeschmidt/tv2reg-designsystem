@@ -724,6 +724,19 @@
   --news-sys-typography-banner: var(--md-ref-font-weight-bold) var(--md-ref-font-size-sm)/var(--md-ref-line-height-tight) var(--md-ref-font-family-sans);
   --news-sys-typography-button: var(--md-ref-font-weight-semibold) var(--md-ref-font-size-base)/var(--md-ref-line-height-tight) var(--md-ref-font-family-sans);
 
+  /* Element-level typography specs */
+  --news-sys-font-size-h1-mobile: 2.25rem;
+  --news-sys-line-height-h1-mobile: 1.125;
+  --news-sys-font-weight-h1-mobile: 600;
+  --news-sys-font-size-h1-desktop: 3rem;
+
+  --news-sys-font-size-p-mobile: 1.25rem;
+  --news-sys-line-height-p-mobile: 1.25;
+  --news-sys-font-weight-p-mobile: 400;
+
+  --news-sys-font-size-blockquote-mobile: 1.5rem;
+  --news-sys-line-height-blockquote-mobile: 1.125;
+
   /* --------------------------------------------------------------------------
      Letter Spacing (for labels, buttons, and UI elements)
      -------------------------------------------------------------------------- */
