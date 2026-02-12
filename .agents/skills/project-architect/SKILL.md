@@ -7,6 +7,11 @@ description: Maintain and evolve tv2reg-designsystem as a shared multi-region, t
 
 Keep this repository aligned with the POC architecture while preserving the current static setup.
 
+## Trigger
+
+Use this skill when implementation needs repository architecture constraints and token/system guardrails.
+In the build flow, trigger this after screenshot/design extraction in `build-component`, then return to `build-component` to finish implementation.
+
 ## Do This First
 
 1. Confirm scope: shared core change, regional extension, or experiment.

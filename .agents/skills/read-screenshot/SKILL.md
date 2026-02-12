@@ -16,6 +16,8 @@ Use this skill when the user asks in patterns like:
 - `Match this UI 1:1 from screenshot`
 - `Extract all details from this screenshot`
 
+Also trigger this skill when `build-component` receives a screenshot-driven component request, then return to `build-component` after extraction.
+
 If the request references both a Figma Dev Mode link and a screenshot, prefer Figma values for exact specs and use the screenshot only for visual validation.
 
 ## Required Inputs

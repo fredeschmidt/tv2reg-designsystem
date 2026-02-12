@@ -12,4 +12,6 @@
 
 | Need                           | Load Skill         |
 | ------------------------------ | ------------------ |
+| Screenshot detail extraction   | `read-screenshot`  |
 | Project architecture           | `project-architect`|
+| Branch wrap-up on explicit ask | `wrap-up`          |
