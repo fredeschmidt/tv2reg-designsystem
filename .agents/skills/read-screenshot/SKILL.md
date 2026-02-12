@@ -35,10 +35,21 @@ Collect before implementation:
    - `index.html` inside `<main>` wrapped in `<div class="frontpage-component">`.
 3. Source theme when relevant:
    - `tv2Oj`, `tv2Nord`, `tv2Syd`, `tv2Fyn`, `tv2East`, or `kosmopol`.
-4. Viewport assumptions if frame size is unclear:
-   - approximate width for mobile and desktop captures.
+4. Viewport assumptions (default, unless user says otherwise):
+   - first screenshot is mobile viewport at `390px` width,
+   - second screenshot is desktop viewport at `1728px` width.
 
 If any required input is missing, ask before implementation.
+
+## Viewport Calibration Rules (Non-Negotiable)
+
+1. Assume screenshot order by default:
+   - screenshot 1 = mobile (`390px` wide),
+   - screenshot 2 = desktop (`1728px` wide).
+2. Use these viewport widths to estimate element dimensions:
+   - derive proportional widths, spacing, and typography scale from the screenshot-to-viewport ratio,
+   - validate derived sizes across both mobile and desktop before finalizing CSS values.
+3. Only deviate from these viewport defaults when the user explicitly provides different viewport sizes.
 
 ## Extraction Rules (Non-Negotiable)
 
