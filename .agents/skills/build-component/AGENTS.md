@@ -1,25 +1,26 @@
 # Build Component Skill
 
-## Workflow Discipline (Mandatory)
+## Entry Skill (Mandatory)
 
-- Read the selected skill workflow before taking action.
-- Execute every workflow bullet in the exact listed order.
-- Do not skip, combine, or reorder steps.
-- If any step is blocked, resolve or ask before proceeding.
+This is the first skill to run for any **new component build**.
+Do not start implementation from another skill.
 
+## Execution Contract (Non-Negotiable)
 
-## Skill Routing
+- Read `SKILL.md` before taking any action.
+- Execute every workflow step and sub-step in exact order.
+- Do not skip, merge, reorder, or "infer" completion.
+- If a step requires user input/confirmation, stop and wait.
+- If a step is blocked, resolve the blocker before moving on.
 
-| User Says                                              | Use This Skill?      |
-| ------------------------------------------------------ | -------------------- |
-| "Build the XX component from this Figma link"          | ✅ Yes               |
-| "Build the XX component from these screenshots (tv2Oj)"| ✅ Yes               |
+## Routing
 
+Use this skill when the user asks to build a component from:
+- a Figma Dev Mode link, or
+- screenshots (mobile + desktop).
 
-## Related Skills
+## Skill Handoffs
 
-| Need                           | Load Skill         |
-| ------------------------------ | ------------------ |
-| Screenshot detail extraction   | `read-screenshot`  |
-| Project architecture           | `project-architect`|
-| Branch wrap-up on explicit ask | `wrap-up`          |
+- Screenshot extraction: `read-screenshot`
+- Architecture guardrails: `project-architect`
+- Branch wrap-up (only if explicitly requested): `wrap-up`
