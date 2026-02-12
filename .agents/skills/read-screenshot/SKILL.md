@@ -24,21 +24,21 @@ If the request references both a Figma Dev Mode link and a screenshot, prefer Fi
 
 Collect these before coding:
 
-1. Screenshot source:
-   - Local file path, attachment, or embedded image
+1. Screenshot sources:
+   - Two screenshots are required for component builds: one mobile view and one desktop view
 2. Placement target in project:
    - `article.html` inside `<article>` wrapped in `<div class="article-component">`, or
    - `index.html` inside `<main>` wrapped in `<div class="frontpage-component">`
 3. Theme context when relevant:
    - `tv2oj`, `tv2Nord`, `tvSyd`, `tv2Fyn`, `tv2East`, or `kosmopol`
 4. Viewport assumptions if not obvious:
-   - Desktop/mobile and approximate frame width
+   - Approximate frame width for both mobile and desktop screenshots
 
 If a required input is missing, ask before implementation.
 
 ## Extraction Rules (Non-Negotiable)
 
-1. Capture every visible detail from the screenshot:
+1. Capture every visible detail from both screenshots:
    - Layout structure, spacing, alignment, sizing, typography hierarchy, line-height, weights, colors, borders, radii, shadows, overlays, icon treatment, and responsive behavior implied by composition.
 2. Do not hand-wave unknowns:
    - When a value cannot be inferred reliably, state the assumption explicitly and mark it as a potential delta.
@@ -51,7 +51,7 @@ If a required input is missing, ask before implementation.
 
 ## Workflow
 
-1. Inspect screenshot and list observable primitives:
+1. Inspect both screenshots and list observable primitives:
    - Grid/frame size, component blocks, spacing rhythm, type scale, color palette, edge treatments, and visual effects.
 2. Derive a DOM plan:
    - Map each visible region to semantic containers before writing CSS.
@@ -63,10 +63,10 @@ If a required input is missing, ask before implementation.
    - Pass 3: color/effects (backgrounds, borders, shadows, gradients)
    - Pass 4: responsive adjustments
 5. Run a visual-match pass:
-   - Compare implementation against screenshot at the same viewport.
+   - Compare implementation against both screenshots at matching viewports (mobile + desktop).
    - Iterate until mismatch is negligible.
 6. Perform self-review against the screenshot again:
-   - Re-check the original screenshot after the latest edits and confirm the build still looks the same.
+   - Re-check both original screenshots after the latest edits and confirm the build still looks the same on mobile and desktop.
    - If differences remain, loop back to CSS/HTML refinements before final reporting.
 7. Report remaining deltas:
    - Only if exact parity is blocked by missing assets/fonts/source dimensions.
@@ -76,7 +76,7 @@ If a required input is missing, ask before implementation.
 The result is accepted only when:
 
 1. Visual parity:
-   - The layout and component geometry are pixel-accurate at target viewport.
+   - The layout and component geometry are pixel-accurate at target mobile and desktop viewports.
 2. Typographic parity:
    - Font family fallback path, size, weight, line-height, and letter spacing visually match.
 3. Color/effect parity:
