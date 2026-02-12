@@ -32,7 +32,13 @@ Collect these before coding:
 If no design artifact is provided, ask for one before implementation.
 If screenshot-driven and one viewport screenshot is missing, ask for the missing mobile/desktop screenshot before implementation.
 
-## Workflow
+## Workflow (must follow in order)
+
+Execution rule (mandatory):
+- Read this workflow before acting.
+- Execute every numbered item and sub-bullet in exact order.
+- Do not skip, merge, reorder, or infer-complete any step.
+- If a step cannot be completed, stop and explicitly resolve that blocker before continuing to the next step.
 
 1. Parse scope directly from the user request.
 2. Extract key details from the design input:
