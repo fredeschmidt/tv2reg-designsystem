@@ -27,6 +27,7 @@ Every update must fit the full skill flow, not just a local section.
    - direct language,
    - minimal but sufficient detail.
 6. Keep behavioral intent intact when refactoring wording.
+7. Keep `HOW-TO.md` synchronized when skill or workflow changes affect task execution behavior.
 
 ## Placement Recommendation Rule (Mandatory)
 
@@ -80,6 +81,14 @@ Recommend a new skill only when:
    - alternatives considered,
    - any follow-up suggestions.
 
+## Cross-File Sync Rule (Mandatory)
+
+When a skill update changes task flow, required inputs, ordering, validation, or reporting behavior:
+
+1. Update `HOW-TO.md` in the same change.
+2. Ensure skill role descriptions and execution order in `HOW-TO.md` still match current skills.
+3. Mention the synchronization in the completion report.
+
 ## Output Requirements
 
 When done, report:
@@ -88,3 +97,4 @@ When done, report:
 2. Files changed.
 3. Structural cleanup performed (if any).
 4. Any remaining ambiguity and your recommended next step.
+5. Whether `HOW-TO.md` was updated (and why, if not needed).

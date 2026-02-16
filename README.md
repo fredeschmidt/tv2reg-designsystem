@@ -6,6 +6,7 @@ Simple static setup with:
 - `article.html` (article page)
 - `design-manual.html` (design manual page)
 - Shared theme tokens and theme switcher on all pages
+- `HOW-TO.md` (task execution workflow and skill usage guide)
 
 ## Themes included
 
