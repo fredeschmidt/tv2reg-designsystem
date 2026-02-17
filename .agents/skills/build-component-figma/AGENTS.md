@@ -1,21 +1,32 @@
 # Build Component Figma Skill
 
-## Source-Specific Build Skill
+## MANDATORY SKILL FOR FIGMA REQUESTS
 
-Use this skill directly when Figma is the source.
+**DO NOT BYPASS THIS SKILL** when a Figma link is provided in a request.
 
-## Execution Contract (Non-Negotiable)
+If a Figma Dev Mode node link is in the request, **YOU MUST USE THIS SKILL.** No exceptions, no manual implementations.
 
-- Read `SKILL.md` before taking any action.
+## Execution Contract (Non-Negotiable, Mandatory)
+
+- Read `SKILL.md` before taking any action—do not proceed without it.
 - Execute every workflow step and sub-step in exact order.
-- Do not skip, merge, reorder, or "infer" completion.
-- If a step requires user confirmation, stop and wait.
-- If blocked, resolve the blocker before moving on.
+- Do not skip, merge, reorder, or "infer" completion of any workflow step.
+- Escalate (ask user) if a step requires confirmation or decision.
+- Block and resolve any blockers before advancing—do not work around them.
+- **If you implement manually instead of using this skill, you have failed the contract.**
 
-## Routing
+## Routing (CRITICAL)
 
-Use this skill when the request contains a Figma Dev Mode node link.
-Treat the Figma design as white-label and keep theme behavior token-driven.
+**When a Figma link is provided, MANDATORY USE OF THIS SKILL:**
+1. Request contains a Figma Dev Mode node link (with node-id parameter)
+2. Placement target is specified (article.html, index.html, etc.)
+
+**DO NOT:** Build the component manually. Delegate to this skill immediately.
+
+**Source of Truth:**
+- Figma design is the source of truth.
+- Build is white-label (token-driven, theme-agnostic).
+- Token behavior provides theming flexibility across all regions.
 
 ## Skill Handoffs
 

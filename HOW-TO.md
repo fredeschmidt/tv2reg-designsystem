@@ -1,5 +1,12 @@
 # HOW TO: Request Work
 
+> **🚨 CRITICAL ROUTING RULE**
+>
+> - **Providing screenshots?** → Use `build-component-screenshots` skill (MANDATORY)
+> - **Providing Figma link?** → Use `build-component-figma` skill (MANDATORY)
+>
+> These are non-optional workflows. Manual implementations bypass the required design verification and quality gates.
+
 This is the shortest way to make a valid request.
 
 ## Overview
@@ -15,10 +22,10 @@ Token default for implementation:
 - Component and layout CSS should use the new token API (`--base-*` by default, `--core-*` when needed).
 - Legacy aliases (`--md-*`, `--news-*`, `--color-*`, `--font-*`, `--space-*`) are compatibility-only.
 
-Routing model:
-- Use source-specific flows directly for new component builds:
-  - `build-component-figma` for Figma node requests.
-  - `build-component-screenshots` for screenshot requests.
+Routing model (MANDATORY - ALWAYS FOLLOW):
+- **Screenshots provided:** MUST use `build-component-screenshots` skill (no manual builds)
+- **Figma link provided:** MUST use `build-component-figma` skill (no manual builds)
+- These skill delegations are non-negotiable execution contracts.
 - Figma requests are white-label: themes are token-driven.
 - Screenshot requests are concrete-theme: prompt must include the source theme.
 
