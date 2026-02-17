@@ -33,7 +33,7 @@ If any of these are missing, ask before implementation.
 2. Do not change component JS by default.
 3. Update only the component CSS unless the user explicitly asks for markup/JS changes.
 4. If markup changes are requested explicitly, keep them minimal and scoped to the existing component contract.
-5. Use existing tokens first (`md.sys.*`, `news.sys.*`, existing aliases); avoid new tokens unless explicitly requested.
+5. Use existing tokens first (`--base-*` primary, `--core-*` when needed); treat `--md-*`/`--news-*`/legacy aliases as compatibility-only.
 6. No page-level hacks or per-theme hardcoded forks in markup.
 
 ## Workflow

@@ -1,224 +1,142 @@
-/* ==========================================================================
-   TOKENS.CSS
-   News Design System - Regional Architecture
+/*
+ * assets/tokens.css
+ * Integration facade for the tv2reg-web modular token structure.
+ * Source structure:
+ * - assets/tokens/core.css
+ * - assets/tokens/semantic.css
+ * - assets/tokens/modes.css
+ */
 
-   Architecture:
-   1. Shared Primitives (md.ref.*) - Immutable foundation (includes breakpoints)
-   2. Region Layer (--region-*) - Brand colors, optional neutral tinting
-   3. System Tokens (md.sys.*) - UI semantics using region brand
-   4. Expression Layer (data-expression) - Layout, spacing, typography
-   5. Editorial Tokens (news.sys.*) - News-specific semantics
-   6. Mode Layer (data-mode) - Light/dark
-
-   Token Governance:
-   - Components consume ONLY news.sys.* and md.sys.* tokens
-   - md.ref.* tokens are immutable primitives (spacing, colors, breakpoints)
-   - --expression-* tokens include optional fluid variants for tactical scaling
-   - See ADR-001 for detailed governance rules
-   ========================================================================== */
-
-/* ==========================================================================
-   1. SHARED PRIMITIVES (md.ref.*)
-   Immutable foundation - shared across all regions
-   ========================================================================== */
+@import "./tokens/_index.css";
 
 :root {
-  /* --------------------------------------------------------------------------
-     Neutral Palette (Pure Grays - Default)
-     Regions may override these for brand-tinted neutrals
-     -------------------------------------------------------------------------- */
-  --md-ref-color-neutral-0: #ffffff;
-  --md-ref-color-neutral-5: #fafafa;
-  --md-ref-color-neutral-10: #f4f4f5;
-  --md-ref-color-neutral-20: #e4e4e7;
-  --md-ref-color-neutral-30: #d4d4d8;
-  --md-ref-color-neutral-40: #a1a1aa;
-  --md-ref-color-neutral-50: #71717a;
-  --md-ref-color-neutral-60: #52525b;
-  --md-ref-color-neutral-70: #3f3f46;
-  --md-ref-color-neutral-80: #27272a;
-  --md-ref-color-neutral-90: #18181b;
-  --md-ref-color-neutral-100: #09090b;
+  /* Default theme seed (tv2Oj) */
+  --base-color-brand-primary: #00aa5a;
+  --base-color-brand-secondary: #235537;
+  --base-color-brand-tertiary: #e1ff7d;
+  --base-color-brand-breaking: #ffed00;
+  --base-color-brand-primary-contrast: #ffffff;
+  --base-color-brand-secondary-contrast: #ffffff;
+  --base-color-brand-tertiary-contrast: #0a0a0b;
+  --base-color-brand-breaking-contrast: #0a0a0b;
 
-  /* --------------------------------------------------------------------------
-     Spacing Scale (Shared)
-     -------------------------------------------------------------------------- */
-  --md-ref-space-1: 0.25rem;   /* 4px */
-  --md-ref-space-2: 0.5rem;    /* 8px */
-  --md-ref-space-3: 0.75rem;   /* 12px */
-  --md-ref-space-4: 1rem;      /* 16px */
-  --md-ref-space-5: 1.25rem;   /* 20px */
-  --md-ref-space-6: 1.5rem;    /* 24px */
-  --md-ref-space-8: 2rem;      /* 32px */
-  --md-ref-space-10: 2.5rem;   /* 40px */
-  --md-ref-space-12: 3rem;     /* 48px */
+  /* Legacy region aliases */
+  --region-brand-primary: var(--base-color-brand-primary);
+  --region-brand-secondary: var(--base-color-brand-secondary);
+  --region-brand-tertiary: var(--base-color-brand-tertiary);
+  --region-brand-accent: var(--base-color-brand-primary);
+  --region-brand-breaking: var(--base-color-brand-breaking);
 
-  /* --------------------------------------------------------------------------
-     Border Widths (Shared)
-     -------------------------------------------------------------------------- */
-  --md-ref-border-width-thin: 1px;
-  --md-ref-border-width-medium: 2px;
+  /* Keep accent aligned with region accent override */
+  --base-color-accent: var(--region-brand-accent);
+
+  /* md.ref color aliases */
+  --md-ref-color-neutral-0: var(--base-color-neutral-0);
+  --md-ref-color-neutral-5: var(--base-color-neutral-50);
+  --md-ref-color-neutral-10: var(--base-color-neutral-100);
+  --md-ref-color-neutral-20: var(--base-color-neutral-200);
+  --md-ref-color-neutral-30: var(--base-color-neutral-300);
+  --md-ref-color-neutral-40: var(--base-color-neutral-400);
+  --md-ref-color-neutral-50: var(--base-color-neutral-500);
+  --md-ref-color-neutral-60: var(--base-color-neutral-600);
+  --md-ref-color-neutral-70: var(--base-color-neutral-700);
+  --md-ref-color-neutral-80: var(--base-color-neutral-800);
+  --md-ref-color-neutral-90: var(--base-color-neutral-900);
+  --md-ref-color-neutral-100: var(--base-color-neutral-950);
+
+  /* md.ref spacing aliases */
+  --md-ref-space-1: var(--core-size-4);
+  --md-ref-space-2: var(--core-size-8);
+  --md-ref-space-3: var(--core-size-12);
+  --md-ref-space-4: var(--core-size-16);
+  --md-ref-space-5: var(--core-size-20);
+  --md-ref-space-6: var(--core-size-24);
+  --md-ref-space-8: var(--core-size-32);
+  --md-ref-space-10: var(--core-size-40);
+  --md-ref-space-12: var(--core-size-48);
+
+  /* md.ref borders/radius/shadow */
+  --md-ref-border-width-thin: var(--core-border-width-1);
+  --md-ref-border-width-medium: var(--core-border-width-2);
   --md-ref-border-width-thick: 3px;
 
-  /* --------------------------------------------------------------------------
-     Typography Primitives (Shared)
-     -------------------------------------------------------------------------- */
-  --md-ref-font-family-sans: "Proxima Nova", Montserrat, "Avenir Next", "Segoe UI", Roboto, sans-serif;
-  --md-ref-font-family-serif: "Proxima Nova", Montserrat, "Avenir Next", "Segoe UI", Roboto, sans-serif;
+  --md-ref-radius-none: 0;
+  --md-ref-radius-sm: var(--base-radius-sm);
+  --md-ref-radius-md: var(--base-radius-md);
+  --md-ref-radius-lg: var(--base-radius-lg);
+  --md-ref-radius-xl: 1rem;
+  --md-ref-radius-full: var(--base-radius-pill);
 
-  /* Base font sizes */
-  --md-ref-font-size-xs: 0.75rem;    /* 12px */
-  --md-ref-font-size-sm: 0.875rem;   /* 14px */
-  --md-ref-font-size-base: 1rem;     /* 16px */
-  --md-ref-font-size-lg: 1.125rem;   /* 18px */
-  --md-ref-font-size-xl: 1.25rem;    /* 20px */
-  --md-ref-font-size-2xl: 1.5rem;    /* 24px */
-  --md-ref-font-size-3xl: 2rem;      /* 32px */
-  --md-ref-font-size-4xl: 2.5rem;    /* 40px */
-  --md-ref-font-size-5xl: 3rem;      /* 48px - Display small */
-  --md-ref-font-size-6xl: 3.5rem;    /* 56px - Display large */
+  --md-ref-shadow-none: none;
+  --md-ref-shadow-xs: var(--base-shadow-xs);
+  --md-ref-shadow-sm: var(--base-shadow-sm);
+  --md-ref-shadow-md: var(--base-shadow-md);
+  --md-ref-shadow-lg: var(--base-shadow-lg);
+  --md-ref-shadow-xl: var(--base-shadow-xl);
 
-  /* Letter spacing (tracking)
-     Positive values for small/uppercase text, negative for large headlines */
-  --md-ref-letter-spacing-tight: -0.025em;   /* -0.4px at 16px - large headlines */
-  --md-ref-letter-spacing-normal: 0;          /* Default - body text */
-  --md-ref-letter-spacing-wide: 0.025em;      /* 0.4px at 16px - buttons, labels */
-  --md-ref-letter-spacing-wider: 0.05em;      /* 0.8px at 16px - uppercase labels */
-  --md-ref-letter-spacing-widest: 0.1em;      /* 1.6px at 16px - all-caps headers */
+  /* md.ref typography primitives */
+  --md-ref-font-family-sans: var(--base-type-family-body);
+  --md-ref-font-family-serif: var(--base-type-family-heading);
 
-  /* Font weights */
+  --md-ref-font-size-base: var(--core-type-size-16);
+  --md-ref-font-size-lg: var(--core-type-size-18);
+  --md-ref-font-size-xl: var(--core-type-size-20);
+  --md-ref-font-size-2xl: var(--core-type-size-24);
+  --md-ref-font-size-3xl: var(--core-type-size-30);
+  --md-ref-font-size-4xl: var(--core-type-size-36);
+  --md-ref-font-size-5xl: 3rem;
+  --md-ref-font-size-6xl: 3.5rem;
+
   --md-ref-font-weight-normal: 400;
   --md-ref-font-weight-medium: 500;
   --md-ref-font-weight-semibold: 600;
   --md-ref-font-weight-bold: 700;
   --md-ref-font-weight-extrabold: 800;
 
-  /* Line heights */
   --md-ref-line-height-tight: 1.15;
   --md-ref-line-height-snug: 1.3;
   --md-ref-line-height-normal: 1.5;
   --md-ref-line-height-relaxed: 1.7;
   --md-ref-line-height-loose: 1.8;
 
-  /* --------------------------------------------------------------------------
-     Icon Sizes (Shared)
-     Aligned with typography scale for visual harmony.
-     Icons should match or slightly exceed adjacent text size.
-     -------------------------------------------------------------------------- */
-  --md-ref-icon-size-xs: 1rem;      /* 16px - inline with body text */
-  --md-ref-icon-size-sm: 1.25rem;   /* 20px - buttons, small UI */
-  --md-ref-icon-size-md: 1.5rem;    /* 24px - standard icons */
-  --md-ref-icon-size-lg: 2rem;      /* 32px - feature icons */
-  --md-ref-icon-size-xl: 2.5rem;    /* 40px - hero icons */
-  --md-ref-icon-size-2xl: 3rem;     /* 48px - display icons */
+  --md-ref-letter-spacing-tight: -0.025em;
+  --md-ref-letter-spacing-normal: 0;
+  --md-ref-letter-spacing-wide: 0.025em;
+  --md-ref-letter-spacing-wider: 0.05em;
+  --md-ref-letter-spacing-widest: 0.1em;
 
-  /* --------------------------------------------------------------------------
-     Window Size Classes (Breakpoints)
-     Strategic layout decisions based on ergonomic research.
+  /* md.ref icon sizes */
+  --md-ref-icon-size-xs: var(--core-size-16);
+  --md-ref-icon-size-sm: 1.25rem;
+  --md-ref-icon-size-md: var(--core-size-24);
+  --md-ref-icon-size-lg: var(--core-size-32);
+  --md-ref-icon-size-xl: var(--core-size-40);
 
-     These define WHEN layout patterns change (strategic).
-     Use in @media queries with matching rem values.
+  /* md.ref layout/breakpoint aliases */
+  --md-ref-breakpoint-compact: var(--core-breakpoint-600);
+  --md-ref-breakpoint-medium: var(--core-breakpoint-840);
+  --md-ref-breakpoint-expanded: var(--core-breakpoint-1240);
 
-     Note: CSS custom properties cannot be used directly in media queries.
-     These tokens document the canonical values; use the rem values in @media.
+  --md-ref-content-width-narrow: var(--core-size-640);
+  --md-ref-content-width-default: var(--core-size-768);
+  --md-ref-content-width-wide: var(--core-size-1024);
+  --md-ref-content-width-full: var(--core-size-1240);
 
-     @media (min-width: 37.5rem)  → compact threshold
-     @media (min-width: 52.5rem)  → medium threshold
-     @media (min-width: 77.5rem)  → expanded threshold
-     -------------------------------------------------------------------------- */
-  --md-ref-breakpoint-compact: 37.5rem;   /* 600px - one-handed phone use */
-  --md-ref-breakpoint-medium: 52.5rem;    /* 840px - two-handed tablet/large phone */
-  --md-ref-breakpoint-expanded: 77.5rem;  /* 1240px - desktop with comfortable sidebar */
+  /* md.ref motion/focus/z-index/state aliases */
+  --md-ref-motion-duration-instant: var(--core-duration-instant);
+  --md-ref-motion-duration-fast: var(--core-duration-fast);
+  --md-ref-motion-duration-normal: var(--core-duration-normal);
+  --md-ref-motion-duration-slow: var(--core-duration-slow);
+  --md-ref-motion-duration-slower: var(--core-duration-slower);
 
-  /* --------------------------------------------------------------------------
-     Layout/Grid Primitives (Shared)
-     Content widths and grid configuration for consistent layouts.
-     -------------------------------------------------------------------------- */
+  --md-ref-motion-easing-standard: var(--core-ease-in-out);
+  --md-ref-motion-easing-emphasized: var(--core-ease-bounce);
+  --md-ref-motion-easing-decelerate: var(--core-ease-out);
+  --md-ref-motion-easing-accelerate: var(--core-ease-in);
 
-  /* Content max-widths */
-  --md-ref-content-width-narrow: 38rem;    /* 608px - Traditional article */
-  --md-ref-content-width-default: 48rem;   /* 768px - Modern article */
-  --md-ref-content-width-wide: 64rem;      /* 1024px - Wide content */
-  --md-ref-content-width-full: 80rem;      /* 1280px - Full-width containers */
-
-  /* Grid configuration */
-  --md-ref-grid-columns: 12;
-  --md-ref-grid-gutter: var(--md-ref-space-4);         /* 16px default gutter */
-  --md-ref-grid-margin-mobile: var(--md-ref-space-4);  /* 16px on mobile */
-  --md-ref-grid-margin-desktop: var(--md-ref-space-8); /* 32px on desktop */
-
-  /* --------------------------------------------------------------------------
-     Motion/Animation Primitives (Shared)
-     Duration and easing curves for consistent motion design.
-     Based on Material Design 3 motion principles.
-     -------------------------------------------------------------------------- */
-
-  /* Duration scale
-     - instant: Micro-interactions (ripples, state changes)
-     - fast: Hover states, small UI feedback
-     - normal: Standard transitions (menus, modals appearing)
-     - slow: Complex animations, page transitions
-     - slower: Emphasis animations, large-scale motion */
-  --md-ref-motion-duration-instant: 100ms;
-  --md-ref-motion-duration-fast: 200ms;
-  --md-ref-motion-duration-normal: 300ms;
-  --md-ref-motion-duration-slow: 500ms;
-  --md-ref-motion-duration-slower: 700ms;
-
-  /* Easing curves
-     - standard: General-purpose, natural movement
-     - emphasized: More dramatic, draws attention (for important transitions)
-     - decelerate: Enters screen (fast start, slow end)
-     - accelerate: Exits screen (slow start, fast end)
-     - linear: Constant speed (rare, use for loaders/progress) */
-  --md-ref-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
-  --md-ref-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
-  --md-ref-motion-easing-decelerate: cubic-bezier(0, 0, 0, 1);
-  --md-ref-motion-easing-accelerate: cubic-bezier(0.3, 0, 1, 1);
-  --md-ref-motion-easing-linear: linear;
-
-  /* --------------------------------------------------------------------------
-     Elevation/Shadow Primitives (Shared)
-     Progressive shadow scale for depth hierarchy.
-     Lighter shadows for subtle elevation, heavier for modals/overlays.
-     -------------------------------------------------------------------------- */
-
-  /* Shadow scale
-     - none: Flat, no elevation
-     - xs: Minimal lift (hover states)
-     - sm: Low elevation (cards)
-     - md: Medium elevation (dropdowns, popovers)
-     - lg: High elevation (modals, dialogs)
-     - xl: Maximum elevation (floating elements) */
-  --md-ref-shadow-none: none;
-  --md-ref-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --md-ref-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --md-ref-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --md-ref-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --md-ref-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-  /* Border radius scale (for elevated elements) */
-  --md-ref-radius-none: 0;
-  --md-ref-radius-sm: 0.25rem;   /* 4px - buttons, inputs */
-  --md-ref-radius-md: 0.5rem;    /* 8px - cards */
-  --md-ref-radius-lg: 0.75rem;   /* 12px - modals */
-  --md-ref-radius-xl: 1rem;      /* 16px - large containers */
-  --md-ref-radius-full: 9999px;  /* Pills, circular */
-
-  /* --------------------------------------------------------------------------
-     Focus/Interaction State Primitives (Shared)
-     Focus rings and state overlays for accessible, visible interactions.
-     -------------------------------------------------------------------------- */
-
-  /* Focus ring dimensions */
-  --md-ref-focus-ring-width: 2px;
+  --md-ref-focus-ring-width: var(--core-border-width-2);
   --md-ref-focus-ring-offset: 2px;
 
-  /* --------------------------------------------------------------------------
-     Z-Index Scale (Shared)
-     Layering scale to prevent z-index conflicts.
-     Use semantic tokens in components, never raw values.
-     -------------------------------------------------------------------------- */
   --md-ref-z-index-base: 0;
   --md-ref-z-index-dropdown: 100;
   --md-ref-z-index-sticky: 200;
@@ -228,1184 +146,121 @@
   --md-ref-z-index-toast: 600;
   --md-ref-z-index-tooltip: 700;
 
-  /* State overlay opacities (for hover, focus, pressed states)
-     These create semi-transparent overlays on interactive elements */
   --md-ref-state-hover-opacity: 0.08;
   --md-ref-state-focus-opacity: 0.12;
   --md-ref-state-pressed-opacity: 0.16;
-  --md-ref-state-dragged-opacity: 0.16;
   --md-ref-state-disabled-opacity: 0.38;
-}
 
-
-/* ==========================================================================
-   2. REGION LAYER (--region-*)
-   Each region defines their brand colors
-   Regions can optionally tint neutrals
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Default Region (Fallback)
-   Used when no data-region is specified
-   -------------------------------------------------------------------------- */
-:root {
-  --region-brand-primary: #4338ca;       
-  --region-brand-secondary: #DD1155;
-  --region-brand-tertiary: #4CC9F0;
-  --region-brand-accent: var(--region-brand-primary);    /* Default: same as primary */
-  --region-brand-breaking: #FDE74C;       /* Default breaking (yellow) */
-  --region-name: "Default";
-}
-
-/* --------------------------------------------------------------------------
-   Region: TV2 Østjylland
-   https://www.tv2ostjylland.dk/
-   -------------------------------------------------------------------------- */
-:root[data-region="tv2ostjylland"] {
-  --region-brand-primary: #00aa5a;
-  --region-brand-secondary: #235537;
-  --region-brand-tertiary: #e1ff7d;
-  --region-brand-accent: var(--region-brand-primary);
-  --region-brand-breaking: #ffed00;
-  --region-name: "TV2 Østjylland";
-
-  /* Custom warm/beige neutral scale (from brand guidelines)
-     Provided: #ffffff, #edede5, #dbdacc, #afaca5, #8e8881, #746f69, #242424, #000000
-     Interpolated values added for complete 11-point scale */
-  --md-ref-color-neutral-0: #ffffff;
-  --md-ref-color-neutral-5: #f5f5ed;    /* Interpolated between 0 and 10 */
-  --md-ref-color-neutral-10: #edede5;   /* Provided */
-  --md-ref-color-neutral-20: #dbdacc;   /* Provided */
-  --md-ref-color-neutral-30: #c5c3b8;   /* Interpolated */
-  --md-ref-color-neutral-40: #afaca5;   /* Provided */
-  --md-ref-color-neutral-50: #8e8881;   /* Provided */
-  --md-ref-color-neutral-60: #746f69;   /* Provided */
-  --md-ref-color-neutral-70: #5a5651;   /* Interpolated */
-  --md-ref-color-neutral-80: #3f3c39;   /* Interpolated */
-  --md-ref-color-neutral-90: #242424;   /* Provided */
-  --md-ref-color-neutral-100: #000000;  /* Provided */
-}
-
-/* --------------------------------------------------------------------------
-   Region: TV2 Nord
-   https://www.tv2nord.dk/
-   -------------------------------------------------------------------------- */
-:root[data-region="tv2nord"] {
-  --region-brand-primary: #f0281e;
-  --region-brand-secondary: #333751;          /* rgb(51, 55, 81) - dark blue-gray */
-  --region-brand-tertiary: #EB8C82; /* contrast with white text */
-  --region-brand-accent: var(--region-brand-primary);
-  --region-brand-breaking: #ffd200;
-  --region-name: "TV2 Nord";
-
-  /* Inverted surface: warm page background, white cards on top */
-  --md-sys-color-surface-page: #fff5f0;
-
-  /* Warm-tinted neutrals (subtle red undertone) */
-  --md-ref-color-neutral-5: #fafaf9;
-  --md-ref-color-neutral-10: #f5f4f3;
-  --md-ref-color-neutral-20: #e7e5e4;
-}
-
-/* --------------------------------------------------------------------------
-   Region: TV Syd
-   https://www.tvsyd.dk/
-   -------------------------------------------------------------------------- */
-:root[data-region="tvsyd"] {
-  --region-brand-primary: #2130a8;
-  --region-brand-secondary: #9ab8f9;          /* rgb(154, 184, 249) - light blue */
-  --region-brand-accent: #d8a0f0;             /* rgb(216, 160, 240) - lavender */
-  --region-name: "TV Syd";
-
-  /* Blue-tinted neutrals (subtle indigo undertone) */
-  --md-ref-color-neutral-5: #f9f9fb;
-  --md-ref-color-neutral-10: #f3f3f6;
-  --md-ref-color-neutral-20: #e5e5eb;
-}
-
-/* --------------------------------------------------------------------------
-   Region: TV2 Fyn
-   https://www.tv2fyn.dk/
-   -------------------------------------------------------------------------- */
-:root[data-region="tv2fyn"] {
-  --region-brand-primary: #f0281e;
-  --region-brand-secondary: #640014;          /* rgb(100, 0, 20) - dark burgundy */
-  --region-brand-accent: var(--region-brand-primary);
-  --region-name: "TV2 Fyn";
-
-  /* Warm-tinted neutrals (subtle red undertone) */
-  --md-ref-color-neutral-5: #fafaf9;
-  --md-ref-color-neutral-10: #f5f4f3;
-  --md-ref-color-neutral-20: #e7e5e4;
-}
-
-/* --------------------------------------------------------------------------
-   Region: TV2 ØST
-   https://www.tv2east.dk/
-   -------------------------------------------------------------------------- */
-:root[data-region="tv2ost"] {
-  --region-brand-primary: #e4032e;
-  --region-brand-secondary: #f43f5e;
-  --region-brand-accent: var(--region-brand-primary);
-  --region-name: "TV2 ØST";
-
-  /* Warm-tinted neutrals (subtle red undertone) */
-  --md-ref-color-neutral-5: #fafaf9;
-  --md-ref-color-neutral-10: #f5f4f3;
-  --md-ref-color-neutral-20: #e7e5e4;
-}
-
-/* --------------------------------------------------------------------------
-   Region: TV2 Kosmopol
-   https://www.tv2kosmopol.dk/
-   -------------------------------------------------------------------------- */
-:root[data-region="tv2kosmopol"] {
-  --region-brand-primary: #6e18e7;
-  --region-brand-secondary: #b30000;          /* Dark red */
-  --region-brand-accent: var(--region-brand-primary);
-  --region-name: "TV2 Kosmopol";
-
-  /* Purple-tinted neutrals */
-  --md-ref-color-neutral-5: #faf9fc;
-  --md-ref-color-neutral-10: #f5f3f8;
-  --md-ref-color-neutral-20: #e8e5f0;
-}
-
-/* --------------------------------------------------------------------------
-   Region: TV Midtvest
-   https://www.tvmidtvest.dk/
-   -------------------------------------------------------------------------- */
-:root[data-region="tvmidtvest"] {
-  --region-brand-primary: #8948c6;
-  --region-brand-secondary: #dc143c;          /* rgb(220, 20, 60) - crimson */
-  --region-brand-accent: var(--region-brand-primary);
-  --region-name: "TV Midtvest";
-
-  /* Purple-tinted neutrals */
-  --md-ref-color-neutral-5: #fbf9fc;
-  --md-ref-color-neutral-10: #f6f4f8;
-  --md-ref-color-neutral-20: #ebe7f0;
-}
-
-/* --------------------------------------------------------------------------
-   Region: TV2 Bornholm
-   https://www.tv2bornholm.dk/
-   -------------------------------------------------------------------------- */
-:root[data-region="tv2bornholm"] {
-  --region-brand-primary: #0e72ff;
-  --region-brand-secondary: #000041;          /* rgb(0, 0, 65) - dark navy */
-  --region-brand-accent: var(--region-brand-primary);
-  --region-name: "TV2 Bornholm";
-
-  /* Blue-tinted neutrals */
-  --md-ref-color-neutral-5: #f9fafc;
-  --md-ref-color-neutral-10: #f3f5f8;
-  --md-ref-color-neutral-20: #e5e9f0;
-}
-
-
-/* ==========================================================================
-   3. SYSTEM TOKENS (md.sys.*)
-   Generic UI semantics - use region brand
-   ========================================================================== */
-
-:root {
-  /* --------------------------------------------------------------------------
-     Surfaces
-     -------------------------------------------------------------------------- */
-  --md-sys-color-surface-page: var(--md-ref-color-neutral-0);
-  --md-sys-color-surface: var(--md-ref-color-neutral-0);
-  --md-sys-color-surface-dim: var(--md-ref-color-neutral-5);
-  --md-sys-color-surface-container: var(--md-ref-color-neutral-10);
-
-  /* Brand-tinted container (10% primary mixed with surface) */
-  --md-sys-color-surface-container-primary: color-mix(in srgb, var(--region-brand-primary) 10%, var(--md-sys-color-surface));
-  --md-sys-color-on-surface-container-primary: var(--md-ref-color-neutral-100);
-
-  /* Brand surfaces (full color backgrounds) */
-  --md-sys-color-surface-primary: var(--region-brand-primary);
-  --md-sys-color-on-surface-primary: var(--md-ref-color-neutral-0);
-
-  --md-sys-color-surface-secondary: var(--region-brand-secondary);
-  --md-sys-color-on-surface-secondary: var(--md-ref-color-neutral-0);
-
-  --md-sys-color-surface-tertiary: var(--region-brand-tertiary);
-  --md-sys-color-on-surface-tertiary: var(--md-ref-color-neutral-100);
-
-  --md-sys-color-surface-breaking: var(--region-brand-breaking);
-  --md-sys-color-on-surface-breaking: var(--md-ref-color-neutral-100);
-
-  /* Inverse surface (dark on light / light on dark) */
-  --md-sys-color-surface-inverse: var(--md-ref-color-neutral-100);
-  --md-sys-color-on-surface-inverse: var(--md-ref-color-neutral-0);
-
-  --md-sys-color-on-surface: var(--md-ref-color-neutral-100);
-  --md-sys-color-on-surface-variant: var(--md-ref-color-neutral-50);
-
-  /* --------------------------------------------------------------------------
-     Brand (from region)
-     -------------------------------------------------------------------------- */
-  --md-sys-color-primary: var(--region-brand-primary);
-  --md-sys-color-on-primary: var(--md-ref-color-neutral-0);
-
-  /* --------------------------------------------------------------------------
-     Elevation (uses shadow primitives)
-     Semantic elevation levels for UI depth hierarchy
-     -------------------------------------------------------------------------- */
-  --md-sys-elevation-level-0: var(--md-ref-shadow-none);
-  --md-sys-elevation-level-1: var(--md-ref-shadow-xs);
-  --md-sys-elevation-level-2: var(--md-ref-shadow-sm);
-  --md-sys-elevation-level-3: var(--md-ref-shadow-md);
-  --md-sys-elevation-level-4: var(--md-ref-shadow-lg);
-  --md-sys-elevation-level-5: var(--md-ref-shadow-xl);
-
-  /* --------------------------------------------------------------------------
-     Border Radius (uses radius primitives)
-     Semantic radius for UI element shapes
-     -------------------------------------------------------------------------- */
-  --md-sys-shape-corner-none: var(--md-ref-radius-none);
-  --md-sys-shape-corner-small: var(--md-ref-radius-sm);
-  --md-sys-shape-corner-medium: var(--md-ref-radius-md);
-  --md-sys-shape-corner-large: var(--md-ref-radius-lg);
-  --md-sys-shape-corner-extra-large: var(--md-ref-radius-xl);
-  --md-sys-shape-corner-full: var(--md-ref-radius-full);
-}
-
-
-/* ==========================================================================
-   4. EXPRESSION LAYER (data-expression)
-   Controls layout, spacing rhythm, and typography scale
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Expression: Traditional
-   Conservative layout, tighter spacing, familiar typography
-   "This is reliable regional news."
-   -------------------------------------------------------------------------- */
-:root[data-expression="traditional"] {
-  /* Layout */
-  --expression-layout-max-width: 38rem;
-  --expression-layout-media-breakout: 0;
-
-  /* Container widths */
-  --expression-layout-container-text: var(--md-ref-content-width-narrow);   /* 38rem (608px) */
-  --expression-layout-container-media: var(--md-ref-content-width-default); /* 48rem (768px) */
-  --expression-layout-container-page: var(--md-ref-content-width-wide);     /* 64rem (1024px) */
-  --expression-layout-container-site: var(--md-ref-content-width-full);     /* 80rem (1280px) */
-
-  /* Spacing rhythm (tighter) */
-  --expression-space-rhythm: 0.9;
-  --expression-space-paragraph: calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-  --expression-space-section: calc(var(--md-ref-space-6) * var(--expression-space-rhythm));
-  --expression-space-block: calc(var(--md-ref-space-8) * var(--expression-space-rhythm));
-
-  /* Component spacing (scales with rhythm) */
-  --expression-space-component-tight: calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-  --expression-space-component-default: calc(var(--md-ref-space-3) * var(--expression-space-rhythm));
-  --expression-space-component-comfortable: calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-  --expression-space-component-spacious: calc(var(--md-ref-space-6) * var(--expression-space-rhythm));
-
-  /* Inset spacing (padding inside containers) */
-  --expression-space-inset-tight: var(--expression-space-component-tight);
-  --expression-space-inset-default: var(--expression-space-component-default);
-  --expression-space-inset-comfortable: var(--expression-space-component-comfortable);
-  --expression-space-inset-squish-tight: calc(var(--md-ref-space-1) * var(--expression-space-rhythm)) calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-  --expression-space-inset-squish-default: calc(var(--md-ref-space-2) * var(--expression-space-rhythm)) calc(var(--md-ref-space-3) * var(--expression-space-rhythm));
-  --expression-space-inset-squish-comfortable: calc(var(--md-ref-space-3) * var(--expression-space-rhythm)) calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-  --expression-space-inset-stretch-default: calc(var(--md-ref-space-3) * var(--expression-space-rhythm)) calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-
-  /* Inline spacing (horizontal gaps between items) */
-  --expression-space-inline-tight: calc(var(--md-ref-space-1) * var(--expression-space-rhythm));
-  --expression-space-inline-default: calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-  --expression-space-inline-comfortable: calc(var(--md-ref-space-3) * var(--expression-space-rhythm));
-  --expression-space-inline-spacious: calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-
-  /* Stack spacing (vertical gaps between items) */
-  --expression-space-stack-tight: calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-  --expression-space-stack-default: calc(var(--md-ref-space-3) * var(--expression-space-rhythm));
-  --expression-space-stack-comfortable: calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-  --expression-space-stack-spacious: calc(var(--md-ref-space-6) * var(--expression-space-rhythm));
-
-  /* Typography (conservative)
-     Static fallbacks for Figma sync and older browsers */
-  --expression-title-size-static: var(--md-ref-font-size-3xl);  /* 32px */
-  --expression-title-weight: var(--md-ref-font-weight-bold);
-  --expression-title-line-height: var(--md-ref-line-height-tight);
-
-  --expression-lead-size-static: var(--md-ref-font-size-lg);    /* 18px */
-  --expression-lead-weight: var(--md-ref-font-weight-medium);
-
-  --expression-body-size: var(--md-ref-font-size-base);
-  --expression-body-line-height: var(--md-ref-line-height-relaxed);
-
-  /* Display tier (for marketing/hero content)
-     Traditional: Restrained display, still authoritative */
-  --expression-display-size-static: var(--md-ref-font-size-5xl);  /* 48px */
-  --expression-display-weight: var(--md-ref-font-weight-bold);
-  --expression-display-line-height: 1.1;
-  --expression-display-letter-spacing: var(--md-ref-letter-spacing-tight);
-
-  /* Fluid Typography (smooth viewport scaling)
-     Traditional: Conservative range, subtle scaling
-     - Display: 40px → 48px (20% range)
-     - Title: 28px → 32px (14% range)
-     - Lead: 16px → 18px (12% range) */
-  --expression-display-size-fluid: clamp(2.5rem, 2rem + 2vw, 3rem);
-  --expression-title-size-fluid: clamp(1.75rem, 1.5rem + 1vw, 2rem);
-  --expression-lead-size-fluid: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-
-  /* Active sizes (fluid with static fallback) */
-  --expression-display-size: var(--expression-display-size-fluid, var(--expression-display-size-static));
-  --expression-title-size: var(--expression-title-size-fluid, var(--expression-title-size-static));
-  --expression-lead-size: var(--expression-lead-size-fluid, var(--expression-lead-size-static));
-
-  /* Fluid spacing tokens (tactical scaling optimization) */
-  --fluid-space-paragraph: clamp(0.8rem, 1.5vw + 0.4rem, 0.9rem);
-  --fluid-space-section: clamp(1.2rem, 2vw + 0.6rem, 1.35rem);
-}
-
-/* --------------------------------------------------------------------------
-   Expression: Modern
-   Dynamic layout, spacious rhythm, bold typography
-   "This is a modern TV station with strong journalism."
-   -------------------------------------------------------------------------- */
-:root[data-expression="modern"] {
-  /* Layout */
-  --expression-layout-max-width: 48rem;
-  --expression-layout-media-breakout: 2rem;
-
-  /* Container widths (wider for modern expression) */
-  --expression-layout-container-text: 42rem;   /* 672px - slightly wider reading width */
-  --expression-layout-container-media: 56rem;  /* 896px - generous media space */
-  --expression-layout-container-page: var(--md-ref-content-width-wide);     /* 64rem (1024px) */
-  --expression-layout-container-site: var(--md-ref-content-width-full);     /* 80rem (1280px) */
-
-  /* Spacing rhythm (spacious) */
-  --expression-space-rhythm: 1.15;
-  --expression-space-paragraph: calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-  --expression-space-section: calc(var(--md-ref-space-8) * var(--expression-space-rhythm));
-  --expression-space-block: calc(var(--md-ref-space-10) * var(--expression-space-rhythm));
-
-  /* Component spacing (scales with rhythm) */
-  --expression-space-component-tight: calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-  --expression-space-component-default: calc(var(--md-ref-space-3) * var(--expression-space-rhythm));
-  --expression-space-component-comfortable: calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-  --expression-space-component-spacious: calc(var(--md-ref-space-6) * var(--expression-space-rhythm));
-
-  /* Inset spacing (padding inside containers) */
-  --expression-space-inset-tight: var(--expression-space-component-tight);
-  --expression-space-inset-default: var(--expression-space-component-default);
-  --expression-space-inset-comfortable: var(--expression-space-component-comfortable);
-  --expression-space-inset-squish-tight: calc(var(--md-ref-space-1) * var(--expression-space-rhythm)) calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-  --expression-space-inset-squish-default: calc(var(--md-ref-space-2) * var(--expression-space-rhythm)) calc(var(--md-ref-space-3) * var(--expression-space-rhythm));
-  --expression-space-inset-squish-comfortable: calc(var(--md-ref-space-3) * var(--expression-space-rhythm)) calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-  --expression-space-inset-stretch-default: calc(var(--md-ref-space-3) * var(--expression-space-rhythm)) calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-
-  /* Inline spacing (horizontal gaps between items) */
-  --expression-space-inline-tight: calc(var(--md-ref-space-1) * var(--expression-space-rhythm));
-  --expression-space-inline-default: calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-  --expression-space-inline-comfortable: calc(var(--md-ref-space-3) * var(--expression-space-rhythm));
-  --expression-space-inline-spacious: calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-
-  /* Stack spacing (vertical gaps between items) */
-  --expression-space-stack-tight: calc(var(--md-ref-space-2) * var(--expression-space-rhythm));
-  --expression-space-stack-default: calc(var(--md-ref-space-3) * var(--expression-space-rhythm));
-  --expression-space-stack-comfortable: calc(var(--md-ref-space-4) * var(--expression-space-rhythm));
-  --expression-space-stack-spacious: calc(var(--md-ref-space-6) * var(--expression-space-rhythm));
-
-  /* Typography (bold)
-     Static fallbacks for Figma sync and older browsers */
-  --expression-title-size-static: var(--md-ref-font-size-4xl);  /* 40px */
-  --expression-title-weight: var(--md-ref-font-weight-extrabold);
-  --expression-title-line-height: var(--md-ref-line-height-tight);
-
-  --expression-lead-size-static: var(--md-ref-font-size-xl);    /* 20px */
-  --expression-lead-weight: var(--md-ref-font-weight-semibold);
-
-  --expression-body-size: var(--md-ref-font-size-lg);
-  --expression-body-line-height: var(--md-ref-line-height-loose);
-
-  /* Display tier (for marketing/hero content)
-     Modern: Bold, impactful display for maximum attention */
-  --expression-display-size-static: var(--md-ref-font-size-6xl);  /* 56px */
-  --expression-display-weight: var(--md-ref-font-weight-extrabold);
-  --expression-display-line-height: 1.05;
-  --expression-display-letter-spacing: var(--md-ref-letter-spacing-tight);
-
-  /* Fluid Typography (smooth viewport scaling)
-     Modern: Bolder range, more dramatic scaling
-     - Display: 48px → 56px (17% range)
-     - Title: 32px → 40px (25% range)
-     - Lead: 18px → 20px (11% range) */
-  --expression-display-size-fluid: clamp(3rem, 2.5rem + 2vw, 3.5rem);
-  --expression-title-size-fluid: clamp(2rem, 1.6rem + 1.5vw, 2.5rem);
-  --expression-lead-size-fluid: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
-
-  /* Active sizes (fluid with static fallback) */
-  --expression-display-size: var(--expression-display-size-fluid, var(--expression-display-size-static));
-  --expression-title-size: var(--expression-title-size-fluid, var(--expression-title-size-static));
-  --expression-lead-size: var(--expression-lead-size-fluid, var(--expression-lead-size-static));
-
-  /* Fluid spacing tokens (tactical scaling optimization) */
-  --fluid-space-paragraph: clamp(1rem, 2vw + 0.5rem, 1.15rem);
-  --fluid-space-section: clamp(2rem, 3vw + 1rem, 2.3rem);
-}
-
-/* Default expression (fallback to traditional) */
-:root:not([data-expression]) {
-  --expression-layout-max-width: 38rem;
-  --expression-layout-media-breakout: 0;
-  /* Container widths (default to traditional) */
-  --expression-layout-container-text: var(--md-ref-content-width-narrow);   /* 38rem */
-  --expression-layout-container-media: var(--md-ref-content-width-default); /* 48rem */
-  --expression-layout-container-page: var(--md-ref-content-width-wide);     /* 64rem */
-  --expression-layout-container-site: var(--md-ref-content-width-full);     /* 80rem */
+  /* md.sys aliases */
+  --md-sys-color-surface-page: var(--base-color-surface-page);
+  --md-sys-color-surface: var(--base-color-surface-page);
+  --md-sys-color-surface-dim: var(--base-color-surface-section);
+  --md-sys-color-surface-container: var(--base-color-surface-card);
+
+  --md-sys-color-primary: var(--base-color-brand-primary);
+  --md-sys-color-on-primary: var(--base-color-brand-primary-contrast);
+  --md-sys-color-on-surface: var(--base-color-text-primary);
+  --md-sys-color-on-surface-variant: var(--base-color-text-muted);
+
+  --md-sys-elevation-level-1: var(--base-shadow-xs);
+  --md-sys-elevation-level-2: var(--base-shadow-sm);
+  --md-sys-elevation-level-3: var(--base-shadow-md);
+  --md-sys-elevation-level-4: var(--base-shadow-lg);
+  --md-sys-elevation-level-5: var(--base-shadow-xl);
+
+  --md-sys-shape-corner-small: var(--base-radius-sm);
+  --md-sys-shape-corner-medium: var(--base-radius-md);
+  --md-sys-shape-corner-large: var(--base-radius-lg);
+  --md-sys-shape-corner-full: var(--base-radius-pill);
+
+  /* Expression aliases */
   --expression-space-rhythm: 1;
-  --expression-space-paragraph: var(--md-ref-space-4);
-  --expression-space-section: var(--md-ref-space-6);
-  --expression-space-block: var(--md-ref-space-8);
-  --expression-space-component-tight: var(--md-ref-space-2);
-  --expression-space-component-default: var(--md-ref-space-3);
-  --expression-space-component-comfortable: var(--md-ref-space-4);
-  --expression-space-component-spacious: var(--md-ref-space-6);
-  --expression-space-inset-tight: var(--md-ref-space-2);
-  --expression-space-inset-default: var(--md-ref-space-3);
-  --expression-space-inset-comfortable: var(--md-ref-space-4);
-  --expression-space-inset-squish-tight: var(--md-ref-space-1) var(--md-ref-space-2);
-  --expression-space-inset-squish-default: var(--md-ref-space-2) var(--md-ref-space-3);
-  --expression-space-inset-squish-comfortable: var(--md-ref-space-3) var(--md-ref-space-4);
-  --expression-space-inset-stretch-default: var(--md-ref-space-3) var(--md-ref-space-2);
-  --expression-space-inline-tight: var(--md-ref-space-1);
-  --expression-space-inline-default: var(--md-ref-space-2);
-  --expression-space-inline-comfortable: var(--md-ref-space-3);
-  --expression-space-inline-spacious: var(--md-ref-space-4);
-  --expression-space-stack-tight: var(--md-ref-space-2);
-  --expression-space-stack-default: var(--md-ref-space-3);
-  --expression-space-stack-comfortable: var(--md-ref-space-4);
-  --expression-space-stack-spacious: var(--md-ref-space-6);
-  /* Typography (static fallback, no fluid scaling) */
-  --expression-display-size-static: var(--md-ref-font-size-5xl);
-  --expression-display-size: var(--md-ref-font-size-5xl);
-  --expression-display-weight: var(--md-ref-font-weight-bold);
-  --expression-display-line-height: 1.1;
-  --expression-display-letter-spacing: var(--md-ref-letter-spacing-tight);
-  --expression-title-size-static: var(--md-ref-font-size-3xl);
-  --expression-title-size: var(--md-ref-font-size-3xl);
-  --expression-title-weight: var(--md-ref-font-weight-bold);
-  --expression-title-line-height: var(--md-ref-line-height-tight);
-  --expression-lead-size-static: var(--md-ref-font-size-lg);
-  --expression-lead-size: var(--md-ref-font-size-lg);
-  --expression-lead-weight: var(--md-ref-font-weight-medium);
-  --expression-body-size: var(--md-ref-font-size-base);
-  --expression-body-line-height: var(--md-ref-line-height-relaxed);
-}
 
+  --expression-space-paragraph: var(--base-space-default-paragraph-stack);
+  --expression-space-section: var(--base-space-section-md);
+  --expression-space-block: var(--base-space-section-lg);
 
-/* ==========================================================================
-   5. EDITORIAL TOKENS (news.sys.*)
-   News-specific semantics using expression + region
-   ========================================================================== */
+  --expression-space-component-tight: var(--base-space-inset-xs);
+  --expression-space-component-default: var(--base-space-inset-sm);
+  --expression-space-component-comfortable: var(--base-space-inset-md);
+  --expression-space-component-spacious: var(--base-space-inset-lg);
 
-:root {
-  /* --------------------------------------------------------------------------
-     Article Typography (uses expression)
-     -------------------------------------------------------------------------- */
-  /* Display tier - for hero headlines, marketing, special features */
-  --news-sys-typography-display: var(--expression-display-weight) var(--expression-display-size)/var(--expression-display-line-height) var(--md-ref-font-family-sans);
-  --news-sys-letter-spacing-display: var(--expression-display-letter-spacing);
+  --expression-space-inset-tight: var(--base-space-inset-xs);
+  --expression-space-inset-default: var(--base-space-inset-sm);
+  --expression-space-inset-comfortable: var(--base-space-inset-md);
+  --expression-space-inset-squish-tight: var(--base-space-inset-xs) var(--base-space-inline-sm);
+  --expression-space-inset-squish-default: var(--base-space-inset-sm) var(--base-space-inline-md);
+  --expression-space-inset-squish-comfortable: var(--base-space-inset-md) var(--base-space-inline-lg);
+  --expression-space-inset-stretch-default: var(--base-space-inset-sm) var(--base-space-inline-sm);
 
-  /* Standard article typography */
-  --news-sys-typography-article-title: var(--expression-title-weight) var(--expression-title-size)/var(--expression-title-line-height) var(--md-ref-font-family-sans);
-  --news-sys-typography-article-lead: var(--expression-lead-weight) var(--expression-lead-size)/var(--md-ref-line-height-snug) var(--md-ref-font-family-sans);
-  --news-sys-typography-article-body: var(--md-ref-font-weight-normal) var(--expression-body-size)/var(--expression-body-line-height) var(--md-ref-font-family-sans);
-  --news-sys-typography-article-meta: var(--md-ref-font-weight-normal) var(--md-ref-font-size-sm)/var(--md-ref-line-height-normal) var(--md-ref-font-family-sans);
-  --news-sys-typography-section-label: var(--md-ref-font-weight-semibold) var(--md-ref-font-size-sm)/var(--md-ref-line-height-tight) var(--md-ref-font-family-sans);
-  --news-sys-typography-quote: var(--md-ref-font-weight-normal) var(--news-sys-font-size-blockquote-mobile)/var(--news-sys-line-height-blockquote-mobile) var(--md-ref-font-family-serif);
-  --news-sys-typography-banner: var(--md-ref-font-weight-bold) var(--md-ref-font-size-sm)/var(--md-ref-line-height-tight) var(--md-ref-font-family-sans);
-  --news-sys-typography-button: var(--md-ref-font-weight-semibold) var(--md-ref-font-size-base)/var(--md-ref-line-height-tight) var(--md-ref-font-family-sans);
+  --expression-space-inline-tight: var(--base-space-inline-xs);
+  --expression-space-inline-default: var(--base-space-inline-sm);
+  --expression-space-inline-comfortable: var(--base-space-inline-md);
+  --expression-space-inline-spacious: var(--base-space-inline-lg);
 
-  /* Element-level typography specs */
-  --news-sys-font-size-h1-mobile: 2.25rem;
-  --news-sys-line-height-h1-mobile: 1.125;
-  --news-sys-font-weight-h1-mobile: 600;
-  --news-sys-font-size-h1-desktop: 3rem;
+  --expression-space-stack-tight: var(--base-space-stack-xs);
+  --expression-space-stack-default: var(--base-space-stack-sm);
+  --expression-space-stack-comfortable: var(--base-space-stack-md);
+  --expression-space-stack-spacious: var(--base-space-stack-lg);
 
-  --news-sys-font-size-p-mobile: 1.25rem;
-  --news-sys-line-height-p-mobile: 1.25;
+  --expression-layout-max-width: var(--base-wrap-content);
+  --expression-layout-media-breakout: var(--base-wrap-max);
+  --expression-layout-container-text: var(--base-wrap-narrow);
+  --expression-layout-container-media: var(--base-wrap-content);
+  --expression-layout-container-page: var(--base-wrap-max);
+  --expression-layout-container-site: var(--base-wrap-wide);
+
+  --expression-title-size-static: var(--base-type-size-heading);
+  --expression-lead-size-static: var(--base-type-size-emphasis);
+  --expression-display-size-static: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  --expression-display-letter-spacing: var(--base-type-letter-heading);
+
+  /* news.sys aliases */
+  --news-sys-color-accent: var(--region-brand-accent);
+  --news-sys-color-article-meta: var(--base-color-text-muted);
+  --news-sys-color-quote-border: var(--base-color-brand-primary);
+
+  --news-sys-focus-ring-color: var(--base-color-focus-ring);
+  --news-sys-focus-ring: var(--base-focus-ring);
+
+  --news-sys-elevation-card: var(--base-shadow-sm);
+  --news-sys-motion-hover: var(--base-duration-hover) var(--base-ease-default);
+
+  --news-sys-z-index-sticky-nav: var(--md-ref-z-index-sticky);
+  --news-sys-icon-button: var(--md-ref-icon-size-sm);
+
+  --news-sys-font-size-h1-mobile: clamp(2rem, 1.75rem + 1vw, 2.25rem);
+  --news-sys-line-height-h1-mobile: 1.15;
+  --news-sys-font-weight-h1-mobile: 700;
+  --news-sys-font-size-h1-desktop: clamp(2.25rem, 1.9rem + 1.2vw, 3rem);
+
+  --news-sys-font-size-p-mobile: var(--base-type-size-body);
+  --news-sys-line-height-p-mobile: 1.6;
   --news-sys-font-weight-p-mobile: 400;
 
-  --news-sys-font-size-blockquote-mobile: 1.5625rem;
-  --news-sys-line-height-blockquote-mobile: normal;
-
-  /* --------------------------------------------------------------------------
-     Letter Spacing (for labels, buttons, and UI elements)
-     -------------------------------------------------------------------------- */
-  --news-sys-letter-spacing-label: var(--md-ref-letter-spacing-wide);
-  --news-sys-letter-spacing-button: var(--md-ref-letter-spacing-wide);
-  --news-sys-letter-spacing-banner: var(--md-ref-letter-spacing-wider);
-  --news-sys-letter-spacing-section-label: var(--md-ref-letter-spacing-widest);
-
-  /* --------------------------------------------------------------------------
-     Motion/Animation (semantic tokens for UI interactions)
-     Combine duration + easing for common interaction patterns.
-     Usage: transition: opacity var(--news-sys-motion-hover);
-     -------------------------------------------------------------------------- */
-  --news-sys-motion-hover: var(--md-ref-motion-duration-fast) var(--md-ref-motion-easing-standard);
-  --news-sys-motion-focus: var(--md-ref-motion-duration-fast) var(--md-ref-motion-easing-standard);
-  --news-sys-motion-active: var(--md-ref-motion-duration-instant) var(--md-ref-motion-easing-standard);
-  --news-sys-motion-expand: var(--md-ref-motion-duration-normal) var(--md-ref-motion-easing-emphasized);
-  --news-sys-motion-collapse: var(--md-ref-motion-duration-normal) var(--md-ref-motion-easing-accelerate);
-  --news-sys-motion-fade-in: var(--md-ref-motion-duration-normal) var(--md-ref-motion-easing-decelerate);
-  --news-sys-motion-fade-out: var(--md-ref-motion-duration-fast) var(--md-ref-motion-easing-accelerate);
-  --news-sys-motion-slide-in: var(--md-ref-motion-duration-normal) var(--md-ref-motion-easing-decelerate);
-  --news-sys-motion-slide-out: var(--md-ref-motion-duration-fast) var(--md-ref-motion-easing-accelerate);
-  --news-sys-motion-page-transition: var(--md-ref-motion-duration-slow) var(--md-ref-motion-easing-emphasized);
-  --news-sys-motion-emphasis: var(--md-ref-motion-duration-slower) var(--md-ref-motion-easing-emphasized);
-
-  /* --------------------------------------------------------------------------
-     Elevation (semantic elevation for editorial components)
-     Usage: box-shadow: var(--news-sys-elevation-card);
-     -------------------------------------------------------------------------- */
-  --news-sys-elevation-card: var(--md-sys-elevation-level-1);
-  --news-sys-elevation-card-hover: var(--md-sys-elevation-level-2);
-  --news-sys-elevation-dropdown: var(--md-sys-elevation-level-3);
-  --news-sys-elevation-sticky: var(--md-sys-elevation-level-2);
-  --news-sys-elevation-modal: var(--md-sys-elevation-level-5);
-  --news-sys-elevation-popover: var(--md-sys-elevation-level-4);
-  --news-sys-elevation-toast: var(--md-sys-elevation-level-4);
-
-  /* --------------------------------------------------------------------------
-     Border Radius (semantic shapes for editorial components)
-     -------------------------------------------------------------------------- */
-  --news-sys-shape-card: var(--md-sys-shape-corner-medium);
-  --news-sys-shape-button: var(--md-sys-shape-corner-small);
-  --news-sys-shape-input: var(--md-sys-shape-corner-small);
-  --news-sys-shape-modal: var(--md-sys-shape-corner-large);
-  --news-sys-shape-badge: var(--md-sys-shape-corner-full);
-
-  /* --------------------------------------------------------------------------
-     Focus/Interaction States (semantic tokens for accessibility)
-     Usage: outline: var(--news-sys-focus-ring);
-     -------------------------------------------------------------------------- */
-  --news-sys-focus-ring-width: var(--md-ref-focus-ring-width);
-  --news-sys-focus-ring-offset: var(--md-ref-focus-ring-offset);
-  --news-sys-focus-ring-color: var(--md-sys-color-primary);
-  --news-sys-focus-ring: var(--news-sys-focus-ring-width) solid var(--news-sys-focus-ring-color);
-
-  /* State overlays (for creating tinted hover/focus backgrounds) */
-  --news-sys-state-hover: color-mix(in srgb, var(--md-sys-color-on-surface) calc(var(--md-ref-state-hover-opacity) * 100%), transparent);
-  --news-sys-state-focus: color-mix(in srgb, var(--md-sys-color-on-surface) calc(var(--md-ref-state-focus-opacity) * 100%), transparent);
-  --news-sys-state-pressed: color-mix(in srgb, var(--md-sys-color-on-surface) calc(var(--md-ref-state-pressed-opacity) * 100%), transparent);
-  --news-sys-state-disabled-opacity: var(--md-ref-state-disabled-opacity);
-
-  /* --------------------------------------------------------------------------
-     Icon Sizes (semantic tokens for editorial components)
-     Usage: width: var(--news-sys-icon-button); height: var(--news-sys-icon-button);
-     -------------------------------------------------------------------------- */
-  --news-sys-icon-inline: var(--md-ref-icon-size-xs);       /* Inline with text */
-  --news-sys-icon-button: var(--md-ref-icon-size-sm);       /* Inside buttons */
-  --news-sys-icon-nav: var(--md-ref-icon-size-md);          /* Navigation items */
-  --news-sys-icon-action: var(--md-ref-icon-size-md);       /* Action buttons */
-  --news-sys-icon-feature: var(--md-ref-icon-size-lg);      /* Feature highlights */
-  --news-sys-icon-hero: var(--md-ref-icon-size-xl);         /* Hero sections */
-
-  /* --------------------------------------------------------------------------
-     Z-Index (semantic layering for editorial components)
-     Usage: z-index: var(--news-sys-z-index-sticky-nav);
-     -------------------------------------------------------------------------- */
-  --news-sys-z-index-dropdown: var(--md-ref-z-index-dropdown);
-  --news-sys-z-index-sticky-nav: var(--md-ref-z-index-sticky);
-  --news-sys-z-index-overlay: var(--md-ref-z-index-overlay);
-  --news-sys-z-index-modal: var(--md-ref-z-index-modal);
-  --news-sys-z-index-popover: var(--md-ref-z-index-popover);
-  --news-sys-z-index-toast: var(--md-ref-z-index-toast);
-  --news-sys-z-index-tooltip: var(--md-ref-z-index-tooltip);
-
-  /* --------------------------------------------------------------------------
-     Article Colors (uses system tokens)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-article-title: var(--md-sys-color-on-surface);
-  --news-sys-color-article-lead: var(--md-sys-color-on-surface);
-  --news-sys-color-article-body: var(--md-sys-color-on-surface);
-  --news-sys-color-article-meta: var(--md-sys-color-on-surface-variant);
-  --news-sys-color-section-label: var(--md-sys-color-primary);
-
-  /* --------------------------------------------------------------------------
-     Article Spacing (uses expression)
-     -------------------------------------------------------------------------- */
-  --news-sys-space-article-paragraph: var(--expression-space-paragraph);
-  --news-sys-space-article-section: var(--expression-space-section);
-  --news-sys-space-article-block: var(--expression-space-block);
-
-  /* --------------------------------------------------------------------------
-     Component Spacing - Inset (padding inside containers)
-     -------------------------------------------------------------------------- */
-  --news-sys-space-inset-tight: var(--expression-space-inset-tight);
-  --news-sys-space-inset-default: var(--expression-space-inset-default);
-  --news-sys-space-inset-comfortable: var(--expression-space-inset-comfortable);
-  --news-sys-space-inset-squish-tight: var(--expression-space-inset-squish-tight);
-  --news-sys-space-inset-squish-default: var(--expression-space-inset-squish-default);
-  --news-sys-space-inset-squish-comfortable: var(--expression-space-inset-squish-comfortable);
-  --news-sys-space-inset-stretch-default: var(--expression-space-inset-stretch-default);
-
-  /* --------------------------------------------------------------------------
-     Component Spacing - Inline (horizontal gaps)
-     -------------------------------------------------------------------------- */
-  --news-sys-space-inline-tight: var(--expression-space-inline-tight);
-  --news-sys-space-inline-default: var(--expression-space-inline-default);
-  --news-sys-space-inline-comfortable: var(--expression-space-inline-comfortable);
-  --news-sys-space-inline-spacious: var(--expression-space-inline-spacious);
-
-  /* --------------------------------------------------------------------------
-     Component Spacing - Stack (vertical gaps)
-     -------------------------------------------------------------------------- */
-  --news-sys-space-stack-tight: var(--expression-space-stack-tight);
-  --news-sys-space-stack-default: var(--expression-space-stack-default);
-  --news-sys-space-stack-comfortable: var(--expression-space-stack-comfortable);
-  --news-sys-space-stack-spacious: var(--expression-space-stack-spacious);
-
-  /* --------------------------------------------------------------------------
-     Layout (uses expression)
-     -------------------------------------------------------------------------- */
-  --news-sys-layout-article-max-width: var(--expression-layout-max-width);
-  --news-sys-layout-media-breakout: var(--expression-layout-media-breakout);
-
-  /* Container widths - semantic layer for layout containers */
-  --news-sys-layout-container-text: var(--expression-layout-container-text);
-  --news-sys-layout-container-media: var(--expression-layout-container-media);
-  --news-sys-layout-container-page: var(--expression-layout-container-page);
-  --news-sys-layout-container-site: var(--expression-layout-container-site);
-
-  /* --------------------------------------------------------------------------
-     Borders
-     -------------------------------------------------------------------------- */
-  --news-sys-border-quote-width: var(--md-ref-border-width-medium);
-  --news-sys-border-card-featured-width: var(--md-ref-border-width-thick);
-
-  /* --------------------------------------------------------------------------
-     Card Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-card-default-surface: var(--md-sys-color-surface-container);
-  --news-sys-color-card-featured-accent: var(--md-sys-color-primary);
-  --news-sys-space-card-default-padding: var(--expression-space-component-comfortable);
-  --news-sys-space-card-featured-padding: var(--expression-space-component-comfortable);
-
-  /* --------------------------------------------------------------------------
-     Banner Component (Editorial States)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-banner-breaking-bg: var(--region-brand-breaking);
-  --news-sys-color-banner-breaking-text: var(--md-ref-color-neutral-100);
-  --news-sys-color-banner-live-bg: var(--md-ref-color-neutral-20);
-  --news-sys-color-banner-live-text: var(--md-sys-color-on-surface);
-  --news-sys-space-banner-padding: var(--expression-space-component-default);
-
-  /* --------------------------------------------------------------------------
-     Accent Colors (uses region)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-accent: var(--region-brand-accent);
-
-  /* --------------------------------------------------------------------------
-     Quote Block
-     -------------------------------------------------------------------------- */
-  --news-sys-color-quote-border: var(--md-sys-color-primary);
-
-  /* --------------------------------------------------------------------------
-     Fact Box Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-fact-box-bg: var(--md-sys-color-surface-container);
-  --news-sys-color-fact-box-border: var(--md-sys-color-primary);
-  --news-sys-color-fact-box-title: var(--md-sys-color-primary);
-  --news-sys-space-fact-box-padding: var(--expression-space-component-comfortable);
-
-  /* --------------------------------------------------------------------------
-     Related Link Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-related-link-bg: var(--md-sys-color-surface-dim);
-  --news-sys-color-related-link-text: var(--md-sys-color-on-surface);
-  --news-sys-color-related-link-accent: var(--md-sys-color-primary);
-  --news-sys-space-related-link-padding: var(--expression-space-component-default);
-
-  /* --------------------------------------------------------------------------
-     Embed Block Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-embed-bg: var(--md-sys-color-surface-container);
-  --news-sys-color-embed-border: var(--md-ref-color-neutral-20);
-  --news-sys-space-embed-padding: var(--expression-space-component-comfortable);
-
-  /* --------------------------------------------------------------------------
-     Timeline Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-timeline-line: var(--md-ref-color-neutral-30);
-  --news-sys-color-timeline-marker: var(--md-sys-color-primary);
-  --news-sys-color-timeline-date: var(--md-sys-color-primary);
-  --news-sys-space-timeline-gap: var(--expression-space-component-comfortable);
-
-  /* --------------------------------------------------------------------------
-     Callout Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-callout-bg: color-mix(in srgb, var(--region-brand-primary) 10%, var(--md-sys-color-surface));
-  --news-sys-color-callout-border: var(--md-sys-color-primary);
-  --news-sys-color-callout-text: var(--md-sys-color-on-surface);
-  --news-sys-space-callout-padding: var(--expression-space-component-comfortable);
-
-  /* --------------------------------------------------------------------------
-     Data Table Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-table-header-bg: var(--md-sys-color-surface-container);
-  --news-sys-color-table-border: var(--md-ref-color-neutral-20);
-  --news-sys-color-table-row-alt: var(--md-sys-color-surface-dim);
-  --news-sys-space-table-cell-padding: var(--expression-space-component-default);
-
-  /* --------------------------------------------------------------------------
-     Gallery Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-gallery-bg: var(--md-sys-color-surface-container);
-  --news-sys-color-gallery-indicator: var(--md-sys-color-primary);
-  --news-sys-space-gallery-gap: var(--expression-space-component-tight);
-
-  /* --------------------------------------------------------------------------
-     Navigation Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-nav-bg: var(--md-sys-color-surface);
-  --news-sys-color-nav-text: var(--md-sys-color-on-surface);
-  --news-sys-space-nav-default-padding: var(--expression-space-component-comfortable);
-  --news-sys-space-nav-compact-padding: var(--expression-space-component-tight);
-
-  /* --------------------------------------------------------------------------
-     Button Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-button-primary-bg: var(--md-sys-color-primary);
-  --news-sys-color-button-primary-text: var(--md-sys-color-on-primary);
-  --news-sys-space-button-padding: var(--expression-space-component-default);
-
-  /* --------------------------------------------------------------------------
-     Footer Component
-     -------------------------------------------------------------------------- */
-  --news-sys-color-footer-bg: var(--md-sys-color-surface);
-  --news-sys-color-footer-text: var(--md-sys-color-on-surface-variant);
-  --news-sys-space-footer-default-padding: var(--expression-space-component-spacious);
-  --news-sys-space-footer-minimal-padding: var(--expression-space-component-comfortable);
-
-  /* --------------------------------------------------------------------------
-     Tip Form Component
-     Form for readers to submit tips/messages to the editorial team
-     -------------------------------------------------------------------------- */
-  --news-sys-color-tip-form-bg: var(--md-sys-color-surface-container);
-  --news-sys-color-tip-form-border: var(--md-sys-color-primary);
-  --news-sys-color-tip-form-title: var(--md-sys-color-on-surface);
-  --news-sys-color-tip-form-text: var(--md-sys-color-on-surface-variant);
-  --news-sys-color-tip-form-input-bg: var(--md-sys-color-surface);
-  --news-sys-color-tip-form-input-border: var(--md-ref-color-neutral-30);
-  --news-sys-color-tip-form-input-text: var(--md-sys-color-on-surface);
-  --news-sys-color-tip-form-input-placeholder: var(--md-ref-color-neutral-50);
-  --news-sys-color-tip-form-input-focus: var(--md-sys-color-primary);
-  --news-sys-space-tip-form-padding: var(--expression-space-component-comfortable);
-  --news-sys-space-tip-form-gap: var(--expression-space-component-default);
-}
-
-@media (min-width: 52.5rem) {
-  :root {
-    --news-sys-font-size-blockquote-mobile: 2.0625rem;
-  }
-}
-
-
-/* ==========================================================================
-   6. MODE LAYER (data-mode)
-   Light/dark mode overrides
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Light Mode (Explicit - same as defaults)
-   -------------------------------------------------------------------------- */
-:root[data-mode="light"] {
-  /* Surfaces */
-  --md-sys-color-surface-page: var(--md-ref-color-neutral-0);
-  --md-sys-color-surface: var(--md-ref-color-neutral-0);
-  --md-sys-color-surface-dim: var(--md-ref-color-neutral-5);
-  --md-sys-color-surface-container: var(--md-ref-color-neutral-10);
-  --md-sys-color-on-surface: var(--md-ref-color-neutral-100);
-  --md-sys-color-on-surface-variant: var(--md-ref-color-neutral-50);
-}
-
-/* --------------------------------------------------------------------------
-   Dark Mode - Core System Tokens
-   -------------------------------------------------------------------------- */
-:root[data-mode="dark"] {
-  /* --------------------------------------------------------------------------
-     Dark Neutral Palette (Base - Pure Grays)
-     Regions override these for brand-tinted dark neutrals
-     -------------------------------------------------------------------------- */
-  --md-ref-color-neutral-0: #09090b;
-  --md-ref-color-neutral-5: #0f0f11;
-  --md-ref-color-neutral-10: #18181b;
-  --md-ref-color-neutral-20: #27272a;
-  --md-ref-color-neutral-30: #3f3f46;
-  --md-ref-color-neutral-40: #52525b;
-  --md-ref-color-neutral-50: #71717a;
-  --md-ref-color-neutral-60: #a1a1aa;
-  --md-ref-color-neutral-70: #d4d4d8;
-  --md-ref-color-neutral-80: #e4e4e7;
-  --md-ref-color-neutral-90: #f4f4f5;
-  --md-ref-color-neutral-100: #fafafa;
-
-  /* --------------------------------------------------------------------------
-     Surfaces (Dark)
-     -------------------------------------------------------------------------- */
-  --md-sys-color-surface-page: var(--md-ref-color-neutral-0);
-  --md-sys-color-surface: var(--md-ref-color-neutral-0);
-  --md-sys-color-surface-dim: var(--md-ref-color-neutral-5);
-  --md-sys-color-surface-container: var(--md-ref-color-neutral-10);
-
-  /* Brand-tinted container (15% in dark mode for visibility) */
-  --md-sys-color-surface-container-primary: color-mix(in srgb, var(--region-brand-primary) 15%, var(--md-sys-color-surface));
-  --md-sys-color-on-surface-container-primary: var(--md-ref-color-neutral-100);
-
-  /* Brand surfaces (full color backgrounds - lightened for dark mode) */
-  --md-sys-color-surface-primary: color-mix(in srgb, var(--region-brand-primary) 80%, white);
-  --md-sys-color-on-surface-primary: var(--md-ref-color-neutral-0);
-
-  --md-sys-color-surface-secondary: color-mix(in srgb, var(--region-brand-secondary) 80%, white);
-  --md-sys-color-on-surface-secondary: var(--md-ref-color-neutral-0);
-
-  --md-sys-color-surface-tertiary: color-mix(in srgb, var(--region-brand-tertiary) 80%, white);
-  --md-sys-color-on-surface-tertiary: var(--md-ref-color-neutral-100);
-
-  --md-sys-color-surface-breaking: var(--region-brand-breaking);
-  --md-sys-color-on-surface-breaking: var(--md-ref-color-neutral-100);
-
-  /* Inverse surface (flipped in dark mode) */
-  --md-sys-color-surface-inverse: var(--md-ref-color-neutral-0);
-  --md-sys-color-on-surface-inverse: var(--md-ref-color-neutral-100);
-
-  --md-sys-color-on-surface: var(--md-ref-color-neutral-100);
-  --md-sys-color-on-surface-variant: var(--md-ref-color-neutral-60);
-
-  /* --------------------------------------------------------------------------
-     Brand (use color-mix to lighten primary for visibility on dark)
-     Mixes 60% primary with 40% white for a lighter, more visible variant
-     -------------------------------------------------------------------------- */
-  --md-sys-color-primary: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-  --md-sys-color-on-primary: var(--md-ref-color-neutral-0);
-
-  /* --------------------------------------------------------------------------
-     Elevation (Dark mode uses subtle light overlays for depth)
-     In dark mode, shadows alone don't convey elevation well.
-     We add subtle white overlays to lighter surfaces.
-     -------------------------------------------------------------------------- */
-  --md-ref-shadow-xs: 0 1px 3px rgb(0 0 0 / 0.4);
-  --md-ref-shadow-sm: 0 2px 6px rgb(0 0 0 / 0.5);
-  --md-ref-shadow-md: 0 4px 12px rgb(0 0 0 / 0.6);
-  --md-ref-shadow-lg: 0 8px 20px rgb(0 0 0 / 0.6);
-  --md-ref-shadow-xl: 0 16px 32px rgb(0 0 0 / 0.7);
-
-  /* --------------------------------------------------------------------------
-     Cards (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-card-default-surface: var(--md-ref-color-neutral-10);
-  --news-sys-color-card-featured-accent: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-
-  /* --------------------------------------------------------------------------
-     Navigation (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-nav-bg: var(--md-ref-color-neutral-5);
-  --news-sys-color-nav-text: var(--md-ref-color-neutral-100);
-
-  /* --------------------------------------------------------------------------
-     Banner (Dark) - Breaking maintains visibility
-     -------------------------------------------------------------------------- */
-  --news-sys-color-banner-breaking-bg: var(--region-brand-breaking);
-  --news-sys-color-banner-breaking-text: var(--md-ref-color-neutral-0);
-  --news-sys-color-banner-live-bg: var(--md-ref-color-neutral-20);
-  --news-sys-color-banner-live-text: var(--md-ref-color-neutral-100);
-
-  /* --------------------------------------------------------------------------
-     Button (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-button-primary-bg: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-  --news-sys-color-button-primary-text: var(--md-ref-color-neutral-0);
-
-  /* --------------------------------------------------------------------------
-     Footer (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-footer-bg: var(--md-ref-color-neutral-5);
-  --news-sys-color-footer-text: var(--md-ref-color-neutral-60);
-
-  /* --------------------------------------------------------------------------
-     Fact Box (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-fact-box-bg: var(--md-ref-color-neutral-10);
-  --news-sys-color-fact-box-border: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-  --news-sys-color-fact-box-title: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-
-  /* --------------------------------------------------------------------------
-     Related Link (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-related-link-bg: var(--md-ref-color-neutral-10);
-  --news-sys-color-related-link-accent: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-
-  /* --------------------------------------------------------------------------
-     Embed Block (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-embed-bg: var(--md-ref-color-neutral-10);
-  --news-sys-color-embed-border: var(--md-ref-color-neutral-30);
-
-  /* --------------------------------------------------------------------------
-     Timeline (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-timeline-line: var(--md-ref-color-neutral-40);
-  --news-sys-color-timeline-marker: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-  --news-sys-color-timeline-date: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-
-  /* --------------------------------------------------------------------------
-     Callout (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-callout-bg: color-mix(in srgb, var(--region-brand-primary) 15%, var(--md-ref-color-neutral-10));
-  --news-sys-color-callout-border: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-
-  /* --------------------------------------------------------------------------
-     Data Table (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-table-header-bg: var(--md-ref-color-neutral-20);
-  --news-sys-color-table-border: var(--md-ref-color-neutral-30);
-  --news-sys-color-table-row-alt: var(--md-ref-color-neutral-10);
-
-  /* --------------------------------------------------------------------------
-     Gallery (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-gallery-indicator: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-
-  /* --------------------------------------------------------------------------
-     Quote (Dark) - Use lighter brand via color-mix
-     -------------------------------------------------------------------------- */
-  --news-sys-color-quote-border: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-
-  /* --------------------------------------------------------------------------
-     Tip Form (Dark)
-     -------------------------------------------------------------------------- */
-  --news-sys-color-tip-form-bg: var(--md-ref-color-neutral-10);
-  --news-sys-color-tip-form-border: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-  --news-sys-color-tip-form-input-bg: var(--md-ref-color-neutral-20);
-  --news-sys-color-tip-form-input-border: var(--md-ref-color-neutral-40);
-  --news-sys-color-tip-form-input-placeholder: var(--md-ref-color-neutral-60);
-  --news-sys-color-tip-form-input-focus: color-mix(in srgb, var(--region-brand-primary) 60%, white);
-}
-
-/* --------------------------------------------------------------------------
-   Dark Mode - Region-Specific Neutral Tints
-   Each region gets brand-tinted dark neutrals for cohesive dark theme
-   -------------------------------------------------------------------------- */
-
-/* TV2 Østjylland - Warm/beige-tinted dark neutrals (matching light mode character) */
-:root[data-region="tv2ostjylland"][data-mode="dark"] {
-  --md-ref-color-neutral-0: #0a0a09;
-  --md-ref-color-neutral-5: #12120f;
-  --md-ref-color-neutral-10: #1a1a16;
-  --md-ref-color-neutral-20: #282721;
-  --md-ref-color-neutral-30: #3a382f;
-  --md-ref-color-neutral-40: #4d4a40;
-  --md-ref-color-neutral-50: #6b675c;
-  --md-ref-color-neutral-60: #8e8a7e;
-  --md-ref-color-neutral-70: #b3afa2;
-  --md-ref-color-neutral-80: #d1cdc0;
-  --md-ref-color-neutral-90: #e8e6dc;
-  --md-ref-color-neutral-100: #f5f5ed;
-}
-
-/* TV2 Nord - Warm-tinted dark neutrals (subtle red undertone) */
-:root[data-region="tv2nord"][data-mode="dark"] {
-  --md-ref-color-neutral-0: #0b0908;
-  --md-ref-color-neutral-5: #110e0d;
-  --md-ref-color-neutral-10: #1a1614;
-  --md-ref-color-neutral-20: #2a2421;
-  --md-ref-color-neutral-30: #3d3532;
-}
-
-/* TV Syd - Blue-tinted dark neutrals */
-:root[data-region="tvsyd"][data-mode="dark"] {
-  --md-ref-color-neutral-0: #08090b;
-  --md-ref-color-neutral-5: #0d0e11;
-  --md-ref-color-neutral-10: #14161a;
-  --md-ref-color-neutral-20: #1f222a;
-  --md-ref-color-neutral-30: #2d313d;
-}
-
-/* TV2 Fyn - Warm-tinted dark neutrals (subtle red undertone) */
-:root[data-region="tv2fyn"][data-mode="dark"] {
-  --md-ref-color-neutral-0: #0b0908;
-  --md-ref-color-neutral-5: #110e0d;
-  --md-ref-color-neutral-10: #1a1614;
-  --md-ref-color-neutral-20: #2a2421;
-  --md-ref-color-neutral-30: #3d3532;
-}
-
-/* TV2 ØST - Warm-tinted dark neutrals (subtle red undertone) */
-:root[data-region="tv2ost"][data-mode="dark"] {
-  --md-ref-color-neutral-0: #0b0908;
-  --md-ref-color-neutral-5: #110e0d;
-  --md-ref-color-neutral-10: #1a1614;
-  --md-ref-color-neutral-20: #2a2421;
-  --md-ref-color-neutral-30: #3d3532;
-}
-
-/* TV2 Kosmopol - Purple-tinted dark neutrals */
-:root[data-region="tv2kosmopol"][data-mode="dark"] {
-  --md-ref-color-neutral-0: #0a080b;
-  --md-ref-color-neutral-5: #0f0c12;
-  --md-ref-color-neutral-10: #17141b;
-  --md-ref-color-neutral-20: #241f2b;
-  --md-ref-color-neutral-30: #342d3e;
-}
-
-/* TV Midtvest - Purple-tinted dark neutrals */
-:root[data-region="tvmidtvest"][data-mode="dark"] {
-  --md-ref-color-neutral-0: #0a080c;
-  --md-ref-color-neutral-5: #100d13;
-  --md-ref-color-neutral-10: #18141c;
-  --md-ref-color-neutral-20: #251f2c;
-  --md-ref-color-neutral-30: #372e40;
-}
-
-/* TV2 Bornholm - Blue-tinted dark neutrals */
-:root[data-region="tv2bornholm"][data-mode="dark"] {
-  --md-ref-color-neutral-0: #08090c;
-  --md-ref-color-neutral-5: #0c0e12;
-  --md-ref-color-neutral-10: #13161c;
-  --md-ref-color-neutral-20: #1e222c;
-  --md-ref-color-neutral-30: #2c313e;
-}
-
-
-/* ==========================================================================
-   7. REGIONAL COMPONENT EXTENSIONS (Optional)
-   Regions can add custom variants here or in separate files
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Example: Regional variant tokens
-   Regions can define custom variant tokens here
-   -------------------------------------------------------------------------- */
-:root[data-region="tv2nord"] {
-  /* Regional variant tokens */
-  --region-highlight-border-width: var(--md-ref-border-width-thick);
-}
-
-:root[data-region="tv2ostjylland"] {
-  /* Regional variant tokens */
-  --region-hero-overlay-opacity: 0.7;
-}
-
-
-/* ==========================================================================
-   8. ACCESSIBILITY - REDUCED MOTION
-   Respects user preference for reduced motion.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Reduced Motion Preferences
-   When the user prefers reduced motion, eliminate or minimize animations.
-   State changes (color, opacity changes on hover) are preserved.
-   -------------------------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    /* Zero out all motion durations */
-    --md-ref-motion-duration-instant: 0ms;
-    --md-ref-motion-duration-fast: 0ms;
-    --md-ref-motion-duration-normal: 0ms;
-    --md-ref-motion-duration-slow: 0ms;
-    --md-ref-motion-duration-slower: 0ms;
-
-    /* Simplify easing to linear (no animation anyway) */
-    --md-ref-motion-easing-standard: linear;
-    --md-ref-motion-easing-emphasized: linear;
-    --md-ref-motion-easing-decelerate: linear;
-    --md-ref-motion-easing-accelerate: linear;
-  }
-}
-
-/* ======================================================================
-   9. COMPATIBILITY LAYER FOR EXISTING HTML/CSS IN THIS REPO
-   - Keep legacy --color/*, --font/*, --space/* tokens functional
-   - Map existing data-theme values to regional brand tokens
-   ====================================================================== */
-
-/* Theme mapping for current runtime keys (set by assets/theme.js). */
-:root[data-theme="tv2Oj"] {
-  --region-brand-primary: #00aa5a;
-  --region-brand-secondary: #235537;
-  --region-brand-tertiary: #e1ff7d;
-  --region-brand-accent: var(--region-brand-primary);
-  --region-brand-breaking: #ffed00;
-
-  --md-ref-color-neutral-0: #ffffff;
-  --md-ref-color-neutral-5: #f5f5ed;
-  --md-ref-color-neutral-10: #edede5;
-  --md-ref-color-neutral-20: #dbdacc;
-  --md-ref-color-neutral-30: #c5c3b8;
-  --md-ref-color-neutral-40: #afaca5;
-  --md-ref-color-neutral-50: #8e8881;
-  --md-ref-color-neutral-60: #746f69;
-  --md-ref-color-neutral-70: #5a5651;
-  --md-ref-color-neutral-80: #3f3c39;
-  --md-ref-color-neutral-90: #242424;
-  --md-ref-color-neutral-100: #000000;
-}
-
-:root[data-theme="tv2Nord"] {
-  --region-brand-primary: #f0281e;
-  --region-brand-secondary: #333751;
-  --region-brand-tertiary: #eb8c82;
-  --region-brand-accent: var(--region-brand-primary);
-  --region-brand-breaking: #ffd200;
-
-  --md-sys-color-surface-page: #fff5f0;
-  --md-ref-color-neutral-5: #fafaf9;
-  --md-ref-color-neutral-10: #f5f4f3;
-  --md-ref-color-neutral-20: #e7e5e4;
-}
-
-:root[data-theme="tv2Syd"] {
-  --region-brand-primary: #2130a8;
-  --region-brand-secondary: #9ab8f9;
-  --region-brand-accent: #d8a0f0;
-
-  --md-ref-color-neutral-5: #f9f9fb;
-  --md-ref-color-neutral-10: #f3f3f6;
-  --md-ref-color-neutral-20: #e5e5eb;
-}
-
-:root[data-theme="tv2Fyn"] {
-  --region-brand-primary: #f0281e;
-  --region-brand-secondary: #640014;
-  --region-brand-accent: var(--region-brand-primary);
-
-  --md-ref-color-neutral-5: #fafaf9;
-  --md-ref-color-neutral-10: #f5f4f3;
-  --md-ref-color-neutral-20: #e7e5e4;
-}
-
-:root[data-theme="tv2East"] {
-  --region-brand-primary: #e4032e;
-  --region-brand-secondary: #f43f5e;
-  --region-brand-accent: var(--region-brand-primary);
-
-  --md-ref-color-neutral-5: #fafaf9;
-  --md-ref-color-neutral-10: #f5f4f3;
-  --md-ref-color-neutral-20: #e7e5e4;
-}
-
-:root[data-theme="kosmopol"] {
-  --region-brand-primary: #6e18e7;
-  --region-brand-secondary: #b30000;
-  --region-brand-accent: var(--region-brand-primary);
-
-  --md-ref-color-neutral-5: #faf9fc;
-  --md-ref-color-neutral-10: #f5f3f8;
-  --md-ref-color-neutral-20: #e8e5f0;
-}
-
-/* Legacy token aliases consumed by current assets/styles.css. */
-:root {
+  --news-sys-font-size-blockquote-mobile: clamp(1.75rem, 1.45rem + 1vw, 2.125rem);
+  --news-sys-line-height-blockquote-mobile: 1.2;
+  --news-sys-font-weight-quote: 700;
+
+  --news-sys-font-size-article-meta: var(--core-type-size-14);
+  --news-sys-line-height-article-meta: 1.3;
+  --news-sys-font-weight-article-meta: 500;
+
+  --news-sys-typography-quote:
+    normal
+    var(--news-sys-font-weight-quote)
+    var(--news-sys-font-size-blockquote-mobile)
+    / var(--news-sys-line-height-blockquote-mobile)
+    var(--base-type-family-heading);
+
+  --news-sys-typography-article-meta:
+    normal
+    var(--news-sys-font-weight-article-meta)
+    var(--news-sys-font-size-article-meta)
+    / var(--news-sys-line-height-article-meta)
+    var(--base-type-family-body);
+
+  /* Legacy aliases */
   --color-primary: var(--md-sys-color-primary);
   --color-accent: var(--news-sys-color-accent);
   --color-bg: var(--md-sys-color-surface-page);
@@ -1413,15 +268,77 @@
   --color-text: var(--md-sys-color-on-surface);
   --color-muted: var(--md-sys-color-on-surface-variant);
 
-  /* Preserve existing typography intent in current pages. */
-  --font-display: "Proxima Nova", Montserrat, "Avenir Next", "Segoe UI", Roboto, sans-serif;
-  --font-body: "Proxima Nova", Montserrat, "Avenir Next", "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--base-type-family-heading);
+  --font-body: var(--base-type-family-body);
 
   --space-1: var(--md-ref-space-2);
   --space-2: var(--md-ref-space-4);
   --space-3: var(--md-ref-space-6);
   --space-4: var(--md-ref-space-8);
 
-  --radius: 0;
   --shadow: var(--news-sys-elevation-card);
+  --radius: var(--md-sys-shape-corner-small);
 }
+
+:root[data-theme="tv2Oj"] {
+  --base-color-brand-primary: #00aa5a;
+  --base-color-brand-secondary: #235537;
+  --base-color-brand-tertiary: #e1ff7d;
+  --base-color-brand-breaking: #ffed00;
+
+  --base-color-neutral-0: #ffffff;
+  --base-color-neutral-50: #f5f5ed;
+  --base-color-neutral-100: #edede5;
+  --base-color-neutral-200: #dbdacc;
+  --base-color-neutral-300: #c5c3b8;
+  --base-color-neutral-400: #afaca5;
+  --base-color-neutral-500: #8e8881;
+  --base-color-neutral-600: #746f69;
+  --base-color-neutral-700: #5a5651;
+  --base-color-neutral-800: #3f3c39;
+  --base-color-neutral-900: #242424;
+  --base-color-neutral-950: #000000;
+}
+
+:root[data-theme="tv2Nord"] {
+  --base-color-brand-primary: #f0281e;
+  --base-color-brand-secondary: #333751;
+  --base-color-brand-tertiary: #eb8c82;
+  --base-color-brand-breaking: #ffd200;
+}
+
+:root[data-theme="tv2Syd"] {
+  --base-color-brand-primary: #2130a8;
+  --base-color-brand-secondary: #9ab8f9;
+  --base-color-brand-tertiary: #d8a0f0;
+  --base-color-brand-breaking: #ffd200;
+}
+
+:root[data-theme="tv2Fyn"] {
+  --base-color-brand-primary: #f0281e;
+  --base-color-brand-secondary: #640014;
+  --base-color-brand-tertiary: #eb8c82;
+  --base-color-brand-breaking: #ffd200;
+}
+
+:root[data-theme="tv2East"] {
+  --base-color-brand-primary: #e4032e;
+  --base-color-brand-secondary: #f43f5e;
+  --base-color-brand-tertiary: #ff9fb0;
+  --base-color-brand-breaking: #ffd200;
+}
+
+:root[data-theme="kosmopol"] {
+  --base-color-brand-primary: #6e18e7;
+  --base-color-brand-secondary: #b30000;
+  --base-color-brand-tertiary: #c59bff;
+  --base-color-brand-breaking: #ffd200;
+}
+
+/* Legacy compatibility for old data-region names. */
+:root[data-region="tv2ostjylland"] { --base-color-brand-primary: #00aa5a; }
+:root[data-region="tv2nord"] { --base-color-brand-primary: #f0281e; }
+:root[data-region="tvsyd"] { --base-color-brand-primary: #2130a8; }
+:root[data-region="tv2fyn"] { --base-color-brand-primary: #f0281e; }
+:root[data-region="tv2ost"] { --base-color-brand-primary: #e4032e; }
+:root[data-region="tv2kosmopol"] { --base-color-brand-primary: #6e18e7; }

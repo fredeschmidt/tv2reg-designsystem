@@ -1,12 +1,12 @@
 .quote-component {
   margin: 0 calc(50% - 50vw);
-  background: var(--md-sys-color-surface-page);
+  background: var(--base-color-surface-page);
 }
 
 .quote-component__inner {
   width: min(68rem, 100%);
   margin: 0 auto;
-  padding: 0 var(--md-ref-space-6);
+  padding: 0 var(--base-space-inset-lg);
   text-align: center;
 }
 
@@ -28,8 +28,8 @@
   width: clamp(5rem, 22vw, 6.8rem);
   aspect-ratio: 1;
   margin: 0 auto;
-  border-radius: var(--md-ref-radius-full);
-  box-shadow: var(--md-ref-shadow-sm);
+  border-radius: var(--base-radius-pill);
+  box-shadow: var(--base-shadow-sm);
   background:
     radial-gradient(circle at 50% 36%, rgb(245 203 187 / 100%) 0 27%, rgb(81 74 74 / 100%) 28% 54%, transparent 55%),
     radial-gradient(circle at 50% 125%, rgb(73 58 58 / 100%) 0 36%, transparent 37%),
@@ -38,28 +38,35 @@
 
 .quote-component__text {
   max-width: 21ch;
-  margin: 0 auto var(--md-ref-space-4);
+  margin: 0 auto var(--base-space-stack-lg);
   padding: 0;
   border: 0;
   background: none;
-  color: var(--md-sys-color-on-surface);
-  font: var(--news-sys-typography-quote);
+  color: var(--base-color-text-primary);
+  font-family: var(--base-type-family-heading);
+  font-size: var(--base-type-size-emphasis);
+  font-weight: var(--base-weight-bold);
+  line-height: var(--base-leading-subheading);
+  letter-spacing: var(--base-type-letter-heading);
 }
 
 .quote-component__attribution {
   margin: 0;
-  color: var(--news-sys-color-article-meta);
-  font: var(--news-sys-typography-article-meta);
+  color: var(--base-color-text-muted);
+  font-family: var(--base-type-family-body);
+  font-size: var(--base-type-size-caption);
+  font-weight: var(--base-weight-medium);
+  line-height: var(--base-leading-tight);
 }
 
 @media (min-width: 52.5rem) {
   .quote-component__inner {
-    padding: 0 var(--md-ref-space-10);
+    padding: 0 var(--base-space-section-lg);
   }
 
   .quote-component__top {
     min-height: 7rem;
-    margin-bottom: var(--md-ref-space-5);
+    margin-bottom: var(--base-space-stack-xl);
   }
 
   .quote-component__mark {

@@ -77,10 +77,10 @@ If any required input is missing, ask before implementation.
 7. Use existing tokens first.
 8. Token mapping is required for screenshot builds:
    - colors: tokenized by default,
-   - typography: tokenized family, size, weight, line-height by default via semantic typography tokens,
+   - typography: tokenized family, size, weight, line-height by default via `--base-type-*`, `--base-leading-*`, and `--base-weight-*`,
    - apply typography/color tokens that match the chosen semantic role (for example quote text -> quote tokens, metadata -> meta tokens),
-   - typography must prefer semantic token usage (for example `font: var(--news-sys-typography-quote)`) over legacy `--font-*` aliases in component CSS,
-   - when a semantic typography token is applied, do not override `font-size`, `font-weight`, or `line-height` unless absolutely required and documented as a delta,
+   - typography must prefer semantic base token usage over legacy `--font-*`/`--md-*`/`--news-*` aliases in component CSS,
+   - when semantic base typography tokens are applied, do not override `font-size`, `font-weight`, or `line-height` unless absolutely required and documented as a delta,
    - hardcoded fallback only when token coverage is missing, and document each exception.
 9. Text-size token matching is required:
    - estimate visible text size from calibrated screenshot measurements (not by intuition),

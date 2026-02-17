@@ -11,6 +11,10 @@ This is the shortest way to make a valid request.
 2. Fill template
 3. Send
 
+Token default for implementation:
+- Component and layout CSS should use the new token API (`--base-*` by default, `--core-*` when needed).
+- Legacy aliases (`--md-*`, `--news-*`, `--color-*`, `--font-*`, `--space-*`) are compatibility-only.
+
 
 ### New component from screenshots
 

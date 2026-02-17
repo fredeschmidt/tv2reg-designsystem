@@ -56,7 +56,7 @@ In the build flow: `build-component` -> `read-screenshot` (if needed) -> `projec
 ## Hard Rules
 
 1. Use tokens in component/layout CSS (`var(--...)`).
-2. Typography in component CSS must use semantic typography tokens first (for example `font: var(--news-sys-typography-quote)`), including font family, size, weight, and line-height.
+2. Typography in component CSS must use the new semantic type system first (`--base-type-*`, `--base-leading-*`, `--base-weight-*`) including family, size, weight, and line-height.
 3. Do not use legacy typography aliases (`--font-*`) inside component styles; reserve them for compatibility in shared/global legacy layers only.
 4. For Figma/screenshot component builds, reuse existing tokens by default.
 5. Do not add new tokens unless user explicitly asks for token architecture changes.
@@ -73,8 +73,8 @@ In the build flow: `build-component` -> `read-screenshot` (if needed) -> `projec
 
 1. Define semantic need (not raw styling).
 2. Choose existing token(s) in `assets/tokens.css`.
-3. For typography, choose semantic `--news-sys-typography-*`/`--md-sys-typescale-*` tokens before setting discrete font properties.
-4. Do not override `font-size`, `font-weight`, or `line-height` in component rules when a semantic typography token is applied; if unavoidable, document the exception explicitly.
+3. For typography, choose semantic `--base-type-*` + `--base-leading-*` + `--base-weight-*` tokens before introducing hardcoded font values.
+4. Do not override `font-size`, `font-weight`, or `line-height` with raw values when semantic base typography tokens cover the use case; if unavoidable, document the exception explicitly.
 5. If no exact token for screenshot/Figma task:
    - use closest semantic token,
    - document visual delta,
@@ -90,8 +90,9 @@ In the build flow: `build-component` -> `read-screenshot` (if needed) -> `projec
    - theme selector works on all pages,
    - `localStorage` key `tv2-region-theme` persists,
    - no hardcoded region colors in component rules,
+   - component/layout CSS uses `--base-*`/`--core-*` as the default token API,
    - no legacy `--font-*` usage inside component CSS,
-   - no direct `font-size`/`font-weight`/`line-height` overrides where semantic typography tokens already define them,
+   - no direct raw `font-size`/`font-weight`/`line-height` overrides where semantic base typography tokens already define them,
    - component CSS/JS loading follows contract,
    - mobile and desktop render correctly.
 
