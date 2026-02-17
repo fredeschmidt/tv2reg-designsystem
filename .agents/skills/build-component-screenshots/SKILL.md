@@ -21,6 +21,7 @@ Use it directly when the component source is screenshots.
 - Build to match the concrete source theme, then rely on tokens to support other themes.
 - Always center the component in its placement container.
 - When placement target is `article.html`, always add lorem ipsum text before and after the component.
+- When placement target is `article.html`, never delete existing components; only add the new component alongside existing content.
 
 ## Trigger
 
@@ -72,6 +73,7 @@ If any required input is missing, ask before implementation.
    - other themes resolve through tokens,
    - component is centered in its placement container,
    - if placement is `article.html`, lorem ipsum text exists before and after the component,
+   - if placement is `article.html`, existing components remain intact (no deletions),
    - no global CSS/JS leakage,
    - tokenized color + typography mapping.
 10. Report:

@@ -21,6 +21,7 @@ Use it directly when the component source is Figma.
 - Target exact visual match to the linked Figma node.
 - Always center the component in its placement container.
 - When placement target is `article.html`, always add lorem ipsum text before and after the component.
+- When placement target is `article.html`, never delete existing components; only add the new component alongside existing content.
 - Run a mandatory self-review before reporting completion.
 
 ## Trigger
@@ -71,6 +72,7 @@ If any required input is missing, ask before implementation.
    - mobile + desktop behavior,
    - component is centered in its placement container,
    - if placement is `article.html`, lorem ipsum text exists before and after the component,
+   - if placement is `article.html`, existing components remain intact (no deletions),
    - no global CSS/JS leakage.
 11. Run self-review (mandatory):
    - re-check architecture compliance against [Architecture](../architecture/SKILL.md),
