@@ -52,7 +52,7 @@ Use these heuristics to decide where an update belongs:
 
 - `build-component`: entry flow, orchestration, confirmations, branching, implementation sequence.
 - `read-screenshot`: screenshot extraction quality, 1:1 parity method, token mapping from visuals.
-- `project-architect`: repository constraints, token governance, architecture boundaries, integration rules.
+- `architecture`: repository constraints, token governance, architecture boundaries, integration rules.
 - `update-skill` (this skill): how to maintain/edit skills cleanly.
 
 Recommend a new skill only when:

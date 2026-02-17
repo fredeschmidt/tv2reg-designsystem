@@ -55,7 +55,7 @@ If any required input is missing, ask before implementation.
 5. Send confirmation message using `./TEMPLATE.md`.
 6. Wait for user confirmation (`yes`).
 7. Create branch with descriptive name, e.g. `build/<component-name>`.
-8. Run [Project Architect](../project-architect/SKILL.md) and apply constraints.
+8. Run [Architecture](../architecture/SKILL.md) and apply constraints.
 9. Implement component from design source within architecture constraints.
 10. Validate:
    - Mobile + desktop behavior.

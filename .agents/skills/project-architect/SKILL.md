@@ -1,9 +1,9 @@
 ---
-name: project-architect
+name: architecture
 description: Apply architecture and token guardrails so implementation stays aligned with the shared multi-region design-system contract.
 ---
 
-# Project Architect
+# Architecture
 
 Use this skill to enforce repository architecture constraints.
 In component builds, this runs after design extraction and before implementation.
@@ -25,7 +25,7 @@ Use when implementation needs architectural guardrails for:
 - themes/regions,
 - page integration constraints.
 
-In the build flow: `build-component` -> `read-screenshot` (if needed) -> `project-architect` -> implementation.
+In the build flow: `build-component` -> `read-screenshot` (if needed) -> `architecture` -> implementation.
 
 ## Do This First (Required)
 

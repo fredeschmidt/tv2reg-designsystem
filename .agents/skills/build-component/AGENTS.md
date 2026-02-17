@@ -22,5 +22,5 @@ Use this skill when the user asks to build a component from:
 ## Skill Handoffs
 
 - Screenshot extraction: `read-screenshot`
-- Architecture guardrails: `project-architect`
+- Architecture guardrails: `architecture`
 - Branch wrap-up (only if explicitly requested): `wrap-up`

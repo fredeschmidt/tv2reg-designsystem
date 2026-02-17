@@ -1,4 +1,4 @@
-# Project Architect Skill
+# Architecture Skill
 
 ## Support Skill (Mandatory Order)
 
