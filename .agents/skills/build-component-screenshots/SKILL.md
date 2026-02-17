@@ -19,6 +19,10 @@ Use it directly when the component source is screenshots.
 - Screenshot source is always one concrete theme.
 - The source theme must be explicitly provided in the prompt.
 - Build to match the concrete source theme, then rely on tokens to support other themes.
+- Never ask for screenshot dimensions or viewport widths.
+- Always assume screenshot order and viewport mapping:
+  - screenshot 1 = mobile (`390px` wide),
+  - screenshot 2 = desktop (`1728px` wide).
 - Always center the component in its placement container.
 - When placement target is `article.html`, always add lorem ipsum text before and after the component.
 - When placement target is `article.html`, never delete existing components; only add the new component alongside existing content.
@@ -29,10 +33,8 @@ Run this skill when the user requests a new component from screenshots, for exam
 
 ```md
 Build a new [component-name] from screenshots.
-- Mobile screenshot (1st): [link]
-- Desktop screenshot (2nd): [link]
-- Screenshot dimensions: [mobile WxH px, desktop WxH px]
-- Viewport widths used (if known): [mobile px, desktop px]
+- Mobile screenshot (1st)
+- Desktop screenshot (2nd)
 - Source theme: [tv2Oj|tv2Nord|tv2Syd|tv2Fyn|tv2East|kosmopol]
 - Placement target: [article.html|index.html]
 - Notes: [optional]

@@ -34,16 +34,14 @@ Routing model (MANDATORY - ALWAYS FOLLOW):
 
 `
 Build a new [component-name] from screenshots.
-- Mobile screenshot (1st): [link]
-- Desktop screenshot (2nd): [link]
-- Screenshot dimensions: [mobile WxH px, desktop WxH px]
-- Viewport widths used (if known): [mobile px, desktop px]
+- Mobile screenshot (1st)
+- Desktop screenshot (2nd)
 - Source theme: [tv2Oj|tv2Nord|tv2Syd|tv2Fyn|tv2East|kosmopol]
 - Placement target: [article.html|index.html]
 - Notes: [optional]
 `
 
-If viewport widths are not provided, defaults are used: mobile `390px`, desktop `1728px`.
+Viewport assumptions are always fixed: screenshot 1 is mobile `390px`, screenshot 2 is desktop `1728px`.
 Source theme is required for screenshot requests.
 
 ### New component from Figma
