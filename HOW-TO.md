@@ -21,8 +21,6 @@ Routing model:
   - `build-component-screenshots` for screenshot requests.
 - Figma requests are white-label: themes are token-driven.
 - Screenshot requests are concrete-theme: prompt must include the source theme.
-- All new components are centered in their placement container.
-- If placement target is `article.html`, lorem ipsum text is always added before and after the component.
 
 
 ### New component from screenshots
