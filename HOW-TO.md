@@ -15,6 +15,14 @@ Token default for implementation:
 - Component and layout CSS should use the new token API (`--base-*` by default, `--core-*` when needed).
 - Legacy aliases (`--md-*`, `--news-*`, `--color-*`, `--font-*`, `--space-*`) are compatibility-only.
 
+Routing model:
+- `build-component` is always the first step for new component builds.
+- It routes to exactly one source-specific flow:
+  - `build-component-figma` for Figma node requests.
+  - `build-component-screenshots` for screenshot requests.
+- Figma requests are white-label: themes are token-driven.
+- Screenshot requests are concrete-theme: prompt must include the source theme.
+
 
 ### New component from screenshots
 
@@ -30,16 +38,18 @@ Build a new [component-name] from screenshots.
 `
 
 If viewport widths are not provided, defaults are used: mobile `390px`, desktop `1728px`.
+Source theme is required for screenshot requests.
 
 ### New component from Figma
 
 `
 Build a new [component-name] from Figma.
 - Figma node link (with node-id): [link]
-- Source theme: [theme or "default"]
 - Placement target: [article.html|index.html]
 - Notes: [optional]
 `
+
+Figma requests are treated as white-label. Theme behavior must come from tokens.
 
 ### Update existing component
 

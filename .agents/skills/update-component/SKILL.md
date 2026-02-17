@@ -7,6 +7,14 @@ description: Update an existing component from a new screenshot and text descrip
 
 Use this skill when the component already exists and the task is to align it with new visual direction from a screenshot plus text instructions.
 
+## Mandatory Execution Rules
+
+- Read this file before acting.
+- Execute all workflow steps in exact order.
+- Execute all sub-bullets under each step.
+- Do not skip, combine, or reorder steps.
+- If blocked or required input is missing, ask and wait.
+
 ## Trigger
 
 Use this skill when the user asks in patterns like:
@@ -36,7 +44,7 @@ If any of these are missing, ask before implementation.
 5. Use existing tokens first (`--base-*` primary, `--core-*` when needed); treat `--md-*`/`--news-*`/legacy aliases as compatibility-only.
 6. No page-level hacks or per-theme hardcoded forks in markup.
 
-## Workflow
+## Workflow (Execute In Order)
 
 1. Parse update scope from screenshot + text description.
 2. Use [Read Screenshot skill](../read-screenshot/SKILL.md) to extract exact visual deltas.

@@ -4,32 +4,42 @@ description: Commits, pushes, merges to main locally, ends on main. Never delete
 ---
 
 # Wrap Up Branch Skill
-Use the Wrap Up skill to commit your changes, push the branch to remote, merge it to main locally, and end on the main branch. This skill ensures that you follow a structured workflow while wrapping up your work on a feature or fix, and it will never delete branches or deploy automatically.    
 
-## Trigger    
-Trigger this only when the user explicitly asks to wrap up a branch, e.g. "Wrap up this branch". The skill will guide you through the process of committing, pushing, merging, and switching branches.
+Use this skill to commit changes, push the branch, merge to `main` locally, and finish on `main`.
 
-## HARD RULES (must follow)
+## Mandatory Execution Rules
+
+- Read this file before acting.
+- Execute all workflow steps in exact order.
+- Execute all sub-bullets under each step.
+- Do not skip, combine, or reorder steps.
+- If blocked (for example merge conflicts), stop and ask the user.
 - Never delete branches automatically.
 - Never deploy automatically.
 
-## Workflow
+## Trigger
+
+Run only when the user explicitly asks to wrap up a branch.
+Example: `Wrap up this branch`.
+
+## Workflow (Execute In Order)
+
 1. Check working tree:
-- If untracked files exist: stage them.
-- If there are changes: stage them.
+   - if untracked files exist, stage them,
+   - if there are tracked changes, stage them.
 
 2. Commit:
-- Use a descriptive commit message summarizing the feature/fix.
+   - use a descriptive commit message summarizing the feature/fix.
 
 3. Push:
-- Push/publish the current branch to remote.
+   - push/publish the current branch to remote.
 
 4. Merge to main (local):
-- Switch to main
-- Pull/rebase main (if applicable)
-- Merge feature branch into main
-- If there are merge conflicts: STOP and ask user.
+   - switch to `main`,
+   - pull/rebase `main` (if applicable),
+   - merge feature branch into `main`,
+   - if merge conflicts occur, stop and ask user.
 
 5. End state:
-- Leave repo on main
-- Confirm completion in chat.
+   - leave repo on `main`,
+   - confirm completion in chat.

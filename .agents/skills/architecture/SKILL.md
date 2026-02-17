@@ -15,7 +15,7 @@ In component builds, this runs after design extraction and before implementation
 - Execute all sub-bullets under each step.
 - Do not skip, combine, or reorder steps.
 - If blocked or context is missing, resolve before moving on.
-- When done, return to `build-component`.
+- When done, return to the calling skill.
 
 ## Trigger
 
@@ -25,7 +25,10 @@ Use when implementation needs architectural guardrails for:
 - themes/regions,
 - page integration constraints.
 
-In the build flow: `build-component` -> `read-screenshot` (if needed) -> `architecture` -> implementation.
+In build flows:
+- `build-component` routes first.
+- `build-component-figma` -> `architecture` -> implementation.
+- `build-component-screenshots` -> `read-screenshot` -> `architecture` -> implementation.
 
 ## Do This First (Required)
 

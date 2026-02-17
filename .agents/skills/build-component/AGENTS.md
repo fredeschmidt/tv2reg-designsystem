@@ -1,9 +1,9 @@
 # Build Component Skill
 
-## Entry Skill (Mandatory)
+## First Step (Mandatory)
 
-This is the first skill to run for any **new component build**.
-Do not start implementation from another skill.
+This skill is always the first step for new component build requests.
+It routes to one source-specific build skill.
 
 ## Execution Contract (Non-Negotiable)
 
@@ -15,12 +15,16 @@ Do not start implementation from another skill.
 
 ## Routing
 
-Use this skill when the user asks to build a component from:
-- a Figma Dev Mode link, or
-- screenshots (mobile + desktop).
+Use this skill first whenever the user asks to build a new component.
+
+Route as follows:
+
+- Figma request -> `build-component-figma`
+    - Figma flow is white-label token-driven.
+- Screenshot request -> `build-component-screenshots`
+-   Screenshot flow requires explicit source theme in prompt.
 
 ## Skill Handoffs
 
-- Screenshot extraction: `read-screenshot`
-- Architecture guardrails: `architecture`
-- Branch wrap-up (only if explicitly requested): `wrap-up`
+- Figma build flow: `build-component-figma`
+- Screenshot build flow: `build-component-screenshots`

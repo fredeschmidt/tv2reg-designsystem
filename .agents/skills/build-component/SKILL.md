@@ -1,12 +1,12 @@
 ---
 name: build-component
-description: Entry skill for building new components from a user prompt and design source (Figma or screenshots).
+description: First step for every new component request. Routes to build-component-figma or build-component-screenshots.
 ---
 
 # Build Component
 
-This is the **first step** for any new component build.
-Use it to translate the user request + design source into implementation.
+This is the mandatory **first step** for every new component build request.
+It only routes to one source-specific build skill.
 
 ## Mandatory Execution Rules
 
@@ -19,51 +19,52 @@ Use it to translate the user request + design source into implementation.
 
 ## Trigger
 
-Use when the user asks things like:
+Use first when the user asks to build a new component.
+Source type is always exclusive: exactly one of Figma or screenshots.
+Figma requests are always white-label token-driven.
+Screenshot requests are always from one concrete theme and must include that theme in the prompt.
 
-- `Build the component from this Figma link: <FIGMA_DEV_MODE_LINK>`
-- `Build the XX component from these screenshots (tv2Oj): <MOBILE> + <DESKTOP>`
+Use these exact request patterns:
 
-For figma- and screenshot-driven component requests, this is the entry skill and must run first.
+```md
+Build a new [component-name] from screenshots.
+- Mobile screenshot (1st): [link]
+- Desktop screenshot (2nd): [link]
+- Screenshot dimensions: [mobile WxH px, desktop WxH px]
+- Viewport widths used (if known): [mobile px, desktop px]
+- Source theme: [tv2Oj|tv2Nord|tv2Syd|tv2Fyn|tv2East|kosmopol]
+- Placement target: [article.html|index.html]
+- Notes: [optional]
+```
+
+```md
+Build a new [component-name] from Figma.
+- Figma node link (with node-id): [link]
+- Placement target: [article.html|index.html]
+- Notes: [optional]
+```
 
 ## Required Inputs
 
-Collect before coding:
+Collect before routing:
 
 1. Task definition from user prompt.
 2. Design source:
-   - Preferred: Figma Dev Mode link with `node-id`.
-   - Fallback: two screenshots (mobile + desktop).
-3. Source theme for screenshot tasks:
-   - `tv2Oj`, `tv2Nord`, `tv2Syd`, `tv2Fyn`, `tv2East`, or `kosmopol`.
+   - Figma Dev Mode link with `node-id`, or
+   - two screenshots (mobile + desktop).
+3. Source theme for screenshot requests:
+   - must be explicitly provided in prompt,
+   - allowed values: `tv2Oj`, `tv2Nord`, `tv2Syd`, `tv2Fyn`, `tv2East`, `kosmopol`.
 
-If any required input is missing, ask before implementation.
+If any required input is missing, ask before routing.
 
 ## Workflow (Execute In Order)
 
-1. Parse scope from the user request.
-2. Extract design details from source:
-   - Figma: extract exact sizes, spacing, typography, colors, tokens.
-   - Screenshots: run [Read Screenshot](../read-screenshot/SKILL.md) first.
-   - Screenshots: confirm source theme before implementation.
-   - Screenshots: map colors/typography to existing tokens (avoid one-off hardcoded values).
-3. Ask where to integrate component:
-   - Article: `article.html` inside `<article>`, wrapped with `<div class="article-component">`.
-   - Frontpage: `index.html` inside `<main>`, wrapped with `<div class="frontpage-component">`.
-4. Convert prompt into implementation scope + acceptance checks.
-   - State assumptions explicitly when unspecified.
-5. Send confirmation message using `./TEMPLATE.md`.
-6. Wait for user confirmation (`yes`).
-7. Create branch with descriptive name, e.g. `build/<component-name>`.
-8. Run [Architecture](../architecture/SKILL.md) and apply constraints.
-9. Implement component from design source within architecture constraints.
-10. Validate:
-   - Mobile + desktop behavior.
-   - No global CSS/JS leakage.
-   - Screenshot-driven builds use tokenized color + typography.
-11. Report:
-   - What was built.
-   - Files changed.
-   - Assumptions.
-   - Remaining visual deltas for 1:1 tasks and why.
-   - Remaining gaps/follow-ups.
+1. Parse the user request and identify design source type.
+2. Route to one source-specific build skill:
+   - Figma link with `node-id` -> run [Build Component Figma](../build-component-figma/SKILL.md).
+   - Two screenshots (mobile + desktop) -> run [Build Component Screenshots](../build-component-screenshots/SKILL.md).
+3. If source type is unclear:
+   - ask a single clarification question and wait.
+4. After routing, do not duplicate implementation steps in this skill.
+   - the selected source-specific skill owns extraction, architecture handoff, implementation, validation, and reporting.

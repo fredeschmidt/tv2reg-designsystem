@@ -15,13 +15,11 @@ Goal: reconstruct the component with strict mobile + desktop visual parity.
 - Execute all sub-bullets under each step.
 - Do not skip, combine, or reorder steps.
 - If blocked or input is missing, ask and wait.
-- When done, return to `build-component`.
+- When done, return to `build-component-screenshots`.
 
 ## Trigger
 
-Run this skill when `build-component` handles a screenshot-driven component request.
-
-If both Figma and screenshots are provided, Figma values are canonical; screenshots are for visual validation.
+Run this skill when `build-component-screenshots` handles a screenshot-driven component request.
 
 ## Required Inputs
 
@@ -36,7 +34,7 @@ Collect before implementation:
 3. Placement target:
    - `article.html` inside `<article>` wrapped in `<div class="article-component">`, or
    - `index.html` inside `<main>` wrapped in `<div class="frontpage-component">`.
-4. Source theme when relevant:
+4. Source theme (required):
    - `tv2Oj`, `tv2Nord`, `tv2Syd`, `tv2Fyn`, `tv2East`, or `kosmopol`.
 5. Viewport assumptions (default, unless user says otherwise):
    - first screenshot is mobile viewport at `390px` width,
