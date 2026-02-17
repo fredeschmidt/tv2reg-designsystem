@@ -19,6 +19,8 @@ It is called by `build-component` after routing.
 - Screenshot source is always one concrete theme.
 - The source theme must be explicitly provided in the prompt.
 - Build to match the concrete source theme, then rely on tokens to support other themes.
+- Always center the component in its placement container.
+- When placement target is `article.html`, always add lorem ipsum text before and after the component.
 
 ## Trigger
 
@@ -46,8 +48,8 @@ Collect before coding:
 3. Source theme:
    - `tv2Oj`, `tv2Nord`, `tv2Syd`, `tv2Fyn`, `tv2East`, or `kosmopol`.
 4. Placement target:
-   - `article.html` inside `<article>`, wrapped with `<div class="article-component">`, or
-   - `index.html` inside `<main>`, wrapped with `<div class="frontpage-component">`.
+   - `article.html` inside `<article>`, wrapped with `<div class="article-component">`, centered, and with lorem ipsum text before and after the component, or
+   - `index.html` inside `<main>`, wrapped with `<div class="frontpage-component">`, centered.
 
 If any required input is missing, ask before implementation.
 
@@ -60,7 +62,7 @@ If any required input is missing, ask before implementation.
 4. Implement concrete-theme mapping:
    - match screenshots to the provided source theme exactly,
    - derive other theme behavior from existing tokens (no per-theme component forks).
-5. Send confirmation summary and wait for user confirmation (`yes`).
+5. Send confirmation summary using the exact template in [TEMPLATE.md](./TEMPLATE.md) and wait for user confirmation (`yes`).
 6. Create branch with descriptive name, e.g. `build/<component-name>`.
 7. Run [Architecture](../architecture/SKILL.md) and apply constraints.
 8. Implement component from screenshot extraction within architecture constraints.
@@ -68,6 +70,8 @@ If any required input is missing, ask before implementation.
    - mobile + desktop behavior,
    - exact match to the provided source theme screenshots,
    - other themes resolve through tokens,
+   - component is centered in its placement container,
+   - if placement is `article.html`, lorem ipsum text exists before and after the component,
    - no global CSS/JS leakage,
    - tokenized color + typography mapping.
 10. Report:
