@@ -16,8 +16,7 @@ Token default for implementation:
 - Legacy aliases (`--md-*`, `--news-*`, `--color-*`, `--font-*`, `--space-*`) are compatibility-only.
 
 Routing model:
-- `build-component` is always the first step for new component builds.
-- It routes to exactly one source-specific flow:
+- Use source-specific flows directly for new component builds:
   - `build-component-figma` for Figma node requests.
   - `build-component-screenshots` for screenshot requests.
 - Figma requests are white-label: themes are token-driven.

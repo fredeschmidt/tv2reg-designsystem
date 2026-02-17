@@ -2,7 +2,7 @@
 
 ## Source-Specific Build Skill
 
-This skill is called by `build-component` when screenshots are the source.
+Use this skill directly when screenshots are the source.
 
 ## Execution Contract (Non-Negotiable)
 

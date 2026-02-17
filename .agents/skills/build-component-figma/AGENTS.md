@@ -2,7 +2,7 @@
 
 ## Source-Specific Build Skill
 
-This skill is called by `build-component` when Figma is the source.
+Use this skill directly when Figma is the source.
 
 ## Execution Contract (Non-Negotiable)
 

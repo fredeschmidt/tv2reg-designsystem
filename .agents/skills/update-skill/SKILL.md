@@ -50,7 +50,6 @@ When requested file is likely wrong, explicitly say:
 
 Use these heuristics to decide where an update belongs:
 
-- `build-component`: source-routing/orchestration for new component requests.
 - `build-component-figma`: source-specific flow, confirmations, branching, and implementation sequence for Figma-driven component builds.
 - `build-component-screenshots`: source-specific flow, confirmations, branching, and implementation sequence for screenshot-driven component builds.
 - `read-screenshot`: screenshot extraction quality, 1:1 parity method, token mapping from visuals.

@@ -6,7 +6,7 @@ description: Source-specific build flow for new components from mobile and deskt
 # Build Component Screenshots
 
 This is the screenshot-specific build flow.
-It is called by `build-component` after routing.
+Use it directly when the component source is screenshots.
 
 ## Mandatory Execution Rules
 
@@ -24,7 +24,7 @@ It is called by `build-component` after routing.
 
 ## Trigger
 
-Run this skill when `build-component` receives this request format:
+Run this skill when the user requests a new component from screenshots, for example:
 
 ```md
 Build a new [component-name] from screenshots.

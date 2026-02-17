@@ -6,7 +6,7 @@ description: Source-specific build flow for new components from a Figma Dev Mode
 # Build Component Figma
 
 This is the Figma-specific build flow.
-It is called by `build-component` after routing.
+Use it directly when the component source is Figma.
 
 ## Mandatory Execution Rules
 
@@ -25,7 +25,7 @@ It is called by `build-component` after routing.
 
 ## Trigger
 
-Run this skill when `build-component` receives this request format:
+Run this skill when the user requests a new component from a Figma Dev Mode node link, for example:
 
 ```md
 Build a new [component-name] from Figma.

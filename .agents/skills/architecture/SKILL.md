@@ -26,7 +26,6 @@ Use when implementation needs architectural guardrails for:
 - page integration constraints.
 
 In build flows:
-- `build-component` routes first.
 - `build-component-figma` -> `architecture` -> implementation.
 - `build-component-screenshots` -> `read-screenshot` -> `architecture` -> implementation.
 

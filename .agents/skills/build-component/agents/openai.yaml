@@ -1,4 +1,0 @@
-interface:
-  display_name: TV2REG Build Router
-  short_description: First step for new component builds. Route to Figma or screenshot flow.
-  default_prompt: Always run build-component first. If request includes a Figma link with node-id, run build-component-figma and treat it as white-label token-driven. If request includes two screenshots (mobile + desktop), require explicit source theme and run build-component-screenshots for concrete-theme matching.
