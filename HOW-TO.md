@@ -18,10 +18,14 @@ This is the shortest way to make a valid request.
 Build a new [component-name] from screenshots.
 - Mobile screenshot (1st): [link]
 - Desktop screenshot (2nd): [link]
+- Screenshot dimensions: [mobile WxH px, desktop WxH px]
+- Viewport widths used (if known): [mobile px, desktop px]
 - Source theme: [tv2Oj|tv2Nord|tv2Syd|tv2Fyn|tv2East|kosmopol]
 - Placement target: [article.html|index.html]
 - Notes: [optional]
 `
+
+If viewport widths are not provided, defaults are used: mobile `390px`, desktop `1728px`.
 
 ### New component from Figma
 
@@ -56,4 +60,3 @@ Add theme-specific override for [theme].
 - Reference: [screenshot or exact spec]
 - Scope: this component only
 `
-

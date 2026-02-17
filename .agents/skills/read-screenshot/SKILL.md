@@ -30,12 +30,15 @@ Collect before implementation:
 1. Two screenshots:
    - one mobile,
    - one desktop.
-2. Placement target:
+2. Screenshot dimensions and viewport intent:
+   - provide intrinsic image size for each screenshot (`width x height` in px),
+   - provide viewport width used when the screenshot was captured when known.
+3. Placement target:
    - `article.html` inside `<article>` wrapped in `<div class="article-component">`, or
    - `index.html` inside `<main>` wrapped in `<div class="frontpage-component">`.
-3. Source theme when relevant:
+4. Source theme when relevant:
    - `tv2Oj`, `tv2Nord`, `tv2Syd`, `tv2Fyn`, `tv2East`, or `kosmopol`.
-4. Viewport assumptions (default, unless user says otherwise):
+5. Viewport assumptions (default, unless user says otherwise):
    - first screenshot is mobile viewport at `390px` width,
    - second screenshot is desktop viewport at `1728px` width.
 
@@ -46,10 +49,14 @@ If any required input is missing, ask before implementation.
 1. Assume screenshot order by default:
    - screenshot 1 = mobile (`390px` wide),
    - screenshot 2 = desktop (`1728px` wide).
-2. Use these viewport widths to estimate element dimensions:
-   - derive proportional widths, spacing, and typography scale from the screenshot-to-viewport ratio,
-   - validate derived sizes across both mobile and desktop before finalizing CSS values.
-3. Only deviate from these viewport defaults when the user explicitly provides different viewport sizes.
+2. Start from intrinsic screenshot dimensions:
+   - read the real image width/height in pixels before deriving CSS values,
+   - never infer dimensions only by visual guess.
+3. Calibrate CSS sizing with screenshot-to-viewport ratio:
+   - map measured screenshot geometry to CSS pixels using the known or assumed viewport width,
+   - derive widths, spacing, and typography from this ratio for each breakpoint separately.
+4. Validate calibration across both screenshots before finalizing CSS values.
+5. Only deviate from these viewport defaults when the user explicitly provides different viewport sizes.
 
 ## Extraction Rules (Non-Negotiable)
 
@@ -75,29 +82,37 @@ If any required input is missing, ask before implementation.
    - typography must prefer semantic token usage (for example `font: var(--news-sys-typography-quote)`) over legacy `--font-*` aliases in component CSS,
    - when a semantic typography token is applied, do not override `font-size`, `font-weight`, or `line-height` unless absolutely required and documented as a delta,
    - hardcoded fallback only when token coverage is missing, and document each exception.
+9. Text-size token matching is required:
+   - estimate visible text size from calibrated screenshot measurements (not by intuition),
+   - choose the nearest semantic typography token by size and role,
+   - keep token and measured size aligned within a small visual tolerance (target `<= 1px` delta at each breakpoint),
+   - if no token is a close match, use the closest semantic token and document the residual mismatch as a delta.
 
 ## Workflow (Execute In Order)
 
 1. Inspect both screenshots and list observable primitives:
    - frame/grid, blocks, spacing rhythm, type scale, color palette, effects, edge treatments.
-2. Run a text extraction pass:
+2. Run dimension calibration pass:
+   - record intrinsic dimensions for each screenshot,
+   - compute mobile and desktop scaling baselines from viewport assumptions or user-provided viewport widths.
+3. Run a text extraction pass:
    - list all detected text strings by region/role,
    - classify each string by semantic intent (headline, paragraph, quote, caption, metadata, control label, etc.).
-3. Derive DOM plan:
+4. Derive DOM plan:
    - map visible regions to semantic containers before CSS.
-4. Implement HTML first using the semantic mapping from step 2.
-5. Implement CSS in passes:
+5. Implement HTML first using the semantic mapping from step 3.
+6. Implement CSS in passes:
    - Pass 1: layout + geometry,
-   - Pass 2: typography + spacing (semantic token-mapped first),
+   - Pass 2: typography + spacing (semantic token-mapped first, size-calibrated per breakpoint),
    - Pass 3: color + effects (token-mapped first),
    - Pass 4: responsive adjustments.
-6. Run visual match pass:
+7. Run visual match pass:
    - compare mobile and desktop against screenshots,
    - iterate until mismatch is minimal.
-7. Run self-review pass again:
+8. Run self-review pass again:
    - re-check both screenshots after latest edits,
    - if mismatch remains, loop back to HTML/CSS refinements.
-8. Report deltas:
+9. Report deltas:
    - only remaining, non-removable deltas with exact reason.
 
 ## 1:1 Acceptance Criteria
@@ -106,6 +121,7 @@ Accepted only when all are true:
 
 1. Visual parity: geometry/layout match mobile and desktop.
 2. Typographic parity: family, size, weight, line-height, spacing match.
+   - text size must be calibrated from screenshot dimensions and mapped to nearest semantic token.
 3. Color/effect parity: backgrounds, text, borders, shadows, opacity/effects match.
 4. Token compliance: colors + typography tokenized by default; any hardcoded exceptions documented.
 5. Structural quality: semantic HTML + scoped CSS.
