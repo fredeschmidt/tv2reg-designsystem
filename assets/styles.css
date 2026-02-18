@@ -1,6 +1,5 @@
 @import url("tokens.css");
 @import url("components/quote/quote.css");
-@import url("components/stacked-card/stacked-card.css");
 
 * {
   box-sizing: border-box;
