@@ -15,5 +15,5 @@ In component builds, it is run by the active source-specific build skill after d
 
 ## Routing
 
-- Do not use as entry skill for “build component from Figma/screenshot”.
-- Use `build-component-figma` or `build-component-screenshots` first, then call this skill.
+- Do not use as entry skill for “build component from Figma”.
+- Use `build-component-figma` first, then call this skill.

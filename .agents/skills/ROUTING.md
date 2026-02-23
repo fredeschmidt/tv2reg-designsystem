@@ -8,13 +8,6 @@ Before building any component, check the request source. Use the corresponding s
 
 ## Decision Tree
 
-### Request contains screenshots (mobile + desktop)?
-→ **MANDATORY: Use `build-component-screenshots` skill**
-- Do not implement manually
-- Screenshots are design source of truth
-- Requires explicit source theme (e.g., tv2Oj)
-- Requires placement target (article.html, index.html)
-
 ### Request contains Figma link with node-id?
 → **MANDATORY: Use `build-component-figma` skill**
 - Do not implement manually
@@ -22,7 +15,7 @@ Before building any component, check the request source. Use the corresponding s
 - Build is white-label (token-driven)
 - Requires placement target (article.html, index.html)
 
-### Neither screenshots nor Figma link?
+### No Figma link?
 → **Code-level request:** Build manually if appropriate
 - User describes needed changes in code
 - Update an existing component
@@ -32,10 +25,9 @@ Before building any component, check the request source. Use the corresponding s
 
 ## Non-Negotiable Rules
 
-1. **Screenshots provided = `build-component-screenshots` skill (MANDATORY)**
-2. **Figma link provided = `build-component-figma` skill (MANDATORY)**
-3. **No exceptions, no "inferred" manual builds**
-4. **If you bypass a skill when you should use it, you have failed**
+1. **Figma link provided = `build-component-figma` skill (MANDATORY)**
+2. **No exceptions, no "inferred" manual builds**
+3. **If you bypass a skill when you should use it, you have failed**
 
 ---
 

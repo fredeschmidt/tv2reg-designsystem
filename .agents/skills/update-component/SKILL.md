@@ -1,11 +1,11 @@
 ---
 name: update-component
-description: Update an existing component from a new screenshot and text description for a specific theme, defaulting to CSS-only changes unless markup changes are explicitly requested.
+description: Update an existing component from a design reference and text description for a specific theme, defaulting to CSS-only changes unless markup changes are explicitly requested.
 ---
 
 # Update Component
 
-Use this skill when the component already exists and the task is to align it with new visual direction from a screenshot plus text instructions.
+Use this skill when the component already exists and the task is to align it with new visual direction from a design reference plus text instructions.
 
 ## Mandatory Execution Rules
 
@@ -19,16 +19,16 @@ Use this skill when the component already exists and the task is to align it wit
 
 Use this skill when the user asks in patterns like:
 
-- `Update the <component> from this screenshot (tv2Oj)`
+- `Update the <component> from this Figma node (tv2Oj)`
 - `Adjust existing <component> to match this new design`
-- `Refine <component> styling based on this screenshot and notes`
+- `Refine <component> styling based on this spec and notes`
 
 ## Required Inputs
 
 Collect these before coding:
 
 1. Existing component name/path to update
-2. Screenshot reference (attachment, local image, or embedded screenshot)
+2. Design reference (Figma node link or explicit visual/text specification)
 3. Text description of the requested changes
 4. Source theme:
    - `tv2Oj`, `tv2Nord`, `tv2Syd`, `tv2Fyn`, `tv2East`, or `kosmopol`
@@ -46,8 +46,8 @@ If any of these are missing, ask before implementation.
 
 ## Workflow (Execute In Order)
 
-1. Parse update scope from screenshot + text description.
-2. Use [Read Screenshot skill](../read-screenshot/SKILL.md) to extract exact visual deltas.
+1. Parse update scope from design reference + text description.
+2. Extract exact visual/behavior deltas from the provided reference.
 3. Confirm the provided theme as the canonical source style.
 4. Locate existing component files in `assets/components/<component-name>/`.
 5. Update CSS only to match requested visual changes:
@@ -66,7 +66,7 @@ If any of these are missing, ask before implementation.
 ## Acceptance Criteria
 
 1. Existing component structure remains intact unless user explicitly requested markup changes.
-2. Visual changes match screenshot and text description for the specified theme.
+2. Visual changes match the provided reference and text description for the specified theme.
 3. No global CSS leakage.
 4. Theme switcher behavior remains intact.
 5. Other themes still render without obvious regressions.

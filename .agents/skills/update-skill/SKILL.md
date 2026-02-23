@@ -51,10 +51,8 @@ When requested file is likely wrong, explicitly say:
 Use these heuristics to decide where an update belongs:
 
 - `build-component-figma`: source-specific flow, confirmations, branching, and implementation sequence for Figma-driven component builds.
-- `build-component-screenshots`: source-specific flow, confirmations, branching, and implementation sequence for screenshot-driven component builds.
-- `read-screenshot`: screenshot extraction quality, 1:1 parity method, token mapping from visuals.
 - `architecture`: repository constraints, token governance, architecture boundaries, integration rules.
-- `update-component`: updates to existing components from screenshots + text change requests.
+- `update-component`: updates to existing components from design references + change requests.
 - `wrap-up`: git wrap-up flow (commit/push/merge-to-main/end-on-main).
 - `update-skill` (this skill): how to maintain/edit skills cleanly.
 

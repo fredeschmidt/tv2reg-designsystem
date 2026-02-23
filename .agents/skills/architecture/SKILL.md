@@ -27,7 +27,6 @@ Use when implementation needs architectural guardrails for:
 
 In build flows:
 - `build-component-figma` -> `architecture` -> implementation.
-- `build-component-screenshots` -> `read-screenshot` -> `architecture` -> implementation.
 
 ## Do This First (Required)
 
@@ -60,7 +59,7 @@ In build flows:
 1. Use tokens in component/layout CSS (`var(--...)`).
 2. Typography in component CSS must use the new semantic type system first (`--base-type-*`, `--base-leading-*`, `--base-weight-*`) including family, size, weight, and line-height.
 3. Do not use legacy typography aliases (`--font-*`) inside component styles; reserve them for compatibility in shared/global legacy layers only.
-4. For Figma/screenshot component builds, reuse existing tokens by default.
+4. For Figma component builds and design-driven updates, reuse existing tokens by default.
 5. Do not add new tokens unless user explicitly asks for token architecture changes.
 6. Keep `assets/styles.css` limited to imports + shared/global rules (no component rule blocks there).
 7. Keep `assets/script.js` as shared registry/entry for component scripts.
@@ -77,7 +76,7 @@ In build flows:
 2. Choose existing token(s) in `assets/tokens.css`.
 3. For typography, choose semantic `--base-type-*` + `--base-leading-*` + `--base-weight-*` tokens before introducing hardcoded font values.
 4. Do not override `font-size`, `font-weight`, or `line-height` with raw values when semantic base typography tokens cover the use case; if unavoidable, document the exception explicitly.
-5. If no exact token for screenshot/Figma task:
+5. If no exact token for the design task:
    - use closest semantic token,
    - document visual delta,
    - do not create new token by default.
