@@ -1,7 +1,3 @@
-/**
- * site/tokens/_index.css
- */
-
 @import "./core.css";
 @import "./semantic.css";
 @import "./modes.css";

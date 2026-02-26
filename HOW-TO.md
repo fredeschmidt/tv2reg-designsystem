@@ -16,14 +16,9 @@ This is the shortest way to make a valid request.
 2. Fill template
 3. Send
 
-Token default for implementation:
-- Component and layout CSS should use the new token API (`--base-*` by default, `--core-*` when needed).
-- Legacy aliases (`--md-*`, `--news-*`, `--color-*`, `--font-*`, `--space-*`) are compatibility-only.
-
 Routing model (MANDATORY - ALWAYS FOLLOW):
 - **Figma link provided:** MUST use `build-component-figma` skill (no manual builds)
 - These skill delegations are non-negotiable execution contracts.
-- Figma requests are white-label: themes are token-driven.
 
 ### New component from Figma
 
@@ -33,8 +28,6 @@ Build a new [component-name] from Figma.
 - Placement target: [article.html|index.html]
 - Notes: [optional]
 `
-
-Figma requests are treated as white-label. Theme behavior must come from tokens.
 
 ### Update existing component
 
