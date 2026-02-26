@@ -1,1 +1,402 @@
-:root {}
+/**
+ * site/tokens/semantic.css
+ *
+ * SEMANTIC TOKENS: The stable API that components consume.
+ * Themes can override these to customize appearance.
+ * Components must use these tokens, never core tokens directly.
+ */
+
+:root {
+
+  /* ========================================================================
+     COLOR SYSTEM
+     Two-layer architecture: Numeric scale (raw) → Semantic aliases (purpose)
+     ======================================================================== */
+  
+  /* ========================================================================
+     LAYER 1: NUMERIC SCALE
+     Raw color values using hundreds notation for flexibility
+     ======================================================================== */
+  
+  /* Neutral Scale */
+  --base-color-neutral-0:   #ffffff;  /* Pure white */
+  --base-color-neutral-50:  #f4f4f5;  /* Near white */
+  --base-color-neutral-100: #e7e7e9;  /* Light gray */
+  --base-color-neutral-200: #d4d4d8;  /* Lighter gray */
+  --base-color-neutral-300: #a8a8b1;  /* Light medium gray */
+  --base-color-neutral-400: #8b8b94;  /* Medium gray */
+  --base-color-neutral-500: #71717a;  /* True medium */
+  --base-color-neutral-600: #57575f;  /* Dark medium gray */
+  --base-color-neutral-700: #404045;  /* Darker gray */
+  --base-color-neutral-800: #2d2d30;  /* Very dark gray */
+  --base-color-neutral-900: #1a1a1b;  /* Near black */
+  --base-color-neutral-950: #0a0a0b;  /* Reserved - too harsh for text */
+
+  /* Brand Colors */
+  --base-color-brand-primary: #0052cc;      /* Main brand color */
+  --base-color-brand-secondary: #e6eeff;    /* Secondary brand */
+  --base-color-brand-tertiary: #d6f4ff;     /* Tertiary brand */
+  --base-color-brand-breaking: #ffd84d;     /* Breaking news/alerts */
+  
+  /* Brand Contrast Colors - For text on brand backgrounds */
+  --base-color-brand-primary-contrast: #ffffff;
+  --base-color-brand-secondary-contrast: #0a0a0b;
+  --base-color-brand-tertiary-contrast: #0a0a0b;
+  --base-color-brand-breaking-contrast: #0a0a0b;
+  
+  /* Semantic State Colors */
+  --base-color-success: #0f766e;        /* Success teal (blue-related) */
+  --base-color-success-contrast: #ffffff;
+  --base-color-warning: #a16207;        /* Warning amber (deep) */
+  --base-color-warning-contrast: #ffffff;
+  --base-color-danger: #b4233c;         /* Error rose-red */
+  --base-color-danger-contrast: #ffffff;
+  --base-color-info: #1d4ed8;           /* Info blue (near brand primary) */
+  --base-color-info-contrast: #ffffff;
+  
+  /* ========================================================================
+     LAYER 2: SEMANTIC ALIASES
+     Purpose-driven tokens that map to the numeric scale
+     ======================================================================== */
+  
+  /* ========================================================================
+     SURFACES
+     Background colors for different contexts
+     ======================================================================== */
+  --base-color-surface-page: var(--base-color-neutral-0);
+  --base-color-surface-section: var(--base-color-neutral-50);
+  --base-color-surface-card: var(--base-color-neutral-100);
+  --base-color-surface-elevated: var(--base-color-neutral-200);
+  --base-color-surface-overlay: var(--base-color-neutral-300);
+  --base-color-surface-brand-primary-tinted: color-mix(
+    in srgb,
+    var(--base-color-brand-primary) 10%,
+    var(--base-color-surface-page)
+  );
+  --base-color-surface-inverse: var(--base-color-neutral-900);
+  --base-color-surface-breaking: var(--base-color-brand-breaking);
+  --base-color-surface-breaking-contrast: var(--base-color-brand-breaking-contrast);
+  
+  /* ========================================================================
+     TEXT HIERARCHY
+     ======================================================================== */
+  --base-color-text-primary: var(--base-color-neutral-900);      /* Main text */
+  --base-color-text-secondary: var(--base-color-neutral-700);    /* Secondary text */
+  --base-color-text-tertiary: var(--base-color-neutral-600);     /* Supporting text */
+  --base-color-text-muted: var(--base-color-neutral-500);        /* Muted text */
+  --base-color-text-disabled: var(--base-color-neutral-400);     /* Disabled text */
+  --base-color-text-placeholder: var(--base-color-neutral-400);  /* Input placeholders */
+  --base-color-text-inverse: var(--base-color-neutral-0);        /* Text on dark bg */
+  
+  /* ========================================================================
+     BORDERS
+     ======================================================================== */
+  --base-color-border-subtle: var(--base-color-neutral-100);     /* Subtle borders */
+  --base-color-border-default: var(--base-color-neutral-200);    /* Default borders */
+  --base-color-border-medium: var(--base-color-neutral-300);     /* Medium emphasis */
+  --base-color-border-strong: var(--base-color-neutral-400);     /* Strong borders */
+  --base-color-border-emphasis: var(--base-color-brand-primary); /* Brand borders */
+  --base-color-border-disabled: var(--base-color-neutral-200);   /* Disabled inputs */
+  
+  /* ========================================================================
+     INTERACTIVE ELEMENTS
+     ======================================================================== */
+  --base-color-link-default: var(--base-color-brand-primary);
+  --base-color-link-hover: color-mix(in srgb, var(--base-color-brand-primary) 85%, black);
+  --base-color-link-visited: color-mix(in srgb, var(--base-color-brand-primary) 70%, var(--base-color-neutral-700));
+  --base-color-accent: var(--base-color-brand-primary);
+  --base-color-accent-contrast: var(--base-color-brand-primary-contrast);
+  
+  /* Icons */
+  --base-color-icon-default: var(--base-color-neutral-600);      /* Standard icons */
+  --base-color-icon-muted: var(--base-color-neutral-400);        /* Muted icons */
+  --base-color-icon-disabled: var(--base-color-neutral-300);     /* Disabled icons */
+  --base-color-icon-inverse: var(--base-color-neutral-0);        /* Icons on dark bg */
+  --base-color-icon-interactive: var(--base-color-brand-primary); /* Clickable icons */
+  
+  /* Focus & Selection */
+  --base-color-focus-ring: color-mix(in srgb, var(--base-color-brand-primary) 30%, transparent);
+  --base-color-selection-bg: color-mix(in srgb, var(--base-color-brand-primary) 20%, transparent);
+  --base-color-selection-text: inherit;
+
+  /* Opacity aliases - Semantic usage mapped to core primitives */
+  --base-opacity-subtle: var(--core-opacity-30);   /* Low emphasis overlays */
+  --base-opacity-muted: var(--core-opacity-70);    /* Muted UI states */
+  --base-opacity-disabled: var(--core-opacity-50); /* Disabled controls/content */
+  --base-opacity-overlay: var(--core-opacity-50);  /* Backdrops and scrims */
+  --base-opacity-solid: var(--core-opacity-100);   /* Fully opaque surfaces */
+  
+  /* UI Elements */
+  --base-color-backdrop-overlay: rgba(0, 0, 0, var(--base-opacity-overlay));
+  --base-color-list-marker: var(--base-color-brand-primary);
+  --base-focus-ring: var(--core-border-width-2) solid var(--base-color-focus-ring);
+
+  /* ============================================
+     TYPOGRAPHY SYSTEM
+     ============================================ */
+  /* Font families */
+  --base-type-family-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;   /* Primary reading font */
+  --base-type-family-heading: ui-serif, Georgia, "Times New Roman", Times, serif;    /* Headlines (can be serif) */
+  --base-type-family-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;       /* Code, technical content */
+  
+  /* Heading sizes - semantic sizing for HTML headings */
+  --base-type-size-heading: clamp(1.875rem, 1.4rem + 2vw, 3rem);      /* Main heading - fluid */
+  --base-type-size-subheading: clamp(1.25rem, 1.18rem + 0.4vw, 1.5rem); /* Subheading - fluid */
+  --base-type-size-body: var(--core-type-size-16);    /* Base reading size - 16px */
+  --base-type-size-caption: var(--core-type-size-14); /* Small text/captions - 14px */
+  --base-type-size-emphasis: var(--core-type-size-20); /* Large text/callouts - 20px */
+
+  /* Line heights by context */
+  --base-leading-heading: var(--core-leading-tighter);    /* Headlines, page titles */
+  --base-leading-subheading: var(--core-leading-tight);   /* Section headers */
+  --base-leading-body: var(--core-leading-compact);       /* Article content */
+  --base-leading-comfortable: var(--core-leading-normal); /* Long-form, accessibility */
+  --base-leading-tight: var(--core-leading-tight);        /* Compact spacing */
+  --base-leading-normal: var(--core-leading-normal);      /* Standard spacing */
+
+  /* Font weights by purpose */
+  --base-weight-light: 300;        /* Light text */
+  --base-weight-normal: 400;       /* Body text */
+  --base-weight-medium: 500;       /* Medium weight */
+  --base-weight-emphasis: 500;     /* Subtle emphasis */
+  --base-weight-semibold: 600;     /* Semibold */
+  --base-weight-strong: 600;       /* Strong emphasis */
+  --base-weight-bold: 700;         /* Bold text */
+  --base-weight-heading: 700;      /* Headlines */
+  --base-weight-extrabold: 800;    /* Extra bold */
+  --base-weight-display: 800;      /* Display headlines */
+
+  /* Letter spacing by context */
+  --base-type-letter-heading: -0.02em;      /* Headlines (-2% in Figma) */
+  --base-type-letter-subheading: -0.01em;   /* Subheadings (-1% in Figma) */
+  --base-type-letter-body: 0em;             /* Body text (0% in Figma) */
+
+  /* Font styles */
+  --base-type-style-normal: normal;
+  --base-type-style-italic: italic;
+
+  /* ============================================
+     SPACING
+     ============================================ */
+
+  /* Spacing scale (primitive ramp) */
+  --base-space-0: var(--core-size-0);
+  --base-space-1: var(--core-size-4);
+  --base-space-2: var(--core-size-8);
+  --base-space-3: var(--core-size-12);
+  --base-space-4: var(--core-size-16);
+  --base-space-5: var(--core-size-20);
+  --base-space-6: var(--core-size-32);
+  --base-space-7: var(--core-size-40);
+  --base-space-8: var(--core-size-48);
+  --base-space-9: var(--core-size-64);
+
+  /* Semantic spacing families (canonical API) */
+
+  /* Inset: padding inside a container/component */
+  --base-space-inset-xs: var(--base-space-2);
+  --base-space-inset-sm: var(--base-space-3);
+  --base-space-inset-md: var(--base-space-4);
+  --base-space-inset-lg: var(--base-space-5);
+  --base-space-inset-xl: var(--base-space-6);
+
+  /* Stack: vertical spacing between siblings */
+  --base-space-stack-xs: var(--base-space-1);
+  --base-space-stack-sm: var(--base-space-2);
+  --base-space-stack-md: var(--base-space-3);
+  --base-space-stack-lg: var(--base-space-4);
+  --base-space-stack-xl: var(--base-space-5);
+
+  /* Inline: horizontal spacing between siblings */
+  --base-space-inline-xs: var(--base-space-1);
+  --base-space-inline-sm: var(--base-space-2);
+  --base-space-inline-md: var(--base-space-3);
+  --base-space-inline-lg: var(--base-space-4);
+  --base-space-inline-xl: var(--base-space-5);
+
+  /* Cluster: wrapped inline groups (chips, tags, button groups) */
+   --base-space-cluster-xs: var(--base-space-inline-xs);
+   --base-space-cluster-sm: var(--base-space-inline-sm);
+   --base-space-cluster-md: var(--base-space-inline-md);
+   --base-space-cluster-lg: var(--base-space-inline-lg);
+   --base-space-cluster-xl: var(--base-space-inline-xl);
+
+  /* Section: page/layout rhythm */
+  --base-space-section-xs: var(--base-space-4);
+  --base-space-section-sm: var(--base-space-5);
+  --base-space-section-md: var(--base-space-6);
+  --base-space-section-lg: var(--base-space-7);
+  --base-space-section-xl: var(--base-space-8);
+
+  /* Fluid spacing helpers (paused for now; kept as commented reference) */
+  /* --base-space-inset-fluid-md: clamp(var(--base-space-inset-sm), 3vw, var(--base-space-inset-lg)); */
+  /* --base-space-inset-fluid-lg: clamp(var(--base-space-inset-md), 4vw, var(--base-space-inset-xl)); */
+  /* --base-space-section-fluid-md: clamp(var(--base-space-section-sm), 5vw, var(--base-space-section-lg)); */
+  /* --base-space-section-fluid-lg: clamp(var(--base-space-section-md), 6vw, var(--base-space-section-xl)); */
+
+  /* Defaults by component archetype: a “single knob” for consistency and density tuning */
+  --base-space-default-article-stack: var(--base-space-stack-lg);
+  --base-space-default-paragraph-stack: var(--base-space-stack-xl);
+  --base-space-default-card-inset: var(--base-space-inset-md);
+  --base-space-default-panel-inset: var(--base-space-inset-md);
+  --base-space-default-form-stack: var(--base-space-stack-md);
+  --base-space-default-button-padding-block: var(--base-space-inset-sm);
+  --base-space-default-button-padding-inline: var(--base-space-inline-lg);
+  --base-space-default-chip-cluster: var(--base-space-cluster-sm);
+  --base-space-default-page-gutter: var(--base-space-section-sm);
+  --base-space-default-page-section-gap: var(--base-space-section-md);
+
+  /* ============================================
+     SIZES (FIXED DIMENSIONS)
+     ============================================ */
+
+  /* Accessibility baseline */
+  --base-size-touch-target-min: var(--core-size-44);
+
+  /* Interactive controls */
+  --base-size-control-height-sm: var(--core-size-40);
+  --base-size-control-height-md: var(--core-size-44);
+  --base-size-control-height-lg: var(--core-size-48);
+  --base-size-control-height-default: var(--base-size-control-height-md);
+
+  /* Buttons */
+  --base-size-button-height-sm: var(--core-size-32);
+  --base-size-button-height-md: var(--core-size-40);
+  --base-size-button-height-lg: var(--core-size-48);
+  --base-size-button-height-default: var(--base-size-button-height-md);
+
+  /* Icons */
+  --base-size-icon-xs: var(--core-size-12);
+  --base-size-icon-sm: var(--core-size-16);
+  --base-size-icon-md: var(--core-size-24);
+  --base-size-icon-lg: var(--core-size-32);
+  --base-size-icon-default: var(--base-size-icon-sm);
+
+  /* Avatars */
+  --base-size-avatar-sm: var(--core-size-24);
+  --base-size-avatar-md: var(--core-size-32);
+  --base-size-avatar-lg: var(--core-size-40);
+  --base-size-avatar-xl: var(--core-size-48);
+  --base-size-avatar-2xl: var(--core-size-64);
+  --base-size-avatar-default: var(--base-size-avatar-md);
+
+  /* Compact components */
+  --base-size-chip-height-sm: var(--core-size-24);
+  --base-size-chip-height-md: var(--core-size-32);
+  --base-size-chip-height-default: var(--base-size-chip-height-md);
+  --base-size-badge-height-sm: var(--core-size-16);
+  --base-size-badge-height-md: var(--core-size-24);
+  --base-size-badge-height-default: var(--base-size-badge-height-sm);
+
+  /* Border Radius tokens - Semantic corner rounding */
+  --base-radius-sm: var(--core-radius-1);      /* Small rounding - buttons, inputs */
+  --base-radius-md: var(--core-radius-2);      /* Medium rounding - cards, modals */
+  --base-radius-lg: var(--core-radius-3);      /* Large rounding - featured elements */
+  --base-radius-pill: var(--core-radius-pill); /* Full rounding - pills, avatars */
+  
+  /* Motion Duration tokens - Semantic timing for consistent animation */
+  --base-duration-instant: var(--core-duration-instant);    /* 75ms - Instant feedback, focus states */
+  --base-duration-fast: var(--core-duration-fast);          /* 150ms - Fast transitions */
+  --base-duration-normal: var(--core-duration-normal);      /* 250ms - Normal transitions */
+  --base-duration-slow: var(--core-duration-slow);          /* 350ms - Slow transitions */
+  --base-duration-slower: var(--core-duration-slower);      /* 500ms - Slower transitions */
+  --base-duration-slowest: var(--core-duration-slowest);    /* 700ms - Slowest transitions */
+  
+  /* Semantic duration aliases */
+  --base-duration-hover: var(--core-duration-fast);         /* 150ms - Hover states, quick feedback */
+  --base-duration-transition: var(--core-duration-normal);  /* 250ms - Default transitions */
+  --base-duration-animation: var(--core-duration-slow);     /* 350ms - Complex animations */
+  --base-duration-enter: var(--core-duration-slow);         /* 350ms - Element appearances */
+  --base-duration-exit: var(--core-duration-fast);          /* 150ms - Element removals (faster) */
+  --base-duration-page: var(--core-duration-slower);        /* 500ms - Page transitions */
+  --base-duration-emphasis: var(--core-duration-slowest);   /* 700ms - Attention-grabbing */
+
+  /* Motion distance tokens - semantic movement magnitudes */
+  --base-motion-distance-micro: 1px;  /* Press/release nudges */
+  --base-motion-distance-small: 2px;  /* Hover lift/drop nudges */
+  --base-motion-distance-press: var(--base-motion-distance-micro);
+  --base-motion-distance-lift: var(--base-motion-distance-small);
+  
+  /* Motion Easing tokens - Physics-based motion curves */
+  --base-ease-linear: var(--core-ease-linear);    /* Constant speed - progress, loading */
+  --base-ease-in: var(--core-ease-in);            /* Accelerate - exits, collapses */
+  --base-ease-out: var(--core-ease-out);          /* Decelerate - entrances, stops */
+  --base-ease-in-out: var(--core-ease-in-out);    /* Smooth - moving elements */
+  --base-ease-bounce: var(--core-ease-bounce);    /* Overshoot - playful emphasis */
+  --base-ease-elastic: var(--core-ease-elastic);  /* Springy - attention, delight */
+  
+  /* Semantic easing aliases */
+  --base-ease-default: var(--core-ease-out);      /* Natural deceleration */
+  --base-ease-enter: var(--core-ease-out);        /* Smooth entrance */
+  --base-ease-exit: var(--core-ease-in);          /* Quick exit */
+  --base-ease-move: var(--core-ease-in-out);      /* Position changes */
+  --base-ease-emphasis: var(--core-ease-bounce);  /* Playful attention */
+  --base-ease-smooth: var(--core-ease-in-out);   /* Continuous motion */
+  
+  /* Motion Transition property groups - Optimized for performance */
+  --base-transition-colors: color, background-color, border-color, text-decoration-color, fill, stroke;
+  --base-transition-opacity: opacity;
+  --base-transition-transform: transform;
+  --base-transition-shadow: box-shadow;
+  --base-transition-all: all;  /* Use sparingly - performance cost */
+  
+  /* Border tokens - Separate properties for flexibility */
+  --base-border-width-none: var(--core-border-width-0);
+  --base-border-width: var(--core-border-width-1);
+  --base-border-width-emphasis: var(--core-border-width-2);
+  --base-border-style: solid;
+  --base-border-color: var(--base-color-border-default);
+  --base-border-radius: var(--base-radius-sm);
+  
+  /* Border shorthand - Combines width, style, and color (NOT radius) */
+  --base-border: var(--base-border-width) var(--base-border-style) var(--base-border-color);
+  --base-border-emphasis: var(--base-border-width-emphasis) var(--base-border-style) var(--base-border-color);
+  --base-border-emphasis-accent: var(--base-border-width-emphasis) var(--base-border-style) var(--base-color-border-emphasis);
+  
+  /* Shadow tokens - Design decisions about elevation visualization */
+  --base-shadow-xs: 0 1px 2px rgba(0,0,0,.05);    /* Subtle elevation */
+  --base-shadow-sm: 0 1px 3px rgba(0,0,0,.06);    /* Small elevation */
+  --base-shadow-md: 0 4px 6px rgba(0,0,0,.07);    /* Medium elevation */
+  --base-shadow-lg: 0 10px 15px rgba(0,0,0,.1);   /* Large elevation */
+  --base-shadow-xl: 0 20px 25px rgba(0,0,0,.1);   /* Extra large elevation */
+  --base-shadow-float: 0 12px 28px rgba(0,0,0,.14); /* Floating elements */
+  
+  /* Container width tokens - Design decisions about layout constraints */
+  --base-wrap-max: var(--core-size-1152);        /* 1152px - Maximum content width */
+  --base-wrap-content: var(--core-size-1040);    /* 1040px - Optimal reading width */
+  --base-wrap-narrow: var(--core-size-720);      /* 720px - Narrow content */
+  --base-wrap-wide: var(--core-size-1440);       /* 1440px - Wide layouts */
+  
+  /* Modal/Dialog width tokens - Design decisions for overlay components */
+  --base-modal-width-sm: var(--core-size-384);   /* 384px - Small modals/dialogs */
+  --base-modal-width-md: var(--core-size-512);   /* 512px - Medium modals (confirmation dialogs) */
+  --base-modal-width-lg: var(--core-size-768);   /* 768px - Large modals (forms, content) */
+  --base-modal-width-xl: var(--core-size-1024);  /* 1024px - Extra large modals (rich content) */
+  --base-modal-width-full: var(--core-size-vw-90); /* Full width with breathing room */
+  
+  /* Modal max-width tokens - Prevents modals from being too wide on large screens */
+  --base-modal-max-width-sm: var(--core-size-vw-90);  /* Small modal max (mobile-friendly) */
+  --base-modal-max-width-md: var(--core-size-vw-85);  /* Medium modal max */
+  --base-modal-max-width-lg: var(--core-size-vw-80);  /* Large modal max */
+  --base-modal-max-width-xl: var(--core-size-vw-75);  /* Extra large modal max */
+  
+  /* Default modal configuration - Standard form/content modal */
+  --base-modal-width-default: var(--base-modal-width-lg);      /* 768px default width */
+  --base-modal-max-width-default: var(--base-modal-max-width-lg); /* 80vw max */
+  
+  /* Drawer/Sidebar width tokens - For slide-out panels */
+  --base-drawer-width-sm: var(--core-size-320);  /* 320px - Narrow drawer */
+  --base-drawer-width-md: var(--core-size-400);  /* 400px - Standard drawer */
+  --base-drawer-width-lg: var(--core-size-480);  /* 480px - Wide drawer */
+  --base-drawer-width-xl: var(--core-size-640);  /* 640px - Extra wide drawer */
+  
+  /* Window breakpoint tokens - Design decisions about responsive behavior */
+  --base-window-compact: var(--core-breakpoint-600);   /* 600px - Mobile breakpoint */
+  --base-window-medium: var(--core-breakpoint-840);    /* 840px - Tablet breakpoint */
+  --base-window-expanded: var(--core-breakpoint-1240); /* 1240px - Desktop breakpoint */
+}
+
+/*
+ * Dark-mode token values are defined in site/tokens/dark.css and wired
+ * through site/tokens/modes.css.
+ */

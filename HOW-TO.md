@@ -20,6 +20,12 @@ Routing model (MANDATORY - ALWAYS FOLLOW):
 - **Figma link provided:** MUST use `build-component-figma` skill (no manual builds)
 - These skill delegations are non-negotiable execution contracts.
 
+Token usage for component builds:
+- Use semantic `--base-*` tokens in component/layout CSS by default.
+- Use `--core-*` only when no semantic `--base-*` token exists for the need.
+- Do not hardcode raw color/typography/spacing values when a token exists.
+- Keep theme differences in token layers, not component selectors.
+
 ### New component from Figma
 
 `
