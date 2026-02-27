@@ -1,4 +1,5 @@
 @import url("tokens.css");
+@import url("./components/stacked-card/stacked-card.css");
 @import url("components/quote/quote.css");
 
 * {
