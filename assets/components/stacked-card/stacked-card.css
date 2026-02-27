@@ -1,12 +1,6 @@
-.article-component {
-  display: grid;
-  justify-items: center;
-  gap: var(--base-space-stack-md);
-  margin-block: var(--base-space-section-sm);
-}
-
 .stacked-card {
-  width: min(100%, 22.5rem);
+  width: 100%;
+  max-inline-size: calc(var(--base-modal-width-sm) - var(--base-space-6));
   border: var(--base-border);
   border-radius: var(--base-radius-md);
   overflow: hidden;
@@ -79,23 +73,23 @@
 
 .stacked-card__menu:focus-visible {
   outline: var(--base-focus-ring);
-  outline-offset: 1px;
+  outline-offset: var(--base-space-1);
 }
 
 .stacked-card__dots {
   display: grid;
-  gap: 3px;
+  gap: var(--base-space-stack-xs);
 }
 
-.stacked-card__dots span {
-  inline-size: 3px;
-  block-size: 3px;
+.stacked-card__dot {
+  inline-size: var(--base-space-1);
+  block-size: var(--base-space-1);
   border-radius: var(--base-radius-pill);
   background: currentcolor;
 }
 
 .stacked-card__media {
-  min-block-size: 9.75rem;
+  min-block-size: calc(var(--base-size-avatar-2xl) + var(--base-size-avatar-xl) + var(--base-space-7));
   display: grid;
   place-items: center;
   background: var(--base-color-surface-elevated);
@@ -114,15 +108,15 @@
 }
 
 .stacked-card__shape--triangle {
-  inline-size: 3.25rem;
-  block-size: 3.25rem;
+  inline-size: calc(var(--base-size-avatar-2xl) - var(--base-space-3));
+  block-size: calc(var(--base-size-avatar-2xl) - var(--base-space-3));
   clip-path: polygon(50% 10%, 88% 78%, 12% 78%);
   border-radius: var(--base-radius-md);
 }
 
 .stacked-card__shape--burst {
-  inline-size: 3.25rem;
-  block-size: 3.25rem;
+  inline-size: calc(var(--base-size-avatar-2xl) - var(--base-space-3));
+  block-size: calc(var(--base-size-avatar-2xl) - var(--base-space-3));
   clip-path: polygon(
     50% 0%,
     61% 18%,
@@ -144,8 +138,8 @@
 }
 
 .stacked-card__shape--square {
-  inline-size: 3.25rem;
-  block-size: 3.25rem;
+  inline-size: calc(var(--base-size-avatar-2xl) - var(--base-space-3));
+  block-size: calc(var(--base-size-avatar-2xl) - var(--base-space-3));
   border-radius: var(--base-radius-sm);
   transform: rotate(4deg);
 }

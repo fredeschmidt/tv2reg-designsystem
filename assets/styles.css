@@ -150,6 +150,13 @@ p {
   margin: 0 auto;
 }
 
+.article-component {
+  display: grid;
+  justify-items: center;
+  gap: var(--base-space-stack-md);
+  margin-block: var(--base-space-section-sm);
+}
+
 .meta {
   color: var(--base-color-text-muted);
 }
