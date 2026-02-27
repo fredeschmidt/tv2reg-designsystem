@@ -20,6 +20,7 @@ Token default for implementation:
 - Component and layout CSS should use the new token API (`--base-*` by default, `--core-*` when needed).
 - Legacy aliases (`--md-*`, `--news-*`, `--color-*`, `--font-*`, `--space-*`) are compatibility-only.
 - Accessibility is mandatory: preserve semantic HTML, keyboard operability, visible focus states, and WCAG AA contrast.
+- Class naming should follow BEM for component-scoped, predictable CSS.
 
 Routing model (MANDATORY - ALWAYS FOLLOW):
 - **Figma link provided:** MUST use `build-component-figma` skill (no manual builds)

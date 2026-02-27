@@ -57,6 +57,7 @@ In build flows:
    - correct landmarks,
    - logical heading order,
    - meaningful control semantics.
+12. Component class naming must follow BEM (`block__element--modifier`) to keep styles predictable and scoped.
 
 ## Hard Rules
 
@@ -77,6 +78,8 @@ In build flows:
 12. Ensure interactive UI remains keyboard operable with visible focus states and no keyboard traps.
 13. Ensure controls expose an accessible name and required state (`aria-expanded`, `aria-controls`, `aria-current`, etc.) when behavior needs it.
 14. Keep non-text contrast and text contrast at WCAG AA level for default component/theme states.
+15. In component CSS, prefer BEM class selectors over tag/descendant coupling to page structure.
+16. Keep one canonical block per component folder and scope element/modifier classes to that block.
 
 ## Safe Change Workflow (Execute In Order)
 
@@ -107,6 +110,8 @@ In build flows:
    - interactive behavior is keyboard accessible with visible focus,
    - ARIA usage (if any) matches actual behavior/state and is not redundant with native semantics,
    - text and interactive UI contrast satisfy WCAG AA,
+   - component classes follow BEM consistently (block, element, modifier),
+   - no cross-component selector coupling that breaks BEM scoping,
    - mobile and desktop render correctly.
 
 ## Output Requirements
