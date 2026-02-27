@@ -19,6 +19,9 @@ Use it directly when the component source is Figma.
 - Treat every Figma request as a white-label design.
 - Build the component token-driven so all themes are controlled by tokens.
 - Target exact visual match to the linked Figma node.
+- Preserve or improve accessibility while matching Figma visuals.
+- Build component class structure using BEM from the start.
+- Treat any Figma layer/slot named `media` as an image content slot by default (not decorative placeholder), unless user notes explicitly state otherwise.
 - Always center the component in its placement container.
 - When placement target is `article.html`, always add lorem ipsum text before and after the component.
 - When placement target is `article.html`, never delete existing components; only add the new component alongside existing content.
@@ -55,6 +58,8 @@ If any required input is missing, ask before implementation.
    - spacing and alignment,
    - typography,
    - colors/effects,
+   - content semantics (treat `media` as image by default),
+   - accessibility semantics implied by the design (headings, landmarks, control roles, labels, alt text expectations),
    - token mapping opportunities.
 3. Treat extracted design as white-label:
    - implement using shared semantic tokens,
@@ -62,6 +67,7 @@ If any required input is missing, ask before implementation.
 4. Confirm placement target if not already specified.
 5. Convert prompt into implementation scope + acceptance checks.
    - state assumptions explicitly when unspecified.
+   - include planned BEM block name and expected element/modifier classes.
 6. Send confirmation summary using the exact template in [TEMPLATE.md](./TEMPLATE.md) and wait for user confirmation (`yes`).
 7. Create branch with descriptive name, e.g. `build/<component-name>`.
 8. Run [Architecture](../architecture/SKILL.md) and apply constraints.
@@ -73,6 +79,11 @@ If any required input is missing, ask before implementation.
    - component is centered in its placement container,
    - if placement is `article.html`, lorem ipsum text exists before and after the component,
    - if placement is `article.html`, existing components remain intact (no deletions),
+   - semantic structure and control naming are correct,
+   - keyboard navigation works with visible focus and no trap,
+   - ARIA (if needed) reflects real state/relations,
+   - color contrast is WCAG AA compliant for text and interactive UI,
+   - class naming follows BEM consistently for the full component,
    - no global CSS/JS leakage.
 11. Run self-review (mandatory):
    - re-check architecture compliance against [Architecture](../architecture/SKILL.md),

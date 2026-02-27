@@ -53,6 +53,11 @@ In build flows:
 8. Component CSS loads via `assets/styles.css` imports only (no page-level component `<link>` tags).
 9. Component JS loads via `assets/script.js` only (no page-level component `<script>` tags).
 10. No per-region HTML forks; region differences come from tokens.
+11. Preserve accessible semantic structure across pages/components:
+   - correct landmarks,
+   - logical heading order,
+   - meaningful control semantics.
+12. Component class naming must follow BEM (`block__element--modifier`) to keep styles predictable and scoped.
 
 ## Hard Rules
 
@@ -69,6 +74,12 @@ In build flows:
    - theme picker option values.
 9. Avoid page-specific inline styles/scripts.
 10. Keep semantic markup stable across pages.
+11. Prefer native HTML semantics first (`button`, `a`, `label`, `input`, `nav`, etc.); use ARIA only when native semantics cannot express the behavior.
+12. Ensure interactive UI remains keyboard operable with visible focus states and no keyboard traps.
+13. Ensure controls expose an accessible name and required state (`aria-expanded`, `aria-controls`, `aria-current`, etc.) when behavior needs it.
+14. Keep non-text contrast and text contrast at WCAG AA level for default component/theme states.
+15. In component CSS, prefer BEM class selectors over tag/descendant coupling to page structure.
+16. Keep one canonical block per component folder and scope element/modifier classes to that block.
 
 ## Safe Change Workflow (Execute In Order)
 
@@ -95,6 +106,12 @@ In build flows:
    - no legacy `--font-*` usage inside component CSS,
    - no direct raw `font-size`/`font-weight`/`line-height` overrides where semantic base typography tokens already define them,
    - component CSS/JS loading follows contract,
+   - semantic structure is valid (landmarks, heading order, labels),
+   - interactive behavior is keyboard accessible with visible focus,
+   - ARIA usage (if any) matches actual behavior/state and is not redundant with native semantics,
+   - text and interactive UI contrast satisfy WCAG AA,
+   - component classes follow BEM consistently (block, element, modifier),
+   - no cross-component selector coupling that breaks BEM scoping,
    - mobile and desktop render correctly.
 
 ## Output Requirements

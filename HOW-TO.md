@@ -16,6 +16,11 @@ This is the shortest way to make a valid request.
 2. Fill template
 3. Send
 
+Token default for implementation:
+- Component and layout CSS should use the new token API (`--base-*` by default, `--core-*` when needed).
+- Legacy aliases (`--md-*`, `--news-*`, `--color-*`, `--font-*`, `--space-*`) are compatibility-only.
+- Accessibility is mandatory: preserve semantic HTML, keyboard operability, visible focus states, and WCAG AA contrast.
+- Class naming should follow BEM for component-scoped, predictable CSS.
 Routing model (MANDATORY - ALWAYS FOLLOW):
 - **Figma link provided:** MUST use `build-component-figma` skill (no manual builds)
 - These skill delegations are non-negotiable execution contracts.
@@ -35,6 +40,8 @@ Build a new [component-name] from Figma.
 - Notes: [optional]
 `
 
+Figma requests are treated as white-label. Theme behavior must come from tokens.
+All implementations must keep accessible structure (semantic roles, labels, keyboard flow, contrast).
 ### Update existing component
 
 `
@@ -44,6 +51,8 @@ Update existing [component-name].
 - Requested changes: [list]
 - Allowed scope: [CSS only|CSS + markup|CSS + markup + JS]
 `
+
+All updates must avoid A11y regressions in semantics, keyboard navigation, and contrast.
 
 ## Theme Overrides (If one theme should look different)
 

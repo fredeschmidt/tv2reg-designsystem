@@ -1,4 +1,5 @@
 @import url("tokens.css");
+@import url("./components/stacked-card/stacked-card.css");
 
 * {
   box-sizing: border-box;
@@ -146,6 +147,13 @@ p {
 .article-layout > article {
   max-width: 760px;
   margin: 0 auto;
+}
+
+.article-component {
+  display: grid;
+  justify-items: center;
+  gap: var(--base-space-stack-md);
+  margin-block: var(--base-space-section-sm);
 }
 
 .meta {

@@ -43,6 +43,9 @@ If any of these are missing, ask before implementation.
 4. If markup changes are requested explicitly, keep them minimal and scoped to the existing component contract.
 5. Use existing tokens first (`--base-*` primary, `--core-*` when needed); treat `--md-*`/`--news-*`/legacy aliases as compatibility-only.
 6. No page-level hacks or per-theme hardcoded forks in markup.
+7. Preserve or improve accessibility semantics while updating visuals.
+8. Prefer native semantic elements over ARIA retrofits; use ARIA only when native semantics are insufficient.
+9. Preserve existing BEM contract; add or adjust classes using BEM conventions only.
 
 ## Workflow (Execute In Order)
 
@@ -56,8 +59,16 @@ If any of these are missing, ask before implementation.
    - Colors and effects
    - Responsive behavior
 6. Keep selectors scoped to the component and avoid global leakage.
-7. Validate in the specified source theme, then smoke-test remaining themes for regressions.
-8. Report:
+7. Run accessibility regression checks for the updated component:
+   - semantic structure and labels remain valid,
+   - keyboard access/focus behavior still works,
+   - contrast remains WCAG AA compliant for text and interactive UI.
+8. Run BEM consistency checks for the updated component:
+   - block/element/modifier naming remains consistent,
+   - no orphan element classes without their block context,
+   - no cross-component selector coupling.
+9. Validate in the specified source theme, then smoke-test remaining themes for regressions.
+10. Report:
    - What changed
    - Files changed
    - Assumptions
@@ -70,3 +81,5 @@ If any of these are missing, ask before implementation.
 3. No global CSS leakage.
 4. Theme switcher behavior remains intact.
 5. Other themes still render without obvious regressions.
+6. No accessibility regressions introduced in semantics, keyboard flow, or contrast.
+7. Updated selectors/classes follow the component's BEM structure.
